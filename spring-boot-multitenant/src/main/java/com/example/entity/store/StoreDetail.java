@@ -58,24 +58,12 @@ public class StoreDetail implements Serializable {
     private BigDecimal pendingarrival = BigDecimal.ZERO;
     private BigDecimal pendingdispatch = BigDecimal.ZERO;
 
-
-    public Product() {
-    }
-
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getTenantid() {
-        return tenantid;
-    }
-
-    public void setTenantid(Long tenantid) {
-        this.tenantid = tenantid;
     }
 
     public Long getRefno() {
