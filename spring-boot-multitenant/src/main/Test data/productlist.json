@@ -1,0 +1,22 @@
+({
+  "id": 1001,
+  "tenantid": 1,
+  "stock": [
+    {
+      "quantity": 5
+    }
+  ],
+  "name": "necklace",
+  "costPrice": 20
+},
+{
+  "id": 1002,
+  "tenantid": 2,
+  "stock": [
+    {
+      "quantity": 10
+    }
+  ],
+  "name": "bracelet",
+  "costPrice": 30
+})

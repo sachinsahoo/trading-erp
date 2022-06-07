@@ -1,0 +1,12 @@
+todo
+
+
+calculate balance, payable,receivable, bank,
+calculate stock
+based on DB data
+
+po/so last 30 days
+trans last 30 days
+
+get po list without poproducts
+get po by id
