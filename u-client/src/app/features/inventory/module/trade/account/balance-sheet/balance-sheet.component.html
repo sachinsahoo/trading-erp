@@ -1,0 +1,81 @@
+<div *ngIf="balanceSheet$ | async">
+
+    <!--Toolbar-->
+
+    <div class="toolbar">
+
+        <mat-toolbar color="primary" class="secondary">
+            <div class="button-row" style="flex:1">
+
+                <div class="row">
+                    <div class="ml-4 nav-link">
+
+
+                        <span class="header"> Balance Sheet</span>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+            <div class="abc">
+
+                <button mat-button class="ml-5 bgteal" (click)="create()">
+                    <fa-icon icon="plus" transform="grow-4"></fa-icon> &nbsp;
+                </button>
+
+                <button mat-button class="ml-5 bg" (click)="printPreview()">
+                    <fa-icon icon="download" transform="grow-4"></fa-icon>
+                </button>
+                <span class="ml-4"> </span>
+
+
+
+            </div>
+
+        </mat-toolbar>
+    </div>
+
+    <!-- Mat Toolbar End ------------------------------>
+
+
+
+
+
+    <div class="row justify-content-center balance-sheet">
+
+        <!-- <div class=" col-10 mb-40 title" style="text-align: center;">
+            <h1> Balace Sheet</h1>
+        </div> -->
+
+
+        <table class="bs-table mt-4" style="width: 90%;">
+            <tr>
+
+                <td style="width: 50%;" class="bs-col">
+
+                    <div class="type-title c-lg ">
+                        <h2> Assets </h2>
+                    </div>
+                    <!-- Account Categories-->
+                    <account-group [accountList]="balanceSheet.assets" [side]="1"></account-group>
+
+                </td>
+
+
+                <td style="width: 50%;" class="bs-col">
+
+                    <div class="type-title c-lred bg-orange">
+                        <h2> Liabilities </h2>
+                    </div>
+                    <!-- Account Categories-->
+                    <account-group [accountList]="balanceSheet.liabilities" [side]="2"></account-group>
+
+                </td>
+
+            </tr>
+        </table>
+    </div>
+
+</div>

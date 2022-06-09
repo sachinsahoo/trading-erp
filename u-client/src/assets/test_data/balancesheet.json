@@ -1,0 +1,1778 @@
+{
+    "status": "SUCCESS",
+    "balanceSheet": {
+      "assets": [
+        {
+          "id": null,
+          "clientId": null,
+          "code": 11000,
+          "name": "Property, Plant and Equipment",
+          "drcr": 1,
+          "balance": 0,
+          "acctList": [
+            {
+              "id": null,
+              "clientId": null,
+              "code": 11100,
+              "name": "Tangible Assets",
+              "drcr": 0,
+              "balance": 0,
+              "acctList": null,
+              "group": false,
+              "rupBalance": "₹0"
+            },
+            {
+              "id": null,
+              "clientId": null,
+              "code": 11200,
+              "name": "Intangible Assets",
+              "drcr": 0,
+              "balance": 0,
+              "acctList": null,
+              "group": false,
+              "rupBalance": "₹0"
+            },
+            {
+              "id": null,
+              "clientId": null,
+              "code": 11300,
+              "name": "Capital Work-in-Progress",
+              "drcr": 0,
+              "balance": 0,
+              "acctList": null,
+              "group": false,
+              "rupBalance": "₹0"
+            },
+            {
+              "id": null,
+              "clientId": null,
+              "code": 11400,
+              "name": "Intangible Assets under development",
+              "drcr": 0,
+              "balance": 0,
+              "acctList": null,
+              "group": false,
+              "rupBalance": "₹0"
+            }
+          ],
+          "group": true,
+          "rupBalance": "₹0"
+        },
+        {
+          "id": null,
+          "clientId": null,
+          "code": 12000,
+          "name": "Investment",
+          "drcr": 1,
+          "balance": 0,
+          "acctList": [
+            {
+              "id": null,
+              "clientId": null,
+              "code": 12100,
+              "name": "Investment in Equity Instruments",
+              "drcr": 0,
+              "balance": 0,
+              "acctList": null,
+              "group": false,
+              "rupBalance": "₹0"
+            },
+            {
+              "id": null,
+              "clientId": null,
+              "code": 12200,
+              "name": "Investment in Partnership Firms",
+              "drcr": 0,
+              "balance": 0,
+              "acctList": null,
+              "group": false,
+              "rupBalance": "₹0"
+            },
+            {
+              "id": null,
+              "clientId": null,
+              "code": 12300,
+              "name": "Investment in Mutual Fund",
+              "drcr": 0,
+              "balance": 0,
+              "acctList": null,
+              "group": false,
+              "rupBalance": "₹0"
+            },
+            {
+              "id": null,
+              "clientId": null,
+              "code": 12400,
+              "name": "Other Investments",
+              "drcr": 0,
+              "balance": 0,
+              "acctList": null,
+              "group": false,
+              "rupBalance": "₹0"
+            }
+          ],
+          "group": true,
+          "rupBalance": "₹0"
+        },
+        {
+          "id": null,
+          "clientId": null,
+          "code": 13000,
+          "name": "Loans and Advances",
+          "drcr": 1,
+          "balance": 0,
+          "acctList": [
+            {
+              "id": null,
+              "clientId": null,
+              "code": 13100,
+              "name": "Capital Advances",
+              "drcr": 0,
+              "balance": 0,
+              "acctList": null,
+              "group": false,
+              "rupBalance": "₹0"
+            },
+            {
+              "id": null,
+              "clientId": null,
+              "code": 13200,
+              "name": "Security Deposits",
+              "drcr": 0,
+              "balance": 0,
+              "acctList": null,
+              "group": false,
+              "rupBalance": "₹0"
+            },
+            {
+              "id": null,
+              "clientId": null,
+              "code": 13300,
+              "name": "Loans and Advances to Related Parties",
+              "drcr": 0,
+              "balance": 0,
+              "acctList": null,
+              "group": false,
+              "rupBalance": "₹0"
+            },
+            {
+              "id": null,
+              "clientId": null,
+              "code": 13400,
+              "name": "Other Loans and Advances",
+              "drcr": 0,
+              "balance": 0,
+              "acctList": null,
+              "group": false,
+              "rupBalance": "₹0"
+            }
+          ],
+          "group": true,
+          "rupBalance": "₹0"
+        },
+        {
+          "id": null,
+          "clientId": null,
+          "code": 14000,
+          "name": "Current Assets",
+          "drcr": 1,
+          "balance": 0,
+          "acctList": [
+            {
+              "id": null,
+              "clientId": null,
+              "code": 14100,
+              "name": "Trade Receivables",
+              "drcr": 0,
+              "balance": 0,
+              "acctList": null,
+              "group": false,
+              "rupBalance": "₹0"
+            },
+            {
+              "id": null,
+              "clientId": null,
+              "code": 14200,
+              "name": "Bank Balances",
+              "drcr": 0,
+              "balance": 0,
+              "acctList": null,
+              "group": false,
+              "rupBalance": "₹0"
+            },
+            {
+              "id": null,
+              "clientId": null,
+              "code": 14300,
+              "name": "Cash in hand",
+              "drcr": 0,
+              "balance": 0,
+              "acctList": null,
+              "group": false,
+              "rupBalance": "₹0"
+            },
+            {
+              "id": null,
+              "clientId": null,
+              "code": 14400,
+              "name": "Inventories",
+              "drcr": 0,
+              "balance": 0,
+              "acctList": null,
+              "group": false,
+              "rupBalance": "₹0"
+            },
+            {
+              "id": null,
+              "clientId": null,
+              "code": 14500,
+              "name": "Other Current Assets",
+              "drcr": 0,
+              "balance": 0,
+              "acctList": null,
+              "group": false,
+              "rupBalance": "₹0"
+            }
+          ],
+          "group": true,
+          "rupBalance": "₹0"
+        }
+      ],
+      "liabilities": [
+        {
+          "id": null,
+          "clientId": null,
+          "code": 31000,
+          "name": "Capital Account",
+          "drcr": 1,
+          "balance": 0,
+          "acctList": [
+            {
+              "id": null,
+              "clientId": null,
+              "code": 31100,
+              "name": "Share Capital/Proprietor's Capital/Partner's Capital",
+              "drcr": 0,
+              "balance": 0,
+              "acctList": null,
+              "group": false,
+              "rupBalance": "₹0"
+            },
+            {
+              "id": null,
+              "clientId": null,
+              "code": 31200,
+              "name": "Reserves and Surplus",
+              "drcr": 0,
+              "balance": 0,
+              "acctList": null,
+              "group": false,
+              "rupBalance": "₹0"
+            }
+          ],
+          "group": true,
+          "rupBalance": "₹0"
+        },
+        {
+          "id": null,
+          "clientId": null,
+          "code": 32000,
+          "name": "Loans and Borrowings",
+          "drcr": 1,
+          "balance": 0,
+          "acctList": [
+            {
+              "id": null,
+              "clientId": null,
+              "code": 32100,
+              "name": "Secured Loan",
+              "drcr": 0,
+              "balance": 0,
+              "acctList": null,
+              "group": false,
+              "rupBalance": "₹0"
+            },
+            {
+              "id": null,
+              "clientId": null,
+              "code": 32200,
+              "name": "Unsecured Loan",
+              "drcr": 0,
+              "balance": 0,
+              "acctList": null,
+              "group": false,
+              "rupBalance": "₹0"
+            },
+            {
+              "id": null,
+              "clientId": null,
+              "code": 32300,
+              "name": "Bank Overdraft Account",
+              "drcr": 0,
+              "balance": 0,
+              "acctList": null,
+              "group": false,
+              "rupBalance": "₹0"
+            }
+          ],
+          "group": true,
+          "rupBalance": "₹0"
+        },
+        {
+          "id": null,
+          "clientId": null,
+          "code": 33000,
+          "name": "Current Liabilities",
+          "drcr": 1,
+          "balance": 0,
+          "acctList": [
+            {
+              "id": null,
+              "clientId": null,
+              "code": 33100,
+              "name": "Trade Payables",
+              "drcr": 0,
+              "balance": 0,
+              "acctList": null,
+              "group": false,
+              "rupBalance": "₹0"
+            },
+            {
+              "id": null,
+              "clientId": null,
+              "code": 33200,
+              "name": "Duties & Taxes",
+              "drcr": 0,
+              "balance": 0,
+              "acctList": null,
+              "group": false,
+              "rupBalance": "₹0"
+            },
+            {
+              "id": null,
+              "clientId": null,
+              "code": 33300,
+              "name": "Other Current Liabilities",
+              "drcr": 0,
+              "balance": 0,
+              "acctList": null,
+              "group": false,
+              "rupBalance": "₹0"
+            },
+            {
+              "id": null,
+              "clientId": null,
+              "code": 33400,
+              "name": "Provisions",
+              "drcr": 0,
+              "balance": 0,
+              "acctList": null,
+              "group": false,
+              "rupBalance": "₹0"
+            }
+          ],
+          "group": true,
+          "rupBalance": "₹0"
+        }
+      ],
+      "incomes": [
+        {
+          "id": null,
+          "clientId": null,
+          "code": 51000,
+          "name": "Sales Accounts",
+          "drcr": 1,
+          "balance": 0,
+          "acctList": [
+            {
+              "id": null,
+              "clientId": null,
+              "code": 51100,
+              "name": "Sale of Goods",
+              "drcr": 0,
+              "balance": 0,
+              "acctList": null,
+              "group": false,
+              "rupBalance": "₹0"
+            },
+            {
+              "id": null,
+              "clientId": null,
+              "code": 51200,
+              "name": "Sale of Goods",
+              "drcr": 0,
+              "balance": 0,
+              "acctList": null,
+              "group": false,
+              "rupBalance": "₹0"
+            }
+          ],
+          "group": true,
+          "rupBalance": "₹0"
+        },
+        {
+          "id": null,
+          "clientId": null,
+          "code": 52000,
+          "name": "Direct Incomes",
+          "drcr": 1,
+          "balance": 0,
+          "acctList": [
+            {
+              "id": null,
+              "clientId": null,
+              "code": 52100,
+              "name": "Other Operating revenues",
+              "drcr": 0,
+              "balance": 0,
+              "acctList": null,
+              "group": false,
+              "rupBalance": "₹0"
+            }
+          ],
+          "group": true,
+          "rupBalance": "₹0"
+        },
+        {
+          "id": null,
+          "clientId": null,
+          "code": 53000,
+          "name": "Indirect Incomes",
+          "drcr": 1,
+          "balance": 0,
+          "acctList": [
+            {
+              "id": null,
+              "clientId": null,
+              "code": 53100,
+              "name": "Rent Income",
+              "drcr": 0,
+              "balance": 0,
+              "acctList": null,
+              "group": false,
+              "rupBalance": "₹0"
+            },
+            {
+              "id": null,
+              "clientId": null,
+              "code": 53200,
+              "name": "Interest Income",
+              "drcr": 0,
+              "balance": 0,
+              "acctList": null,
+              "group": false,
+              "rupBalance": "₹0"
+            },
+            {
+              "id": null,
+              "clientId": null,
+              "code": 53300,
+              "name": "Dividend Income",
+              "drcr": 0,
+              "balance": 0,
+              "acctList": null,
+              "group": false,
+              "rupBalance": "₹0"
+            },
+            {
+              "id": null,
+              "clientId": null,
+              "code": 53400,
+              "name": "Gain/Loss on Sale of Investments",
+              "drcr": 0,
+              "balance": 0,
+              "acctList": null,
+              "group": false,
+              "rupBalance": "₹0"
+            },
+            {
+              "id": null,
+              "clientId": null,
+              "code": 53500,
+              "name": "Other Non-Operating Revenues",
+              "drcr": 0,
+              "balance": 0,
+              "acctList": null,
+              "group": false,
+              "rupBalance": "₹0"
+            }
+          ],
+          "group": true,
+          "rupBalance": "₹0"
+        },
+        {
+          "id": null,
+          "clientId": null,
+          "code": 54000,
+          "name": "Closing Stock",
+          "drcr": 1,
+          "balance": 0,
+          "acctList": [
+            {
+              "id": null,
+              "clientId": null,
+              "code": 54100,
+              "name": "CS Raw Material",
+              "drcr": 0,
+              "balance": 0,
+              "acctList": null,
+              "group": false,
+              "rupBalance": "₹0"
+            },
+            {
+              "id": null,
+              "clientId": null,
+              "code": 54200,
+              "name": "CS Work-in-Progress",
+              "drcr": 0,
+              "balance": 0,
+              "acctList": null,
+              "group": false,
+              "rupBalance": "₹0"
+            },
+            {
+              "id": null,
+              "clientId": null,
+              "code": 54300,
+              "name": "CS Finished Goods",
+              "drcr": 0,
+              "balance": 0,
+              "acctList": null,
+              "group": false,
+              "rupBalance": "₹0"
+            },
+            {
+              "id": null,
+              "clientId": null,
+              "code": 54400,
+              "name": "CS Traded Goods",
+              "drcr": 0,
+              "balance": 0,
+              "acctList": null,
+              "group": false,
+              "rupBalance": "₹0"
+            }
+          ],
+          "group": true,
+          "rupBalance": "₹0"
+        }
+      ],
+      "expenses": [
+        {
+          "id": null,
+          "clientId": null,
+          "code": 71000,
+          "name": "Purchase Accounts",
+          "drcr": 1,
+          "balance": 0,
+          "acctList": [
+            {
+              "id": null,
+              "clientId": null,
+              "code": 71100,
+              "name": "Purchase of Raw Materials",
+              "drcr": 0,
+              "balance": 0,
+              "acctList": null,
+              "group": false,
+              "rupBalance": "₹0"
+            },
+            {
+              "id": null,
+              "clientId": null,
+              "code": 71200,
+              "name": "Purchase of Stores and Consumables",
+              "drcr": 0,
+              "balance": 0,
+              "acctList": null,
+              "group": false,
+              "rupBalance": "₹0"
+            },
+            {
+              "id": null,
+              "clientId": null,
+              "code": 71300,
+              "name": "Purchase of Traded Goods",
+              "drcr": 0,
+              "balance": 0,
+              "acctList": null,
+              "group": false,
+              "rupBalance": "₹0"
+            },
+            {
+              "id": null,
+              "clientId": null,
+              "code": 71400,
+              "name": "Purchase of Services",
+              "drcr": 0,
+              "balance": 0,
+              "acctList": null,
+              "group": false,
+              "rupBalance": "₹0"
+            },
+            {
+              "id": null,
+              "clientId": null,
+              "code": 71500,
+              "name": "Other Purchases",
+              "drcr": 0,
+              "balance": 0,
+              "acctList": null,
+              "group": false,
+              "rupBalance": "₹0"
+            }
+          ],
+          "group": true,
+          "rupBalance": "₹0"
+        },
+        {
+          "id": null,
+          "clientId": null,
+          "code": 72000,
+          "name": "Direct Expenses",
+          "drcr": 1,
+          "balance": 0,
+          "acctList": [
+            {
+              "id": null,
+              "clientId": null,
+              "code": 72100,
+              "name": "Power and Fuel",
+              "drcr": 0,
+              "balance": 0,
+              "acctList": null,
+              "group": false,
+              "rupBalance": "₹0"
+            },
+            {
+              "id": null,
+              "clientId": null,
+              "code": 72200,
+              "name": "Transporting Charges",
+              "drcr": 0,
+              "balance": 0,
+              "acctList": null,
+              "group": false,
+              "rupBalance": "₹0"
+            },
+            {
+              "id": null,
+              "clientId": null,
+              "code": 72300,
+              "name": "Loading / Unloading Charges",
+              "drcr": 0,
+              "balance": 0,
+              "acctList": null,
+              "group": false,
+              "rupBalance": "₹0"
+            },
+            {
+              "id": null,
+              "clientId": null,
+              "code": 72400,
+              "name": "Salary & Wages - Plant",
+              "drcr": 0,
+              "balance": 0,
+              "acctList": null,
+              "group": false,
+              "rupBalance": "₹0"
+            },
+            {
+              "id": null,
+              "clientId": null,
+              "code": 72500,
+              "name": "Repairs and Maintenance",
+              "drcr": 0,
+              "balance": 0,
+              "acctList": null,
+              "group": false,
+              "rupBalance": "₹0"
+            }
+          ],
+          "group": true,
+          "rupBalance": "₹0"
+        },
+        {
+          "id": null,
+          "clientId": null,
+          "code": 73000,
+          "name": "Indirect Expenses",
+          "drcr": 1,
+          "balance": 0.00,
+          "acctList": [
+            {
+              "id": null,
+              "clientId": null,
+              "code": 73100,
+              "name": "Salary - Office",
+              "drcr": 0,
+              "balance": 0,
+              "acctList": null,
+              "group": false,
+              "rupBalance": "₹0"
+            },
+            {
+              "id": null,
+              "clientId": null,
+              "code": 73200,
+              "name": "Interest Expenses",
+              "drcr": 0,
+              "balance": 0,
+              "acctList": null,
+              "group": false,
+              "rupBalance": "₹0"
+            },
+            {
+              "id": null,
+              "clientId": null,
+              "code": 73300,
+              "name": "Depreciation",
+              "drcr": 0,
+              "balance": 0,
+              "acctList": null,
+              "group": false,
+              "rupBalance": "₹0"
+            },
+            {
+              "id": null,
+              "clientId": null,
+              "code": 73400,
+              "name": "Rate, Fees & Taxes",
+              "drcr": 0,
+              "balance": 0,
+              "acctList": null,
+              "group": false,
+              "rupBalance": "₹0"
+            },
+            {
+              "id": null,
+              "clientId": null,
+              "code": 73500,
+              "name": "Legal and Professional Expenses",
+              "drcr": 0,
+              "balance": 0,
+              "acctList": null,
+              "group": false,
+              "rupBalance": "₹0"
+            },
+            {
+              "id": null,
+              "clientId": null,
+              "code": 73600,
+              "name": "Security Expenses",
+              "drcr": 0,
+              "balance": 0,
+              "acctList": null,
+              "group": false,
+              "rupBalance": "₹0"
+            },
+            {
+              "id": null,
+              "clientId": null,
+              "code": 73700,
+              "name": "Telephone and Internet Expenses",
+              "drcr": 0,
+              "balance": 0,
+              "acctList": null,
+              "group": false,
+              "rupBalance": "₹0"
+            },
+            {
+              "id": null,
+              "clientId": null,
+              "code": 73800,
+              "name": "Printing and Stationery Expenses",
+              "drcr": 0,
+              "balance": 0,
+              "acctList": null,
+              "group": false,
+              "rupBalance": "₹0"
+            },
+            {
+              "id": null,
+              "clientId": null,
+              "code": 73900,
+              "name": "Liasioning Expensese",
+              "drcr": 0,
+              "balance": 0,
+              "acctList": null,
+              "group": false,
+              "rupBalance": "₹0"
+            },
+            {
+              "id": null,
+              "clientId": null,
+              "code": 0,
+              "name": "UNKNOWN",
+              "drcr": 1,
+              "balance": 0.00,
+              "acctList": [
+                {
+                  "id": 90860,
+                  "clientId": 90859,
+                  "code": 0,
+                  "name": "W. W. Grainger",
+                  "drcr": 1,
+                  "balance": 15125.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹15,125"
+                },
+                {
+                  "id": 90864,
+                  "clientId": 90863,
+                  "code": 0,
+                  "name": "Voya Financial",
+                  "drcr": 1,
+                  "balance": 15125.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹15,125"
+                },
+                {
+                  "id": 90868,
+                  "clientId": 90867,
+                  "code": 0,
+                  "name": "Vistra Energy",
+                  "drcr": 1,
+                  "balance": 15125.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹15,125"
+                },
+                {
+                  "id": 90872,
+                  "clientId": 90871,
+                  "code": 0,
+                  "name": "Visa Inc.",
+                  "drcr": 1,
+                  "balance": 15125.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹15,125"
+                },
+                {
+                  "id": 90876,
+                  "clientId": 90875,
+                  "code": 0,
+                  "name": "Verizon",
+                  "drcr": 1,
+                  "balance": 15125.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹15,125"
+                },
+                {
+                  "id": 90880,
+                  "clientId": 90879,
+                  "code": 0,
+                  "name": "Veritiv",
+                  "drcr": 1,
+                  "balance": 15125.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹15,125"
+                },
+                {
+                  "id": 90897,
+                  "clientId": null,
+                  "code": 14200,
+                  "name": "Bank Balances",
+                  "drcr": 1,
+                  "balance": 1361250.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹13,61,250"
+                },
+                {
+                  "id": 90909,
+                  "clientId": null,
+                  "code": 51101,
+                  "name": "Sale Local",
+                  "drcr": 2,
+                  "balance": 15125000.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹1,51,25,000"
+                },
+                {
+                  "id": 90928,
+                  "clientId": null,
+                  "code": 71301,
+                  "name": "Purchase of Traded Goods",
+                  "drcr": 1,
+                  "balance": 13750000.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹1,37,50,000"
+                },
+                {
+                  "id": 90804,
+                  "clientId": 90803,
+                  "code": 0,
+                  "name": "YumChina",
+                  "drcr": 2,
+                  "balance": 13750.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹13,750"
+                },
+                {
+                  "id": 90808,
+                  "clientId": 90807,
+                  "code": 0,
+                  "name": "XPO Logistics",
+                  "drcr": 2,
+                  "balance": 13750.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹13,750"
+                },
+                {
+                  "id": 90812,
+                  "clientId": 90811,
+                  "code": 0,
+                  "name": "Xerox",
+                  "drcr": 2,
+                  "balance": 13750.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹13,750"
+                },
+                {
+                  "id": 90816,
+                  "clientId": 90815,
+                  "code": 0,
+                  "name": "Xcel Energy",
+                  "drcr": 2,
+                  "balance": 13750.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹13,750"
+                },
+                {
+                  "id": 90820,
+                  "clientId": 90819,
+                  "code": 0,
+                  "name": "WPP plc",
+                  "drcr": 2,
+                  "balance": 13750.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹13,750"
+                },
+                {
+                  "id": 90824,
+                  "clientId": 90823,
+                  "code": 0,
+                  "name": "World Fuel Services",
+                  "drcr": 2,
+                  "balance": 13750.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹13,750"
+                },
+                {
+                  "id": 90828,
+                  "clientId": 90827,
+                  "code": 0,
+                  "name": "Willis Towers Watson",
+                  "drcr": 2,
+                  "balance": 13750.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹13,750"
+                },
+                {
+                  "id": 90832,
+                  "clientId": 90831,
+                  "code": 0,
+                  "name": "Whirlpool Corporation",
+                  "drcr": 2,
+                  "balance": 13750.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹13,750"
+                },
+                {
+                  "id": 90836,
+                  "clientId": 90835,
+                  "code": 0,
+                  "name": "WestRock",
+                  "drcr": 2,
+                  "balance": 13750.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹13,750"
+                },
+                {
+                  "id": 90884,
+                  "clientId": 90883,
+                  "code": 0,
+                  "name": "Blue World",
+                  "drcr": 0,
+                  "balance": 0.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹0"
+                },
+                {
+                  "id": 90885,
+                  "clientId": null,
+                  "code": 11100,
+                  "name": "Tangible Assets",
+                  "drcr": 0,
+                  "balance": 0.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹0"
+                },
+                {
+                  "id": 90886,
+                  "clientId": null,
+                  "code": 11200,
+                  "name": "Intangible Assets",
+                  "drcr": 0,
+                  "balance": 0.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹0"
+                },
+                {
+                  "id": 90887,
+                  "clientId": null,
+                  "code": 11300,
+                  "name": "Capital Work-in-Progress",
+                  "drcr": 0,
+                  "balance": 0.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹0"
+                },
+                {
+                  "id": 90888,
+                  "clientId": null,
+                  "code": 11400,
+                  "name": "Intangible Assets under development",
+                  "drcr": 0,
+                  "balance": 0.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹0"
+                },
+                {
+                  "id": 90889,
+                  "clientId": null,
+                  "code": 12100,
+                  "name": "Investment in Equity Instruments",
+                  "drcr": 0,
+                  "balance": 0.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹0"
+                },
+                {
+                  "id": 90890,
+                  "clientId": null,
+                  "code": 12200,
+                  "name": "Investment in Partnership Firms",
+                  "drcr": 0,
+                  "balance": 0.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹0"
+                },
+                {
+                  "id": 90891,
+                  "clientId": null,
+                  "code": 12300,
+                  "name": "Investment in Mutual Fund",
+                  "drcr": 0,
+                  "balance": 0.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹0"
+                },
+                {
+                  "id": 90892,
+                  "clientId": null,
+                  "code": 12400,
+                  "name": "Other Investments",
+                  "drcr": 0,
+                  "balance": 0.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹0"
+                },
+                {
+                  "id": 90893,
+                  "clientId": null,
+                  "code": 13100,
+                  "name": "Capital Advances",
+                  "drcr": 0,
+                  "balance": 0.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹0"
+                },
+                {
+                  "id": 90894,
+                  "clientId": null,
+                  "code": 13200,
+                  "name": "Security Deposits",
+                  "drcr": 0,
+                  "balance": 0.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹0"
+                },
+                {
+                  "id": 90895,
+                  "clientId": null,
+                  "code": 13300,
+                  "name": "Loans and Advances to Related Parties",
+                  "drcr": 0,
+                  "balance": 0.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹0"
+                },
+                {
+                  "id": 90896,
+                  "clientId": null,
+                  "code": 13400,
+                  "name": "Other Loans and Advances",
+                  "drcr": 0,
+                  "balance": 0.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹0"
+                },
+                {
+                  "id": 90898,
+                  "clientId": null,
+                  "code": 14300,
+                  "name": "Cash in hand",
+                  "drcr": 0,
+                  "balance": 0.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹0"
+                },
+                {
+                  "id": 90899,
+                  "clientId": null,
+                  "code": 14400,
+                  "name": "Inventories",
+                  "drcr": 0,
+                  "balance": 0.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹0"
+                },
+                {
+                  "id": 90900,
+                  "clientId": null,
+                  "code": 14500,
+                  "name": "Other Current Assets",
+                  "drcr": 0,
+                  "balance": 0.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹0"
+                },
+                {
+                  "id": 90901,
+                  "clientId": null,
+                  "code": 31100,
+                  "name": "Share Capital/Proprietor's Capital/Partner's Capital",
+                  "drcr": 0,
+                  "balance": 0.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹0"
+                },
+                {
+                  "id": 90902,
+                  "clientId": null,
+                  "code": 31200,
+                  "name": "Reserves and Surplus",
+                  "drcr": 0,
+                  "balance": 0.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹0"
+                },
+                {
+                  "id": 90903,
+                  "clientId": null,
+                  "code": 32100,
+                  "name": "Secured Loan",
+                  "drcr": 0,
+                  "balance": 0.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹0"
+                },
+                {
+                  "id": 90904,
+                  "clientId": null,
+                  "code": 32200,
+                  "name": "Unsecured Loan",
+                  "drcr": 0,
+                  "balance": 0.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹0"
+                },
+                {
+                  "id": 90905,
+                  "clientId": null,
+                  "code": 32300,
+                  "name": "Bank Overdraft Account",
+                  "drcr": 0,
+                  "balance": 0.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹0"
+                },
+                {
+                  "id": 90906,
+                  "clientId": null,
+                  "code": 33200,
+                  "name": "Duties & Taxes",
+                  "drcr": 0,
+                  "balance": 0.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹0"
+                },
+                {
+                  "id": 90907,
+                  "clientId": null,
+                  "code": 33300,
+                  "name": "Other Current Liabilities",
+                  "drcr": 0,
+                  "balance": 0.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹0"
+                },
+                {
+                  "id": 90908,
+                  "clientId": null,
+                  "code": 33400,
+                  "name": "Provisions",
+                  "drcr": 0,
+                  "balance": 0.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹0"
+                },
+                {
+                  "id": 90910,
+                  "clientId": null,
+                  "code": 51102,
+                  "name": "Sale Outside",
+                  "drcr": 0,
+                  "balance": 0.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹0"
+                },
+                {
+                  "id": 90911,
+                  "clientId": null,
+                  "code": 51200,
+                  "name": "Sale of Services",
+                  "drcr": 0,
+                  "balance": 0.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹0"
+                },
+                {
+                  "id": 90912,
+                  "clientId": null,
+                  "code": 52100,
+                  "name": "Other Operating revenues",
+                  "drcr": 0,
+                  "balance": 0.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹0"
+                },
+                {
+                  "id": 90913,
+                  "clientId": null,
+                  "code": 53100,
+                  "name": "Rent Income",
+                  "drcr": 0,
+                  "balance": 0.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹0"
+                },
+                {
+                  "id": 90914,
+                  "clientId": null,
+                  "code": 53200,
+                  "name": "Interest Income",
+                  "drcr": 0,
+                  "balance": 0.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹0"
+                },
+                {
+                  "id": 90915,
+                  "clientId": null,
+                  "code": 53300,
+                  "name": "Dividend Income",
+                  "drcr": 0,
+                  "balance": 0.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹0"
+                },
+                {
+                  "id": 90916,
+                  "clientId": null,
+                  "code": 53400,
+                  "name": "Gain/Loss on Sale of Investments",
+                  "drcr": 0,
+                  "balance": 0.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹0"
+                },
+                {
+                  "id": 90917,
+                  "clientId": null,
+                  "code": 53500,
+                  "name": "Other Non-Operating Revenues",
+                  "drcr": 0,
+                  "balance": 0.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹0"
+                },
+                {
+                  "id": 90918,
+                  "clientId": null,
+                  "code": 54100,
+                  "name": "CS Raw Material",
+                  "drcr": 0,
+                  "balance": 0.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹0"
+                },
+                {
+                  "id": 90919,
+                  "clientId": null,
+                  "code": 54200,
+                  "name": "CS Work-in-Progress",
+                  "drcr": 0,
+                  "balance": 0.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹0"
+                },
+                {
+                  "id": 90920,
+                  "clientId": null,
+                  "code": 54300,
+                  "name": "CS Finished Goods",
+                  "drcr": 0,
+                  "balance": 0.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹0"
+                },
+                {
+                  "id": 90921,
+                  "clientId": null,
+                  "code": 54400,
+                  "name": "CS Traded Goods",
+                  "drcr": 0,
+                  "balance": 0.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹0"
+                },
+                {
+                  "id": 90922,
+                  "clientId": null,
+                  "code": 74100,
+                  "name": "OS Raw Material",
+                  "drcr": 0,
+                  "balance": 0.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹0"
+                },
+                {
+                  "id": 90923,
+                  "clientId": null,
+                  "code": 74200,
+                  "name": "OS Work-in-Progress",
+                  "drcr": 0,
+                  "balance": 0.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹0"
+                },
+                {
+                  "id": 90924,
+                  "clientId": null,
+                  "code": 74300,
+                  "name": "OS Finished Goods",
+                  "drcr": 0,
+                  "balance": 0.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹0"
+                },
+                {
+                  "id": 90925,
+                  "clientId": null,
+                  "code": 74400,
+                  "name": "OS Traded Goods",
+                  "drcr": 0,
+                  "balance": 0.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹0"
+                },
+                {
+                  "id": 90926,
+                  "clientId": null,
+                  "code": 71100,
+                  "name": "Purchase of Raw Materials",
+                  "drcr": 0,
+                  "balance": 0.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹0"
+                },
+                {
+                  "id": 90927,
+                  "clientId": null,
+                  "code": 71200,
+                  "name": "Purchase of Stores and Consumables",
+                  "drcr": 0,
+                  "balance": 0.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹0"
+                },
+                {
+                  "id": 90929,
+                  "clientId": null,
+                  "code": 71302,
+                  "name": "Purchase of Traded Goods",
+                  "drcr": 0,
+                  "balance": 0.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹0"
+                },
+                {
+                  "id": 90930,
+                  "clientId": null,
+                  "code": 71400,
+                  "name": "Purchase of Services",
+                  "drcr": 0,
+                  "balance": 0.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹0"
+                },
+                {
+                  "id": 90931,
+                  "clientId": null,
+                  "code": 71500,
+                  "name": "Other Purchases",
+                  "drcr": 0,
+                  "balance": 0.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹0"
+                },
+                {
+                  "id": 90932,
+                  "clientId": null,
+                  "code": 72100,
+                  "name": "Power and Fuel",
+                  "drcr": 0,
+                  "balance": 0.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹0"
+                },
+                {
+                  "id": 90933,
+                  "clientId": null,
+                  "code": 72200,
+                  "name": "Transporting Charges",
+                  "drcr": 0,
+                  "balance": 0.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹0"
+                },
+                {
+                  "id": 90934,
+                  "clientId": null,
+                  "code": 72300,
+                  "name": "Loading / Unloading Charges",
+                  "drcr": 0,
+                  "balance": 0.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹0"
+                },
+                {
+                  "id": 90935,
+                  "clientId": null,
+                  "code": 72400,
+                  "name": "Salary & Wages - Plant",
+                  "drcr": 0,
+                  "balance": 0.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹0"
+                },
+                {
+                  "id": 90936,
+                  "clientId": null,
+                  "code": 72500,
+                  "name": "Repairs and Maintenance",
+                  "drcr": 0,
+                  "balance": 0.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹0"
+                },
+                {
+                  "id": 90937,
+                  "clientId": null,
+                  "code": 73100,
+                  "name": "Salary - Office",
+                  "drcr": 0,
+                  "balance": 0.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹0"
+                },
+                {
+                  "id": 90938,
+                  "clientId": null,
+                  "code": 73200,
+                  "name": "Interest Expenses",
+                  "drcr": 0,
+                  "balance": 0.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹0"
+                },
+                {
+                  "id": 90939,
+                  "clientId": null,
+                  "code": 73300,
+                  "name": "Depreciation",
+                  "drcr": 0,
+                  "balance": 0.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹0"
+                },
+                {
+                  "id": 90940,
+                  "clientId": null,
+                  "code": 73400,
+                  "name": "Rate, Fees & Taxes",
+                  "drcr": 0,
+                  "balance": 0.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹0"
+                },
+                {
+                  "id": 90941,
+                  "clientId": null,
+                  "code": 73500,
+                  "name": "Legal and Professional Expenses",
+                  "drcr": 0,
+                  "balance": 0.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹0"
+                },
+                {
+                  "id": 90942,
+                  "clientId": null,
+                  "code": 73600,
+                  "name": "Security Expenses",
+                  "drcr": 0,
+                  "balance": 0.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹0"
+                },
+                {
+                  "id": 90943,
+                  "clientId": null,
+                  "code": 73700,
+                  "name": "Telephone and Internet Expenses",
+                  "drcr": 0,
+                  "balance": 0.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹0"
+                },
+                {
+                  "id": 90944,
+                  "clientId": null,
+                  "code": 73800,
+                  "name": "Printing and Stationery Expenses",
+                  "drcr": 0,
+                  "balance": 0.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹0"
+                },
+                {
+                  "id": 90945,
+                  "clientId": null,
+                  "code": 73900,
+                  "name": "Liasioning Expensese",
+                  "drcr": 0,
+                  "balance": 0.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹0"
+                },
+                {
+                  "id": 90840,
+                  "clientId": 90839,
+                  "code": 0,
+                  "name": "Westlake Chemical",
+                  "drcr": 2,
+                  "balance": 13750.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹13,750"
+                },
+                {
+                  "id": 90844,
+                  "clientId": 90843,
+                  "code": 0,
+                  "name": "Walmart Retail",
+                  "drcr": 1,
+                  "balance": 15125.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹15,125"
+                },
+                {
+                  "id": 90848,
+                  "clientId": 90847,
+                  "code": 0,
+                  "name": "Walgreens Boots Alliance",
+                  "drcr": 1,
+                  "balance": 15125.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹15,125"
+                },
+                {
+                  "id": 90852,
+                  "clientId": 90851,
+                  "code": 0,
+                  "name": "Valero",
+                  "drcr": 1,
+                  "balance": 15125.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹15,125"
+                },
+                {
+                  "id": 90856,
+                  "clientId": 90855,
+                  "code": 0,
+                  "name": "Wabtec Corporation",
+                  "drcr": 1,
+                  "balance": 15125.00,
+                  "acctList": null,
+                  "group": false,
+                  "rupBalance": "₹15,125"
+                }
+              ],
+              "group": true,
+              "rupBalance": "₹0"
+            }
+          ],
+          "group": true,
+          "rupBalance": "₹0"
+        },
+        {
+          "id": null,
+          "clientId": null,
+          "code": 74000,
+          "name": "Indirect Expenses",
+          "drcr": 1,
+          "balance": 0,
+          "acctList": [
+            {
+              "id": null,
+              "clientId": null,
+              "code": 74100,
+              "name": "OS Raw Material",
+              "drcr": 0,
+              "balance": 0,
+              "acctList": null,
+              "group": false,
+              "rupBalance": "₹0"
+            },
+            {
+              "id": null,
+              "clientId": null,
+              "code": 74200,
+              "name": "OS Work-in-Progress",
+              "drcr": 0,
+              "balance": 0,
+              "acctList": null,
+              "group": false,
+              "rupBalance": "₹0"
+            },
+            {
+              "id": null,
+              "clientId": null,
+              "code": 74300,
+              "name": "OS Finished Goods",
+              "drcr": 0,
+              "balance": 0,
+              "acctList": null,
+              "group": false,
+              "rupBalance": "₹0"
+            },
+            {
+              "id": null,
+              "clientId": null,
+              "code": 74400,
+              "name": "OS Traded Goods",
+              "drcr": 0,
+              "balance": 0,
+              "acctList": null,
+              "group": false,
+              "rupBalance": "₹0"
+            }
+          ],
+          "group": true,
+          "rupBalance": "₹0"
+        }
+      ]
+    }
+  }

@@ -1,0 +1,87 @@
+<div class="col-12" >
+
+  
+  
+  <!--  All Product Bar Chart   -->
+  <div class="col-8" *ngIf="pYearly$ | async">
+      <inv-bar-chart [barChartDetail] = "barchartDetail"></inv-bar-chart>
+  </div>
+
+  
+  <!-- Product List - metrics for year -->
+
+   <div class="col-11 mt-8" *ngIf="pYearly$ | async">
+
+    <table id="all-product-ps" mat-table [dataSource]="dataSource"  class="mat-elevation-z0">
+
+     <ng-container matColumnDef="prodname" >
+       <th id="prodname-h" mat-header-cell *matHeaderCellDef>Product</th>
+       <td id="prodname" mat-cell *matCellDef="let element"> 
+
+        <button mat-button color="primary" (click)= "showMonthly(element)">
+          {{ element.prodname}} 
+        </button>
+      </td>
+     </ng-container>
+
+     <ng-container matColumnDef="stockQty" style="text-align: right; font-size: 18px;">
+       <th id="c-stockQty-h" mat-header-cell *matHeaderCellDef>Available <br/> Stock</th>
+       <td id="c-stockQty" mat-cell *matCellDef="let element"> {{element.stockQty }} </td>
+     </ng-container>
+
+     <ng-container matColumnDef="purchaseqty">
+       <th id="s-purchaseqty-h" mat-header-cell *matHeaderCellDef>Purchase <br/> Quantity</th>
+       <td id="s-purchaseqty" mat-cell *matCellDef="let element"> {{element.purchaseqty }} </td>
+     </ng-container>
+
+
+     <ng-container matColumnDef="saleqty">
+      <th id="s-saleqty-h" mat-header-cell *matHeaderCellDef>Sale <br/> Quantity</th>
+      <td id="s-saleqty" mat-cell *matCellDef="let element">{{element.saleqty }}</td>
+    </ng-container>
+
+     <ng-container matColumnDef="purchaseamt">
+      <th id="s-purchaseamt-h" mat-header-cell *matHeaderCellDef>Purchase <br/> Amount</th>
+      <td id="s-purchaseamt" mat-cell *matCellDef="let element">{{element.rupPurchaseAmt }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="saleamt">
+      <th id="s-saleamt-h" mat-header-cell *matHeaderCellDef>Sale <br/> Amount</th>
+      <td id="s-saleamt" mat-cell *matCellDef="let element">{{element.rupSaleAmt }}</td>
+    </ng-container>
+
+
+     <ng-container matColumnDef="avgCostPrice">
+       <th id="s-avgCostPrice-h" mat-header-cell *matHeaderCellDef>Average <br/>Cost Price</th>
+       <td id="s-avgCostPrice" mat-cell *matCellDef="let element">{{element.rupAvgCostPrice }}</td>
+     </ng-container>
+    
+     <ng-container matColumnDef="avgSalePrice">
+      <th id="s-avgSalePrice-h" mat-header-cell *matHeaderCellDef>Average <br/>Sale Price</th>
+      <td id="s-avgSalePrice" mat-cell *matCellDef="let element">{{element.rupAvgSalePrice }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="netProfit">
+      <th id="s-netProfit-h" mat-header-cell *matHeaderCellDef>Profit</th>
+      <td id="s-netProfit" mat-cell *matCellDef="let element">{{element.rupProfit }}</td>
+    </ng-container>
+   
+   
+   
+   
+     <tr mat-header-row *matHeaderRowDef="displayedCols"></tr>
+   <tr mat-row *matRowDef="let row; columns: displayedCols;" class="detail-row"></tr>
+
+
+   </table>
+  
+ </div>
+
+
+
+
+
+
+
+
+</div>

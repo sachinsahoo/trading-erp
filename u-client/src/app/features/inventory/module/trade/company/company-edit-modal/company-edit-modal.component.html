@@ -1,0 +1,135 @@
+<div class="erp-mat-dialog">
+
+  <!-- <h1 mat-dialog-title *ngIf="data.id">Edit - {{data.name}}</h1>
+  <h1 mat-dialog-title *ngIf="!data.id">New Product</h1> -->
+  <h1 mat-dialog-title class="title" >{{data.id?'Edit':'New'}} {{data.type == 'self'?'Company':data.type}} Registration</h1>
+
+  <mat-divider></mat-divider>
+
+
+    <!-- <mat-progress-spinner diameter="24" mode="indeterminate" *ngIf="isLoading$ | async">
+      </mat-progress-spinner> -->
+
+    <!--------  Form  -------------->
+    <form class="inv-form"  [formGroup]="companyForm" (ngSubmit)="submitMain()">
+      <mat-dialog-content class="mt-4 mb-1">
+      <div class="row mb-5" style="padding: 20px;">
+        <fieldset class="col-12">
+          <legend>Personal Details</legend>
+
+            <mat-form-field class=" col-6">
+              <mat-label>{{data.type == 'self'?'Company':data.type == 'supplier'? 'Supplier': data.type == 'customer'?'Customer':'Agent'}} Name</mat-label>
+              <input matInput placeholder="" required formControlName="name">
+              <mat-error *ngFor="let error of errorMessages.name">
+                <label *ngIf="name.hasError(error.type) && (name.dirty || name.touched)">
+                  <span class="title" >{{error.message}}</span>
+                </label>
+              </mat-error>
+            </mat-form-field>
+
+
+
+            <mat-form-field class=" col-3">
+              <mat-label>Phone</mat-label>
+              <input matInput placeholder="" required formControlName="phone">
+    <mat-error *ngFor="let error of errorMessages.phone">
+              <label *ngIf="phone.hasError(error.type) && (phone.dirty || phone.touched)">
+              <span class="title" >{{error.message}}</span>
+              </label>
+                      </mat-error>
+            </mat-form-field>
+
+
+
+
+            <mat-form-field class=" col-3">
+              <mat-label>Email</mat-label>
+              <input matInput placeholder="" required formControlName="email">
+                <mat-error *ngFor="let error of errorMessages.email">
+              <label *ngIf="email.hasError(error.type) && (email.dirty || email.touched)">
+              <span class="title" >{{error.message}}</span>
+              </label>
+                      </mat-error>
+            </mat-form-field>
+
+
+            <mat-form-field class=" col-4">
+              <mat-label>GSTIN</mat-label>
+              <input matInput placeholder="" formControlName="gstin1">
+            </mat-form-field>
+            <mat-form-field class=" col-4">
+              <mat-label>TAN</mat-label>
+              <input matInput placeholder="" formControlName="tan">
+            </mat-form-field>
+            <mat-form-field class=" col-4">
+              <mat-label>PAN</mat-label>
+              <input matInput placeholder="" formControlName="pan">
+            </mat-form-field>
+</fieldset>
+
+
+            <!-- <mat-label class="col-12">Bank Details</mat-label>
+
+            <mat-divider></mat-divider> -->
+
+
+
+
+            <fieldset class="col-12">
+              <legend>Bank Details</legend>
+              <mat-form-field class=" col-8">
+                <mat-label>Bank Name</mat-label>
+                <input matInput placeholder="" formControlName="bankname">
+              </mat-form-field>
+              <mat-form-field class=" col-4">
+                <mat-label>Account Type</mat-label>
+                <mat-select matInput formControlName="accountType" >
+
+                  <mat-option value="current">Current Account</mat-option>
+                  <mat-option value="saving">Saving Account</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field class=" col-6">
+                <mat-label>Account Number</mat-label>
+                <input matInput placeholder="" formControlName="bankaccno">
+              </mat-form-field>
+               <mat-form-field class=" col-6">
+                <mat-label>IFSC Code</mat-label>
+                <input matInput placeholder="" formControlName="ifsccode">
+              </mat-form-field>
+
+              </fieldset>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+
+
+
+
+
+
+  </mat-dialog-content>
+
+  <mat-divider></mat-divider>
+
+  <mat-dialog-actions align="end" class="mt-1">
+    <button  mat-raised-button type="submit" color="primary" mat-dialog-close   cdkFocusInitial [disabled]="!companyForm.valid"  >Save</button>
+    <button  mat-raised-button color="accent" mat-dialog-close  >Cancel</button>
+
+  </mat-dialog-actions>
+</form>
+
+  </div>

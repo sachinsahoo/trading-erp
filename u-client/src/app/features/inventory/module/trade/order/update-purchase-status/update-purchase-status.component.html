@@ -1,0 +1,51 @@
+<div class="erp-mat-dialog">
+    <div class="header">
+  
+      <h1 mat-dialog-title *ngIf="true" class="main">{{order.type == 'purchase' ? 'Purchase ' :'Sale ' }} Order - {{order.referenceno}} </h1>
+      <h1 mat-dialog-title *ngIf="true" class="sub">{{order.rupTotalAmount}} </h1>
+    </div>
+  
+    <mat-dialog-content class="mt-4 mb-1">
+      <!-- <mat-progress-spinner diameter="24" mode="indeterminate" *ngIf="isLoading$ | async">
+      </mat-progress-spinner> -->
+  
+      <!--------  Form  -------------->
+      <form class="trans-form" #productForm="ngForm" [formGroup]="statusFormGroup" (ngSubmit)="submitMain()">
+  
+        <div class="row mb-5" style="padding: 20px;">
+  
+        
+         
+          <div class="col-11" *ngIf="order.confirmdate != null">
+            <h5>Confirmed on  {{order.confirmdate * 1000 | date: 'dd/MMM/yyyy'}}</h5>
+          </div>
+
+  
+          
+  
+          <mat-form-field class="col-5 mt-4">
+            <mat-label>Confirmation Date</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="date"> 
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+  
+          
+        </div>
+      </form>
+  
+  
+  
+  
+  
+    </mat-dialog-content>
+  
+    <mat-divider></mat-divider>
+  
+    <mat-dialog-actions align="end" class="mt-1">
+      <button id="save-btn" mat-raised-button color="primary" [disabled]="!productForm.form?.valid" (click)="submitMain()">Save</button>
+      <button id="cancel-btn" mat-raised-button color="accent" (click)="onClose()">Cancel</button>
+  
+    </mat-dialog-actions>
+  
+  </div>

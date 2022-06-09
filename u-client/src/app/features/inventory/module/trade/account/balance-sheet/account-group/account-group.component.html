@@ -1,0 +1,48 @@
+<div class="categories" >
+    <!-- Account Categories-->
+    <table class="main" style="width: 100%;">
+
+        <tr *ngFor="let category of accountList" class="tr-category">
+            <td style="width: 100%;">
+                <div class="category"> 
+                    <div class="category-name" [ngClass]="side == 1 ? 'c-dgreen': 'c-dorange'">
+                        <h3>{{category.name}}</h3>
+                    </div>
+
+                    <!-- Account Groups-->
+                    <table style="width: 100%;">
+                        <tr *ngFor="let group of category.acctList" class="tr-group">
+                            <td style="width: 70%;" class="pl-1 td-group" >
+
+                                <span *ngIf="group.group">
+                                    <fa-icon icon="folder" class="pl-2" transform="grow-4"></fa-icon>
+                                </span>
+                                <span *ngIf="!group.group">
+                                    <fa-icon icon="address-card" class="pl-2" transform="grow-4"></fa-icon>
+                                </span>
+
+                                <button mat-button color="primary" class="medium" (click)="selectGroup(group)">
+                                    {{group.name}}
+                                </button>
+
+                            </td>
+                            <td class="td-amount">
+                                <span class="amount">{{group.rupBalance}}</span>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <!-- Category Balance-->
+                    <table style="width: 100%;" class="total">
+
+                        <tr>
+                            <td style="width: 70%;" class="pl-1"> Total Balance </td>
+                            <td style="width: 30%;" class="td-amount-total">{{category.rupBalance}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+</div>

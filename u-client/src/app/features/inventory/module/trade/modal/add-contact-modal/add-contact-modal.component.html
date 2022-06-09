@@ -1,0 +1,138 @@
+<div class="erp-mat-dialog">
+
+  <!-- <h1 mat-dialog-title *ngIf="data.id">Edit - {{data.name}}</h1>
+  <h1 mat-dialog-title *ngIf="!data.id">New Product</h1> -->
+  <h1 mat-dialog-title class="title" >Add Contact</h1>
+
+  <mat-divider></mat-divider>
+
+
+    <!-- <mat-progress-spinner diameter="24" mode="indeterminate" *ngIf="isLoading$ | async">
+      </mat-progress-spinner> -->
+
+    <!--------  Form  -------------->
+    <form class="inv-form"  [formGroup]="contactForm" (ngSubmit)="submitMain()">
+      <mat-dialog-content class="mt-4 mb-1">
+      <div class="row mb-5" style="padding: 20px;">
+
+
+            <mat-form-field class="col-12">
+              <mat-label>Name</mat-label>
+              <input required matInput placeholder="" required formControlName="name">
+              <!-- <mat-error *ngFor="let error of errorMessages.name">
+                <label *ngIf="name.hasError(error.type) && (name.dirty || name.touched)">
+                  <span class="title" >{{error.message}}</span>
+                </label>
+              </mat-error> -->
+            </mat-form-field>
+            <mat-form-field class=" col-4">
+              <mat-label>Email</mat-label>
+              <input required matInput placeholder="" required formControlName="email">
+                <!-- <mat-error *ngFor="let error of errorMessages.email">
+              <label *ngIf="email.hasError(error.type) && (email.dirty || email.touched)">
+              <span class="title" >{{error.message}}</span>
+              </label>
+                      </mat-error> -->
+            </mat-form-field>
+
+
+
+            <mat-form-field class=" col-4">
+              <mat-label>Primary Phone</mat-label>
+              <input required matInput placeholder="" required formControlName="phone1">
+    <!-- <mat-error *ngFor="let error of errorMessages.phone">
+              <label *ngIf="phone.hasError(error.type) && (phone.dirty || phone.touched)">
+              <span class="title" >{{error.message}}</span>
+              </label>
+                      </mat-error> -->
+            </mat-form-field>
+            <mat-form-field class=" col-4">
+              <mat-label>Alternate Phone</mat-label>
+              <input matInput placeholder="" required formControlName="phone2">
+    <!-- <mat-error *ngFor="let error of errorMessages.phone">
+              <label *ngIf="phone.hasError(error.type) && (phone.dirty || phone.touched)">
+              <span class="title" >{{error.message}}</span>
+              </label>
+                      </mat-error> -->
+            </mat-form-field>
+
+
+
+
+
+
+
+            <mat-form-field class=" col-3">
+              <mat-label>City</mat-label>
+              <input required matInput placeholder="" formControlName="city">
+            </mat-form-field>
+            <mat-form-field class=" col-3">
+              <mat-label>State</mat-label>
+              <input matInput placeholder="" formControlName="state">
+            </mat-form-field>
+            <mat-form-field class=" col-3">
+              <mat-label>Pincode</mat-label>
+              <input matInput placeholder="" formControlName="pincode">
+            </mat-form-field>
+
+
+
+
+
+
+
+
+
+              <mat-form-field class=" col-3">
+                <mat-label> Type</mat-label>
+                <mat-select matInput formControlName="type" >
+
+                  <mat-option value="current">Type 1</mat-option>
+                  <mat-option value="saving">Type 2</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+
+              <mat-form-field class="example-full-width col-6">
+                <mat-label>Primary Address</mat-label>
+                <textarea required formControlName="address1" matInput placeholder="Ex. 100 Main St">1600 Amphitheatre Pkwy</textarea>
+              </mat-form-field>
+              <mat-form-field class="example-full-width col-6">
+                <mat-label>Alternate Address</mat-label>
+                <textarea formControlName="address2" matInput></textarea>
+              </mat-form-field>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+
+
+
+
+
+
+  </mat-dialog-content>
+
+  <mat-divider></mat-divider>
+
+  <mat-dialog-actions align="end" class="mt-1">
+    <button  mat-raised-button type="submit" color="primary" mat-dialog-close    [disabled]="!contactForm.valid"  >Save</button>
+    <button  mat-raised-button color="accent" mat-dialog-close  >Cancel</button>
+
+  </mat-dialog-actions>
+</form>
+
+  </div>

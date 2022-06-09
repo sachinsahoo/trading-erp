@@ -1,0 +1,78 @@
+
+
+<mat-tab-group class="col-12 mt-2">
+
+    
+    <!-- Purchase Sale Report Tab -->
+    <mat-tab label="Purchase / Sales">
+        
+       
+        <!-- Purchase Sale Bar Chart-->
+        <div class="col-7 mt-40" *ngIf="psMonthly$ | async as yearly">
+
+            <inv-bar-chart [barChartDetail]="psYearlyBarChart">  </inv-bar-chart>
+        </div>
+
+        <!-- Data table monthly-->
+        <div class="col-9 mt-8" *ngIf="psMonthly$ | async">
+             <table id="monthly-ps" mat-table [dataSource]="dataSource"  class="mat-elevation-z0">
+        
+              <ng-container matColumnDef="month" >
+                <th id="month-h" mat-header-cell *matHeaderCellDef>Month</th>
+                <td id="month" mat-cell *matCellDef="let element"> {{ element.date * 1000 | date:  'MMM y'}} </td>
+              </ng-container>
+        
+              <ng-container matColumnDef="purchase" style="text-align: right; font-size: 18px;">
+                <th id="c-purchase-h" mat-header-cell *matHeaderCellDef>Purchase</th>
+                <td id="c-purchase" mat-cell *matCellDef="let element"> {{element.purchaseamt | currency:'INR':'symbol':'2.0'}} </td>
+              </ng-container>
+        
+              <ng-container matColumnDef="sale">
+                <th id="s-sale-h" mat-header-cell *matHeaderCellDef>Sale</th>
+                <td id="s-sale" mat-cell *matCellDef="let element"> {{element.saleamt | currency:"₹":0}} </td>
+              </ng-container>
+        
+              <ng-container matColumnDef="profit">
+                <th id="s-profit-h" mat-header-cell *matHeaderCellDef>Profit</th>
+                <td id="s-profit" mat-cell *matCellDef="let element">
+                
+                    {{element.rupProfit}}
+                
+                </td>
+              </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedCols"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedCols;" class="detail-row"></tr>
+        
+        
+            </table>
+           
+          </div>
+
+    </mat-tab>
+    
+    
+    
+    
+    <!-- Product Report Tab-->
+    <mat-tab label="Products">
+        <product-report></product-report>
+    </mat-tab>
+    
+    
+    <!-- Customer Report Tab-->
+    <mat-tab label="Customers">
+        <customer-report> </customer-report>
+    </mat-tab>
+    
+    
+    <!-- Supplier Report Tab-->
+    <mat-tab label="Suppliers">
+     <supplier-report></supplier-report>
+    </mat-tab>
+
+
+
+</mat-tab-group>
+
+
+

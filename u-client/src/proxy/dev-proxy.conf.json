@@ -1,0 +1,11 @@
+{
+  "/api/*": {
+    "target": "http://localhost:8080/smulti",
+    "secure": false,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/server": ""
+    },
+    "logLevel": "debug"
+  }
+}

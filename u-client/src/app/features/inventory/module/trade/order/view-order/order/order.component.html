@@ -1,0 +1,173 @@
+
+ <div>
+  <!-- <span *ngFor="let inv of order.invoices"> -->
+  <!-- <button mat-raised-button color="primary" class="mr-4" (click)="viewInvoice(inv.id)">
+    {{inv.referenceno}}
+  </button> -->
+
+  <div class=" mt-4 mb-4">
+    <label class="section-title">Invoice Details</label>
+    <mat-divider ></mat-divider>
+    <table class="margin-10 table ">
+      <thead class="thead-theme">
+        <th>Invoice #</th>
+        <th>Date</th>
+        <th>Amount</th>
+        <th></th>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let inv of order.invoices">
+          <td><button color="accent" mat-button (click)="viewInvoice(inv.id)">{{inv.referenceno}}</button></td>
+          <td>{{inv.invdate}}</td>
+          <td>{{inv.totalAmount | currency:'INR'}}</td>
+          <td>
+            <div class="action-element">
+              <button
+                fxFlex="80"
+                mat-icon-button
+                matTooltip="More Options"
+                [matMenuTriggerFor]="optionsMenu"
+                class="hover-display"
+              >
+              <fa-icon color="primary" icon="ellipsis-v"></fa-icon>
+              </button>
+              <mat-menu #optionsMenu="matMenu" [overlapTrigger]="false">
+                <button mat-menu-item (click)="viewInvoice(inv.id)" >
+                  View Invoice
+                </button>
+                <button mat-menu-item (click)="editInvoice(inv.id)">
+                  Edit Invoice
+                </button>
+                <button mat-menu-item (click)="createTransaction(inv)" >
+                 New Transaction
+                </button>
+
+
+              </mat-menu>
+
+              <!-- <a (click)="updateEmployee(element)">
+                      <span class="material-icons">
+                        create
+                      </span>
+                    </a>
+
+                    <a>
+                      <span class="material-icons">
+                        clear
+                      </span>
+                    </a> -->
+            </div>
+          </td>
+        </tr>
+      </tbody>
+
+    </table>
+    </div>
+
+
+<!-- </span> -->
+
+
+</div>
+
+
+  <div class="detail-table mt-4 mb-4">
+    <table>
+
+      <tr>
+        <td class="label">Supplier</td>
+        <td class="data">{{order.supplierName}}</td>
+        <td class="spacer"> </td>
+        <td class="label">Order Date</td>
+        <td class="data">{{order.orderdate * 1000 | date: 'd MMM yy'}}</td>
+      </tr>
+
+      <tr>
+        <td class="label">Customer</td>
+        <td class="data">{{order.customerName}}</td>
+        <td class="spacer"> </td>
+        <td class="label">Status</td>
+        <td class="data">{{order.status}}</td>
+      </tr>
+
+      <tr>
+        <td class="label">Total Amt</td>
+        <td class="data amount">{{order.rupTotalAmount}}</td>
+        <td class="spacer"> </td>
+        <td class="label">Balance</td>
+        <td class="data amount">{{order.rupBalance}}</td>
+      </tr>
+
+
+    </table>
+  </div>
+
+
+
+
+
+
+  <div class="order-div">
+    <table mat-table [dataSource]="order.poproductlist" class="mat-elevation-z0">
+
+      <ng-container matColumnDef="Slno">
+        <th mat-header-cell *matHeaderCellDef> Sl. No. </th>
+        <td mat-cell *matCellDef="let index = index"> {{index + 1}} </td>
+        <td mat-footer-cell *matFooterCellDef> </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="Description">
+        <th mat-header-cell *matHeaderCellDef> Product </th>
+        <td mat-cell *matCellDef="let element">
+          {{element.productName }} <br />
+          <div *ngFor="let row of element.taxes"
+            style=" font-size: 13px; font-style: italic; text-align: right; color:#004d40; width: 100%; padding-right: 20px;">
+            {{row.desc }} <br />
+          </div>
+        </td>
+
+        <td mat-footer-cell *matFooterCellDef>
+          <div style="text-align: right;">Total</div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Quantity">
+        <th mat-header-cell *matHeaderCellDef> Quantity </th>
+        <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+        <td mat-footer-cell *matFooterCellDef> </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="Rate">
+        <th mat-header-cell *matHeaderCellDef> Rate </th>
+        <td mat-cell *matCellDef="let element">
+          {{element.rupPrice }}
+
+        </td>
+        <td mat-footer-cell *matFooterCellDef> </td>
+      </ng-container>
+
+
+
+      <ng-container matColumnDef="Amount">
+        <th mat-header-cell *matHeaderCellDef style="text-align: right;"> Amount </th>
+        <td mat-cell *matCellDef="let element" style="text-align: right;">
+          {{element.price * element.quantity  | number : '1.0-0'}} <br />
+          <span *ngFor="let row of element.taxes" style="font-size: 15px; text-align: right; color: #004d40;">
+            {{(row.percent * element.quantity * element.price / 100) | number : '1.0-0' }} <br />
+          </span>
+
+        </td>
+        <td mat-footer-cell *matFooterCellDef
+          style="font-size: 19px; text-align: right; color:#424242; font-weight: 800;">
+          {{order.rupTotalAmount}}
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <tr mat-footer-row *matFooterRowDef="displayedColumns;"></tr>
+    </table>
+  </div>

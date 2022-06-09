@@ -1,0 +1,55 @@
+<div class="erp-mat-dialog" *ngIf="client$ | async  ">
+    <div class="header">
+  
+      <h1 mat-dialog-title *ngIf="true" class="main">Invoice - {{invoice.referenceno}} </h1>
+      <h3 mat-dialog-title *ngIf="true" class="sub">Balance - {{invoice.rupBalance}}</h3>
+    </div>
+  
+    <mat-dialog-content class="mt-4 mb-1">
+      <!-- <mat-progress-spinner diameter="24" mode="indeterminate" *ngIf="isLoading$ | async">
+      </mat-progress-spinner> -->
+  
+      <!--------  Form  -------------->
+      <form class="trans-form" #transForm="ngForm" [formGroup]="transFormGroup" (ngSubmit)="submitMain()">
+  
+        <div class="row mb-5" style="padding: 20px;">
+  
+  
+          <div class="col-12" *ngIf="transaction.type == 'Payment'">
+            <h2>Paid To &nbsp; {{transaction.custCompany.name}}</h2>
+          </div>
+          <div class="col-11" *ngIf="transaction.type == 'Receipt'">
+            <h2>Recieved from &nbsp; {{transaction.custCompany.name}} </h2>
+          </div>
+  
+          <mat-form-field class="col-5">
+            <mat-label>Transaction date</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="transDate"> 
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+  
+          <mat-form-field class=" col-5">
+            <mat-label>amount</mat-label>
+            <input matInput placeholder="" formControlName="amount">
+          </mat-form-field>
+  
+  
+        </div>
+      </form>
+  
+  
+  
+  
+  
+    </mat-dialog-content>
+  
+    <mat-divider></mat-divider>
+  
+    <mat-dialog-actions align="end" class="mt-1">
+      <button id="cancel-btn" mat-raised-button color="primary" (click)="submitMain()" [disabled]="!transForm.form?.valid">Save</button>
+      <button id="cancel-btn" mat-raised-button color="accent" (click)="onClose()">Cancel</button>
+  
+    </mat-dialog-actions>
+  
+  </div>

@@ -1,0 +1,286 @@
+<div *ngIf="reload$ | async">
+
+
+  <div class="toolbar mb-2" >
+
+
+
+    <mat-toolbar color="primary" class="secondary">
+      <div class="button-row" style="flex:1">
+
+        <div class="row">
+
+          <div class="ml-4 nav-link">
+            <a (click)="viewOrderList()">{{getOrderLabel()}} </a> &nbsp; | &nbsp;
+            <a (click)="viewInvoices()">Show Invoices</a>&nbsp; | &nbsp;
+            <a (click)="viewComms()">Show Commissions</a> <br />
+            <span class="header"> Orders</span>
+
+          </div>
+
+
+        </div>
+
+      </div>
+      <div class="abc">
+
+        <button mat-button color="primary" (click)="createOrder()" class="mr-5 bgteal">
+          <fa-icon icon="plus" transform="grow-3"></fa-icon>
+        </button>
+
+        <button mat-button color="primary" (click)="reports()" class="mr-5 bgblue">
+          <fa-icon icon="chart-line" transform="grow-3"></fa-icon>
+        </button>
+
+
+      </div>
+
+    </mat-toolbar>
+  </div>
+
+  <div class="row ml-4">
+
+    <!-- Search Start -->
+
+    <div class="col-10 ">
+
+
+      <div class="row">
+        <div class="col-12 px-0">
+          <button mat-button (click)="toggleShow()" class="mt-2 mb-2  bd">
+            <span *ngIf="!isShown">
+              <fa-icon icon="search-plus" transform="grow-1"></fa-icon> &nbsp; Show Search
+            </span>
+            <span *ngIf="isShown">
+              <fa-icon icon="search-minus" transform="grow-1"></fa-icon> &nbsp; Hide Search
+            </span>
+          </button>
+        </div>
+      </div>
+
+      <form #sForm="ngForm" [formGroup]="searchForm" (ngSubmit)="submitSearch()">
+        <div *ngIf="isShown" class="row bg-bgrey px-2 py-2">
+
+
+          <mat-form-field class="col-3 float-right">
+            <mat-label>Date Preset</mat-label>
+            <mat-select formControlName="datePreset">
+              <mat-option *ngFor="let item of datePresets" [value]="item.value">
+                {{item.display}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="col-3" *ngIf="searchForm.get('datePreset').value == 'custom'">
+            <mat-label>Start date</mat-label>
+            <input matInput [matDatepicker]="picker1" formControlName="startDate">
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field class="col-3" *ngIf="searchForm.get('datePreset').value == 'custom'">
+            <mat-label>End date</mat-label>
+            <input matInput [matDatepicker]="picker2" formControlName="endDate">
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+          </mat-form-field>
+
+          <div class="col-2">
+            <span class="w-100">
+              <button mat-raised-button color="primary" class="mt-2" (click)="sForm.ngSubmit.emit()">
+                <fa-icon icon="search" transform="grow-3"></fa-icon> &nbsp; Search
+              </button>
+            </span>
+          </div>
+
+        </div>
+      </form>
+    </div>
+
+
+    <div class="col-10 info mb-4" *ngIf="!(orderError$ | async) as error">
+      <span class="ml-1 h-100 pt-2 float-left" *ngIf="!(orderLoading$ | async)"><b>{{searchRequest.count}}</b> &nbsp;
+        Records Found</span>
+      <span class="ml-1 h-100 align-middle pt-2 float-left">
+        <mat-spinner [diameter]="20" color=primary *ngIf="orderLoading$ | async"></mat-spinner>
+      </span>
+    </div>
+
+    <div class="col-10 warn mb-4" *ngIf="(orderError$ | async) as error">
+      <span class="ml-1 h-100 pt-2 float-left"><b>{{error}}</b> </span>
+    </div>
+
+    <!-- Search End -->
+
+
+
+    <!--div *ngIf="products$ | async as products"-->
+
+  
+
+    <div class="col-10 px-0">
+      <table id="orders" mat-table [dataSource]="dataSource" class="mat-elevation-z0" matSortDirection="desc" matSort
+        matSortActive="created" matSortDisableClear>
+
+        <ng-container matColumnDef="orderdate">
+          <th id="orderdate-h" mat-header-cell *matHeaderCellDef>Order Date</th>
+          <td id="name" mat-cell *matCellDef="let element">
+            <fa-icon icon="clock" class="c2" transform="shrink-3"></fa-icon> &nbsp;
+            {{element.orderdate * 1000 | date : 'd MMM yy'}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="orderdateDdn">
+          <th id="orderdate-h" mat-header-cell *matHeaderCellDef class="sub">
+
+            <button mat-button (click)="clearFilters()">
+              <span>
+                <fa-icon icon="file" class="c4" transform="shrink-3"></fa-icon>
+                Clear All
+
+              </span>
+            </button>
+          </th>
+          
+      
+        </ng-container>
+
+        <ng-container matColumnDef="referenceno">
+          <th id="c-referenceno-h" mat-header-cell *matHeaderCellDef>Reference No</th>
+          <td id="c-referenceno" mat-cell *matCellDef="let element">
+            <button mat-button (click)="viewOrder(element)">
+              <span>
+                <fa-icon icon="file" class="c4 pt-0 mb-2" transform="shrink-3"></fa-icon>
+                {{element.referenceno}}
+
+              </span>
+            </button>
+          </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="referencenoDdn">
+          <th id="c-referenceno-h" mat-header-cell *matHeaderCellDef class="sub">
+            <mat-form-field >
+              <mat-label> Reference No </mat-label>
+              <mat-select (selectionChange)="applyFilter($event.value, 'referenceno')" [(ngModel)]="filteredValues.referenceno">
+                <mat-option>All</mat-option>
+                <mat-option *ngFor="let row of referencenoList" value="{{row}}">{{row}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </th>
+
+        </ng-container>
+
+
+        <ng-container matColumnDef="supplierName">
+          <th id="s-supplier-h" mat-header-cell *matHeaderCellDef>Supplier</th>
+          <td id="s-supplier" mat-cell *matCellDef="let element">
+            <fa-icon icon="building" class="c4" transform="shrink-3" *ngIf="element.supplierid == element.mycompanyid">
+            </fa-icon>
+            <fa-icon icon="user" class="c2" transform="shrink-3" *ngIf="element.supplierid != element.mycompanyid">
+            </fa-icon>
+            {{element.supplierName}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="supplierNameDdn">
+          <th id="c-referenceno-h" mat-header-cell *matHeaderCellDef class="sub">
+            <mat-form-field>
+              <mat-label> Supplier </mat-label>
+              <mat-select (selectionChange)="applyFilter($event.value, 'supplierName')"
+                [(ngModel)]="filteredValues.supplierName">
+                <mat-option>All Suppliers</mat-option>
+                <mat-option *ngFor="let row of supplierList" value="{{row}}">{{row}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </th>
+
+  
+        </ng-container>
+
+        <ng-container matColumnDef="customerName">
+          <th id="s-customer-h" mat-header-cell *matHeaderCellDef >Customer</th>
+          <td id="s-customer" mat-cell *matCellDef="let element">
+            <fa-icon icon="building" class="c4" transform="shrink-3" *ngIf="element.customerid == element.mycompanyid">
+            </fa-icon>
+            <fa-icon icon="user" class="c2" transform="shrink-3" *ngIf="element.customerid != element.mycompanyid">
+            </fa-icon>
+            {{element.customerName}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="customerNameDdn">
+          <th id="c-referenceno-h" mat-header-cell *matHeaderCellDef class="sub">
+            <mat-form-field >
+              <mat-label> Customer </mat-label>
+              <mat-select (selectionChange)="applyFilter($event.value, 'customerName')"
+                [(ngModel)]="filteredValues.customerName">
+                <mat-option>All Customer</mat-option>
+                <mat-option *ngFor="let row of customerList" value="{{row}}">{{row}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </th>
+
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <th id="s-status-h" mat-header-cell *matHeaderCellDef>Status</th>
+          <td id="s-status" mat-cell *matCellDef="let element">
+            <div class="w-100 d-flex justify-content-center">
+              <div class="tags" [ngClass]="element.status">
+                {{element.status}}
+              </div>
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="statusDdn">
+          <th id="c-referenceno-h" mat-header-cell *matHeaderCellDef class="sub">
+            <mat-form-field >
+              <mat-label> Status </mat-label>
+              <mat-select (selectionChange)="applyFilter($event.value, 'status')" [(ngModel)]="filteredValues.status">
+                <mat-option>All Status</mat-option>
+                <mat-option *ngFor="let row of statusList" value="{{row}}">{{row}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </th>
+
+        </ng-container>
+
+        <ng-container matColumnDef="amount">
+          <th id="s-amount-h" mat-header-cell *matHeaderCellDef>Total Amount</th>
+          <td id="s-amount" mat-cell *matCellDef="let element">
+            <button mat-button color="primary" (click)="openTrans(element)">
+              {{element.rupTotalAmount}}
+            </button>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="amountDdn">
+          <th id="c-referenceno-h" mat-header-cell *matHeaderCellDef class="sub">
+            <mat-form-field >
+              <mat-label> Amount </mat-label>
+              <mat-select (selectionChange)="applyFilter($event.value, 'amount')" [(ngModel)]="filteredValues.amount">
+                <mat-option>All</mat-option>
+                <mat-option *ngFor="let row of amountList" value="{{row}}">{{row}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </th>
+
+        </ng-container>
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedCols"></tr>
+        <tr mat-header-row *matHeaderRowDef="displayedDdns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedCols; " class="element-row">
+        </tr>
+
+
+
+      </table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
+
+  </div>
+</div>

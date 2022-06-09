@@ -18,8 +18,6 @@ import java.util.Set;
 @NamedQueries({
         @NamedQuery(name = "company.list", query = "SELECT c from Company c where tenantid=:tenantid"),
         @NamedQuery(name = "company.findByName", query = "SELECT c from Company c where c.name like :name")
-
-
 })
 public class Company implements Serializable {
 

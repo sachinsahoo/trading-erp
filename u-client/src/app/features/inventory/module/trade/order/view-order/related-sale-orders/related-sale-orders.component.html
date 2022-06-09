@@ -1,0 +1,52 @@
+<div class="col-12">
+
+    <table id="sales" mat-table [dataSource]="soDataSource" class="mat-elevation-z0">
+
+        <ng-container matColumnDef="orderdate">
+            <th id="orderdate-h" mat-header-cell *matHeaderCellDef>Order Date</th>
+            <td id="orderdate" mat-cell *matCellDef="let element">
+                {{ element.orderdate * 1000 | date:  'd MMM yy'}}
+            </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="referenceno">
+            <th id="s-referenceno-h" mat-header-cell *matHeaderCellDef>Reference</th>
+            <td id="s-referenceno" mat-cell *matCellDef="let element">
+
+                <button mat-button color="primary" (click)="viewOrder(element)">
+                    {{element.referenceno }}
+                </button>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="customerName">
+            <th id="s-customerName-h" mat-header-cell *matHeaderCellDef>Customer</th>
+            <td id="s-customerName" mat-cell *matCellDef="let element">{{element.customerName }}</td>
+        </ng-container>
+
+
+
+        <ng-container matColumnDef="totalAmount">
+            <th id="s-totalAmount-h" mat-header-cell *matHeaderCellDef>Total Amt</th>
+            <td id="s-totalAmount" mat-cell *matCellDef="let element">{{element.rupTotalAmount }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+            <th id="s-status-h" mat-header-cell *matHeaderCellDef>Status</th>
+            <td id="s-status" mat-cell *matCellDef="let element">
+                {{element.status }}
+                <span *ngIf="element.status == 'confirm'">
+                    {{ element.confirmdate * 1000 | date:  date:  'd MMM yy'}}</span>
+                <span *ngIf="element.shipdate == 'shipped'">
+                    {{ element.receivedate * 1000 | date:  date:  'd MMM yy'}}</span>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="soDisplayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: soDisplayedColumns;" class="detail-row"></tr>
+
+
+    </table>
+
+</div>

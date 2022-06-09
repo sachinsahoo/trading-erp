@@ -1,0 +1,188 @@
+<div *ngIf="journals$ | async as j">
+
+  <!--Toolbar-->
+
+  <div class="toolbar mb-2" >
+
+    <mat-toolbar color="primary" class="secondary">
+      <div class="button-row" style="flex:1">
+
+        <div class="row">
+          <div class="ml-4 nav-link">
+
+
+            <span class="header"> Ledger : {{j[0].acname}}</span>
+
+          </div>
+
+
+        </div>
+
+      </div>
+      <div class="abc">
+
+
+        <button mat-button class="ml-5 bgteal" (click)="create()">
+          <fa-icon icon="plus" transform="grow-4"></fa-icon> &nbsp;
+        </button>
+
+        <button mat-button class="ml-5 bg" (click)="download()">
+          <fa-icon icon="download" transform="grow-4"></fa-icon>
+        </button>
+        <span class="ml-4"> </span>
+
+
+
+      </div>
+
+    </mat-toolbar>
+  </div>
+
+  <!-- Mat Toolbar End ------------------------------>
+
+
+
+  <div class="row ml-4">
+
+    <!-- Search Start -->
+
+    <div class="col-10 ">
+
+
+      <div class="row">
+        <div class="col-12 px-0">
+          <button mat-button (click)="toggleShow()" class="mt-2 mb-2  bd">
+            <span *ngIf="!isShown"> <fa-icon icon="search-plus" class="c4" transform="grow-1"></fa-icon> &nbsp; Show Search</span>
+            <span *ngIf="isShown"> <fa-icon icon="search-minus" class="c4" transform="grow-1"></fa-icon> &nbsp; Hide Search</span>
+          </button>
+        </div>
+      </div>
+
+      <form #sForm="ngForm" [formGroup]="searchForm" (ngSubmit)="submitSearch()">
+        <div *ngIf="isShown" class="row bg-bgrey px-2 py-2">
+
+
+          <mat-form-field class="col-3 float-right">
+            <mat-label>Date Preset</mat-label>
+            <mat-select formControlName="datePreset">
+              <mat-option *ngFor="let item of datePresets" [value]="item.value">
+                {{item.display}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="col-3" *ngIf="searchForm.get('datePreset').value == 'custom'">
+            <mat-label>Start date</mat-label>
+            <input matInput [matDatepicker]="picker1" formControlName="startDate">
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field class="col-3" *ngIf="searchForm.get('datePreset').value == 'custom'">
+            <mat-label>End date</mat-label>
+            <input matInput [matDatepicker]="picker2" formControlName="endDate">
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+          </mat-form-field>
+
+          <!-- Account Auto Complete---------------------------------------------->
+          <mat-form-field class=" col-4">
+            <mat-label>Account</mat-label>
+            <input type="text" matInput formControlName="account" [matAutocomplete]="accountauto"
+              #trigger="matAutocompleteTrigger">
+            <mat-autocomplete #accountauto="matAutocomplete" [displayWith]="displayAccountFn"
+              (optionSelected)='accountSelected($event.option.value);'>
+              <mat-option *ngFor="let option of accountOptions | async" [value]="option">
+                {{option.name}} {{option.id}}
+              </mat-option>
+            </mat-autocomplete>
+            <mat-error align="start" *ngIf="searchForm.controls.account.errors?.notFound" class="form__error">Not
+              Found. Please select from Dropdown
+            </mat-error>
+          </mat-form-field>
+
+          <div class="col-2">
+            <span class="w-100">
+              <button mat-raised-button color="primary" class="mt-2" (click)="sForm.ngSubmit.emit()">
+                <fa-icon icon="search" transform="grow-3"></fa-icon> &nbsp; Search
+              </button>
+            </span>
+          </div>
+
+        </div>
+      </form>
+    </div>
+
+
+    <div class="col-10 info mb-4" *ngIf="!(orderError$ | async) as error">
+      <span class="ml-1 h-100 pt-2 float-left" *ngIf="!(orderLoading$ | async)"><b>{{searchRequest.count}}</b> &nbsp;
+        Records Found</span>
+      <span class="ml-1 h-100 align-middle pt-2 float-left">
+        <mat-spinner [diameter]="20" color=primary *ngIf="orderLoading$ | async"></mat-spinner>
+      </span>
+    </div>
+
+    <div class="col-10 warn mb-4" *ngIf="(orderError$ | async) as error">
+      <span class="ml-1 h-100 pt-2 float-left"><b>{{error}}</b> </span>
+    </div>
+
+    <!-- Search End -->
+
+
+
+    <div class="col-10 px-0">
+
+
+
+      <table id="ledger" mat-table [dataSource]="dataSource" class="mat-elevation-z0" matSortDirection="desc" matSort
+        matSortActive="created" matSortDisableClear>
+
+        <ng-container matColumnDef="transDate">
+          <th id="transDate-h" mat-header-cell *matHeaderCellDef>Date</th>
+          <td id="transDate" mat-cell *matCellDef="let element"> {{element.transDate * 1000 | date : 'd MMM yy'}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="desc">
+          <th id="c-desc-h" mat-header-cell *matHeaderCellDef>Description</th>
+          <td id="c-desc" mat-cell *matCellDef="let element">
+            <button mat-button color="primary" (click)="viewTransaction(element.transid)">
+              {{element.desc}}
+            </button>
+          </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="debit">
+          <th id="s-debit-h" mat-header-cell *matHeaderCellDef>Debit</th>
+          <td id="s-debit" mat-cell *matCellDef="let element">
+            <span *ngIf="element.drcrtype == 1"> {{element.rupAmount}} </span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="credit">
+          <th id="s-credit-h" mat-header-cell *matHeaderCellDef>Credit</th>
+          <td id="s-credit" mat-cell *matCellDef="let element">
+            <span *ngIf="element.drcrtype == 2"> {{element.rupAmount}} </span>
+          </td>
+        </ng-container>
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedCols"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedCols; " class="element-row">
+        </tr>
+
+
+
+      </table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
+
+
+  </div>
+
+
+
+
+
+
+</div>

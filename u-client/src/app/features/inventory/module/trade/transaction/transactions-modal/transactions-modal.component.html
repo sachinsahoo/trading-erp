@@ -1,0 +1,83 @@
+<h1 mat-dialog-title> 
+  <span *ngIf="companyName">{{companyName}}</span>
+  <span *ngIf="orderRef">{{orderRef}}</span>
+  Transactions
+
+</h1>
+
+<mat-divider></mat-divider>
+
+<mat-dialog-content>
+    <!-- <mat-progress-spinner diameter="24" mode="indeterminate" *ngIf="isLoading$ | async">
+    </mat-progress-spinner> -->
+
+    <div class="col-12">
+
+      <table id="transactions" mat-table [dataSource]="dataSource" class="mat-elevation-z0" >
+  
+        <ng-container matColumnDef="date">
+          <th id="date-h" mat-header-cell *matHeaderCellDef>Date</th>
+          <td id="date" mat-cell *matCellDef="let element"> {{element.date * 1000 | date: 'd MMM yy'}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="myCompanyName">
+          <th id="c-myCompanyName-h" mat-header-cell *matHeaderCellDef>My Company</th>
+          <td id="c-myCompanyName" mat-cell *matCellDef="let element"> {{element.myCompanyName}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="custCompanyName">
+          <th id="s-custCompanyName-h" mat-header-cell *matHeaderCellDef>Client</th>
+          <td id="s-custCompanyName" mat-cell *matCellDef="let element"> {{element.custCompanyName}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="orderRef">
+          <th id="s-orderRef-h" mat-header-cell *matHeaderCellDef>Order Reference</th>
+          <td id="s-orderRef" mat-cell *matCellDef="let element"> 
+            <button mat-button color="primary" (click)= "viewPurchase(element)">
+               {{element.orderRef}} 
+              </button>
+           
+          </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="type">
+          <th id="type-h" mat-header-cell *matHeaderCellDef>Type</th>
+          <td id="type" mat-cell *matCellDef="let element"> 
+            <div class="tags" [ngClass]=" element.type ">
+            {{element.type}} 
+          </div>
+          
+          </td>
+        </ng-container>
+  
+  
+        <ng-container matColumnDef="amount">
+          <th id="s-amount-h" mat-header-cell *matHeaderCellDef style="text-align: right;">Amount</th>
+          <td id="s-amount" mat-cell *matCellDef="let element">
+            
+            <div class="amount">  {{element.rupAmount}}</div>
+    
+  
+          </td>
+        </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedCols"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedCols; " class="element-row">
+      </tr>
+  
+    </table>
+  
+  
+  
+  </div>
+    
+
+    
+</mat-dialog-content>
+
+<mat-divider></mat-divider>
+
+<mat-dialog-actions align="end" class="mt-1">
+    <button id="cancel-btn" mat-raised-button (click)="onClose()">Close</button>
+    
+</mat-dialog-actions>

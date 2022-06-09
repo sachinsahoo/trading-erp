@@ -1,0 +1,55 @@
+
+mat-sidenav-container {
+  height: 100%;
+  width: 100%;
+}
+
+mat-sidenav {
+  // width: 12%;
+  position: fixed;
+  overflow: scroll;
+}
+
+.main-content {
+  height: 100vh;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.menu-header {
+  display: block;
+  padding: 0;
+  padding-top: 12px;
+  padding-bottom: 9px;
+  padding-right: 9px;
+}
+.main-menu {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  text-align: left;
+  margin-left: 10px;
+  font-size: 0.75rem;
+
+  text-transform: uppercase;
+  font-weight: 700;
+  padding-top: 15px;
+  .menu-icon {
+    margin-left: 10px;
+
+  }
+}
+
+.menu-item {
+  font-size: 1.5rem;
+}
+.side-nav {
+  min-width: 200px;
+  position: fixed;
+  overflow: scroll;
+  padding-top: 60px;
+}
+
+
+// .mat-divider{
+//   border-top-color: rgb(255 255 255 / 12%) ;
+// }

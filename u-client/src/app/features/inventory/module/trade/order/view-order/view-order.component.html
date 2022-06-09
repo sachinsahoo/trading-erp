@@ -1,0 +1,112 @@
+<div *ngIf="companies$ | async as ord ">
+
+    <div class="toolbar mb-2" >
+
+
+
+        <mat-toolbar color="primary" class="secondary">
+            <div class="button-row" style="flex:1">
+
+                <div class="row">
+
+                    <div class="ml-4 nav-link">
+                        <span> <a (click)="viewOrderList()">{{getOrderLabel()}} </a> &nbsp; / &nbsp;</span>
+                        <a (click)="viewOrder()">{{order.referenceno}}</a><br />
+                        <span class="header"> View Order : {{order.referenceno}}</span>
+                        <span class="tags ml-3" [ngClass]="order.status">{{order.status}}</span>
+                    </div>
+
+
+                </div>
+
+            </div>
+            <div class="abc">
+
+                
+                <!-- Edit Order -->
+                <button mat-button class="ml-1 bgblue" (click)="editOrder()">
+                    <fa-icon icon="pen" transform="grow-3"></fa-icon>
+                </button>
+
+                <!-- Create Invoice-->
+                <button mat-button color="accent" class="ml-1 mr-8 bgblue" (click)="createInvoice()">
+                    <fa-icon color="primary" icon="file"></fa-icon> &nbsp; Create Invoice
+                </button>
+
+                <!-- Status-->
+                <button mat-button color="accent" class="ml-1 mr-8 bgblue" (click)="updateStatus()">
+                    <fa-icon color="primary" icon="bolt"></fa-icon> &nbsp;
+                </button>      
+                <!-- Download PDF -->
+                <button mat-button class="ml-1 bd-grey" (click)="downloadPDF()">
+                    <fa-icon icon="download" transform="grow-3"></fa-icon>
+                </button>
+                <!-- Clone -->
+                <button mat-button color="accent" class="ml-1 mr-8 bd-grey" (click)="cloneOrder()">
+                    <fa-icon color="primary" icon="clone"></fa-icon> &nbsp; Clone
+                </button> 
+                  <!-- Delete  -->
+                <button mat-button class="ml-1 bd-red" (click)="deleteOrder()">
+                    <fa-icon icon="trash" transform="grow-3"></fa-icon>
+                </button>
+                
+
+                <span class="ml-4"></span>
+
+            </div>
+
+        </mat-toolbar>
+    </div>
+
+    <!-- Mat Toolbar End ------------------------------>
+
+    <div class="row justify-content-center container mt-8">
+
+
+        <!-- Tabs ------------>
+        <mat-tab-group class="col-10">
+
+            <!-- Invoices Tab -->
+            <!-- <mat-tab label="invoices" *ngIf="order.invoices != null && order.invoices.length > 0">
+                <mat-tab-group>
+                    <div *ngFor="let inv of order.invoices; index as i">
+                        <mat-tab label={{inv.referenceno}}>
+                            <invoice [order]="order" [invoice]="inv"></invoice>
+                        </mat-tab>
+                    </div>
+
+                </mat-tab-group>
+            </mat-tab> -->
+
+
+            <!-- Purchase Order Tab-->
+            <mat-tab label="Order" class="mat-elevation-z8">
+                <order  [order]="order">
+                </order>
+
+
+
+            </mat-tab>
+
+
+
+            <!--Contacts Tab-->
+            <mat-tab label="Contacts">
+                <order-contacts [order]="order"></order-contacts>
+            </mat-tab>
+
+
+            <!--Related Sales Tab-->
+            <mat-tab label="Related Sales" *ngIf="order.type == 'purchase'">
+                <related-sale-orders [order]="order"></related-sale-orders>
+            </mat-tab>
+
+            <!--Linked Purchase Orders-->
+            <mat-tab label="Linked Purchase Order" *ngIf="order.type == 'purchase'">
+
+            </mat-tab>
+
+        </mat-tab-group>
+    </div>
+
+</div>

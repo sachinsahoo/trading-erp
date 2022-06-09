@@ -1,0 +1,276 @@
+<div class="erp-mat-dialog">
+
+    <div>
+        <mat-toolbar color="primary">
+            <div class="button-row" style="flex:1">
+                <h1 mat-dialog-title> {{data.name}}</h1>
+
+            </div>
+
+
+
+
+            <div class="">
+                <button mat-icon-button class="">
+                    <fa-icon icon="list"></fa-icon>
+                </button>
+                <button mat-icon-button class="">
+                    <fa-icon icon="table"></fa-icon>
+                </button>
+
+                <button mat-icon-button class="" color="primary" (click)="viewReport()">
+                    <fa-icon icon="chart-line"></fa-icon>
+                </button>
+            </div>
+
+        </mat-toolbar>
+    </div>
+
+    <!-- Mat Toolbar End ------------------------------>
+
+
+    <mat-divider></mat-divider>
+
+    <mat-dialog-content class="">
+        <!-- <mat-progress-spinner diameter="24" mode="indeterminate" *ngIf="isLoading$ | async">
+    </mat-progress-spinner> -->
+
+        <mat-tab-group class="col-12">
+
+            <mat-tab label="Home">
+
+
+                <div class="stats row">
+                    <div class="col-3">
+                        <span class="label">Available Stock </span>
+                        <p class="data">{{data.quantity}}</p>
+                    </div>
+
+                    <div class="col-3">
+                        <span class="label">In Transit (Purchase)</span>
+                        <p class="data">{{data.pendingarrival}}</p>
+                    </div>
+
+                    <div class="col-4">
+                        <span class="label">To Be Dispatched (Sales) </span>
+                        <p class="data">{{data.pendingdispatch}}</p>
+                    </div>
+
+                </div>
+
+                <div class="detail-table">
+                    <table>
+
+                        <tr>
+                            <td class="label">Cost Price</td>
+                            <td class="data amount">{{data.rupCostPrice}}</td>
+                            <td class="label">Sales Price</td>
+                            <td class="data amount">{{data.rupSalesPrice}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="label">Barcode</td>
+                            <td class="data">{{data.barcode}}</td>
+                            <td class="label">HSN Code</td>
+                            <td class="data">{{data.hsnCode}}</td>
+                        </tr>
+
+
+
+                        <tr>
+                            <td class="label">Group</td>
+                            <td class="data">{{data.group}}</td>
+                            <td class="label">Category</td>
+                            <td class="data">{{data.category}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="label"> Internal Reference</td>
+                            <td class="data">{{data.internalReference}}</td>
+                            <td class="label">Description</td>
+                            <td class="data">{{data.description}}</td>
+                        </tr>
+
+                    </table>
+                </div>
+
+                <mat-divider></mat-divider>
+
+
+
+
+            </mat-tab>
+
+            <mat-tab label="Invoices">
+
+                <div class="status-radio row">
+                    <div class="col-5">
+                        <mat-radio-group aria-label="Type">
+                            <mat-radio-button value="all">All</mat-radio-button>
+                            <mat-radio-button value="purchase">Purchase</mat-radio-button>
+                            <mat-radio-button value="sale">Sale</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                    <div class="col-6 " style="text-align: right;">
+                        <mat-radio-group aria-label="Select an option">
+                            <mat-radio-button value="all">All</mat-radio-button>
+                            <mat-radio-button value="inprogress">Intransit</mat-radio-button>
+                            <mat-radio-button value="complete">Completed</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                </div>
+
+                <div class="col-12">
+
+                    <table id="purchases" mat-table [dataSource]="poDataSource" class="mat-elevation-z0">
+
+                        <ng-container matColumnDef="date">
+                            <th id="date-h" mat-header-cell *matHeaderCellDef>Date</th>
+                            <td id="date" mat-cell *matCellDef="let element">
+                                {{ element.orderdate * 1000 | date:  'd MMM yy'}}
+                            </td>
+                        </ng-container>
+
+
+                        <ng-container matColumnDef="poref">
+                            <th id="s-poref-h" mat-header-cell *matHeaderCellDef>Purchase Order <br />Reference</th>
+                            <td id="s-poref" mat-cell *matCellDef="let element">
+
+                                <button mat-button color="primary" (click)="viewOrder(element)">
+                                    {{element.poref }}
+                                </button>
+                            </td>
+                        </ng-container>
+
+
+                        <ng-container matColumnDef="client">
+                            <th id="s-client-h" mat-header-cell *matHeaderCellDef>Supplier</th>
+                            <td id="s-client" mat-cell *matCellDef="let element">{{element.clientName }}</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="quantity">
+                            <th id="s-quantity-h" mat-header-cell *matHeaderCellDef>Quantity</th>
+                            <td id="s-quantity" mat-cell *matCellDef="let element">{{element.quantity }}</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="price">
+                            <th id="s-price-h" mat-header-cell *matHeaderCellDef>Cost Price</th>
+                            <td id="s-price" mat-cell *matCellDef="let element">{{element.price }}</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="status">
+                            <th id="s-status-h" mat-header-cell *matHeaderCellDef>Status</th>
+                            <td id="s-status" mat-cell *matCellDef="let element">
+                                {{element.status }}
+                                <span *ngIf="element.status == 'confirm'">
+                                    {{ element.confirmdate * 1000 | date:   'd MMM yy'}}</span>
+                                <span *ngIf="element.status == 'received'">
+                                    {{ element.receivedate * 1000 | date:   'd MMM yy'}}</span>
+                            </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedCols"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedCols;" class="detail-row"></tr>
+
+
+                    </table>
+
+                </div>
+
+
+            </mat-tab>
+
+            <mat-tab label="Orders">
+                <div class="status-radio row">
+                    <div class="col-5">
+                        <mat-radio-group aria-label="Type">
+                            <mat-radio-button value="all">All</mat-radio-button>
+                            <mat-radio-button value="purchase">Purchase</mat-radio-button>
+                            <mat-radio-button value="sale">Sale</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                    <div class="col-6 " style="text-align: right;">
+                        <mat-radio-group aria-label="Select an option">
+                            <mat-radio-button value="all">All</mat-radio-button>
+                            <mat-radio-button value="inprogress">Inprogress</mat-radio-button>
+                            <mat-radio-button value="complete">Completed</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+
+
+                </div>
+
+                <div class="col-12">
+
+                    <table id="sales" mat-table [dataSource]="soDataSource" class="mat-elevation-z0">
+
+                        <ng-container matColumnDef="date">
+                            <th id="date-h" mat-header-cell *matHeaderCellDef>Date</th>
+                            <td id="date" mat-cell *matCellDef="let element">
+                                {{ element.orderdate * 1000 | date:  'd MMM yy'}}
+                            </td>
+                        </ng-container>
+
+
+                        <ng-container matColumnDef="poref">
+                            <th id="s-poref-h" mat-header-cell *matHeaderCellDef>Purchase Order <br />Reference</th>
+                            <td id="s-poref" mat-cell *matCellDef="let element">
+
+                                <button mat-button color="primary" (click)="viewOrder(element)">
+                                    {{element.poref }}
+                                </button>
+                            </td>
+                        </ng-container>
+
+
+                        <ng-container matColumnDef="client">
+                            <th id="s-client-h" mat-header-cell *matHeaderCellDef>Customer</th>
+                            <td id="s-client" mat-cell *matCellDef="let element">{{element.clientName }}</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="quantity">
+                            <th id="s-quantity-h" mat-header-cell *matHeaderCellDef>Quantity</th>
+                            <td id="s-quantity" mat-cell *matCellDef="let element">{{element.quantity }}</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="price">
+                            <th id="s-price-h" mat-header-cell *matHeaderCellDef>Sale Price</th>
+                            <td id="s-price" mat-cell *matCellDef="let element">{{element.price }}</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="status">
+                            <th id="s-status-h" mat-header-cell *matHeaderCellDef>Status</th>
+                            <td id="s-status" mat-cell *matCellDef="let element">
+                                {{element.status }}
+                                <span *ngIf="element.status == 'confirm'">
+                                    {{ element.confirmdate * 1000 | date:   'd MMM yy'}}</span>
+                                <span *ngIf="element.status == 'shipped'">
+                                    {{ element.shipdate * 1000 | date:  'd MMM yy'}}</span>
+                            </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedCols"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedCols;" class="detail-row"></tr>
+
+
+                    </table>
+
+                </div>
+
+            </mat-tab>
+
+        </mat-tab-group>
+
+
+
+    </mat-dialog-content>
+
+    <mat-divider></mat-divider>
+
+    <mat-dialog-actions align="end" class="mt-1">
+        <button id="cancel-btn" mat-raised-button (click)="editProduct()">Edit</button>
+        <button id="cancel-btn" mat-raised-button (click)="onClose()">Close</button>
+
+    </mat-dialog-actions>
+
+</div>

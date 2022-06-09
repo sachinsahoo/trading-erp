@@ -1,0 +1,125 @@
+<div class="erp-mat-dialog">
+
+<h1 mat-dialog-title *ngIf="data.id">Edit - {{data.name}}</h1>
+<h1 mat-dialog-title *ngIf="!data.id">New Product</h1>
+
+<mat-divider></mat-divider>
+<form class="inv-form" #productForm="ngForm" [formGroup]="productFormGroup" (ngSubmit)="submitMain()">
+
+<mat-dialog-content class="mt-4 mb-1">
+  <!-- <mat-progress-spinner diameter="24" mode="indeterminate" *ngIf="isLoading$ | async">
+    </mat-progress-spinner> -->
+
+  <!--------  Form  -------------->
+
+    <div class="row mb-5" style="padding: 20px;">
+
+
+          <mat-form-field class=" col-5">
+            <mat-label>Name</mat-label>
+            <input matInput placeholder="" formControlName="name">
+          </mat-form-field>
+
+
+          <mat-form-field class=" col-3">
+            <mat-label>Internal Reference</mat-label>
+            <input matInput placeholder="" formControlName="internalReference">
+          </mat-form-field>
+
+
+          <mat-form-field class=" col-4">
+            <mat-label>Barcode</mat-label>
+            <input matInput placeholder="" formControlName="barcode">
+          </mat-form-field>
+
+          <mat-form-field class=" col-12">
+            <mat-label>Description</mat-label>
+            <input matInput placeholder="" formControlName="description">
+          </mat-form-field>
+
+
+
+          <mat-form-field class=" col-4">
+            <mat-label>Cost Price</mat-label>
+            <input matInput placeholder="" formControlName="costPrice">
+          </mat-form-field>
+
+
+          <mat-form-field class=" col-4">
+            <mat-label>Sales Price</mat-label>
+            <input matInput placeholder="" formControlName="salesPrice">
+          </mat-form-field>
+
+          <mat-form-field class=" col-4">
+            <mat-label>GST Rate</mat-label>
+            <input matInput placeholder="" formControlName="gstRate">
+          </mat-form-field>
+
+
+          <mat-form-field class=" col-6">
+            <mat-label>Quantity in Stock</mat-label>
+            <input matInput placeholder="" formControlName="quantity">
+          </mat-form-field>
+
+          <mat-form-field class=" col-6">
+            <mat-label>Unit of Measurement</mat-label>
+            <input matInput placeholder="" formControlName="unit">
+          </mat-form-field>
+
+
+
+          <mat-form-field class=" col-3">
+            <mat-label>Group</mat-label>
+            <input matInput placeholder="" formControlName="group">
+          </mat-form-field>
+
+
+          <mat-form-field class=" col-3">
+            <mat-label>Category</mat-label>
+            <input matInput placeholder="" formControlName="category">
+          </mat-form-field>
+
+
+          <mat-form-field class=" col-3">
+            <mat-label>UOM</mat-label>
+            <input matInput placeholder="" formControlName="uom">
+          </mat-form-field>
+
+
+          <mat-form-field class=" col-3">
+            <mat-label>HSN Code</mat-label>
+            <input matInput placeholder="" formControlName="hsnCode">
+          </mat-form-field>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+</mat-dialog-content>
+
+<mat-divider></mat-divider>
+
+<mat-dialog-actions align="end" class="mt-1">
+  <button  mat-raised-button type="submit" color="primary" [disabled]="!productForm.form?.valid">Save</button>
+  <button  mat-raised-button color="accent" (click)="onClose()">Cancel</button>
+
+</mat-dialog-actions>
+</form>
+</div>

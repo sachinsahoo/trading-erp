@@ -1,0 +1,148 @@
+<div [class]="'theme-wrapper ' + (theme$ | async)">
+
+  <mat-sidenav-container>
+
+
+    <!--Mobile side nav -->
+    <mat-sidenav #sidenav mode="over">
+      <div class="branding">
+        <!-- <img [src]="logo" /> -->
+        <span class="main">Trading </span> <span class="sub">ERP</span>
+      </div>
+      <mat-nav-list>
+        <a mat-list-item *ngFor="let item of navigationSideMenu" (click)="sidenav.close()" [routerLink]="[item.link]"
+          routerLinkActive="active">
+          {{item.label | translate}}
+        </a>
+        <a mat-list-item href="https://github.com/tomastrajan/angular-ngrx-material-starter" target="_blank">
+          Github
+        </a>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <div class="wrapper">
+
+      <div class="toolbar"  [style.position]="(stickyHeader$ | async) ? 'fixed' : 'inherit'">
+
+        <!-- Top Menu bar -->
+        <mat-toolbar color="primary" [ngClass]="hide?'':'hideToolbar'">
+
+          <button mat-icon-button class="d-md-none" (click)="sidenav.open()">
+            <fa-icon icon="bars"></fa-icon>
+          </button>
+
+          <!-- Logo-->
+          <span routerLink="" class="branding spacer center d-inline d-sm-none">
+            <!-- <img [src]="logo" /> -->
+            <span class="main">Trading </span> <span class="sub">ERP</span>
+          </span>
+          <span routerLink="" class="branding spacer center d-none d-sm-inline d-md-none">
+            <!-- <img [src]="logo" />Logo 000 -->
+          </span>
+          <span routerLink="" class="branding spacer d-none d-md-inline">
+            <!-- <img [src]="logo" /> -->
+            <span class="main">Trading </span> <span class="sub">ERP</span>
+          </span>
+
+
+        
+         
+
+
+
+          <!-- <mat-select [placeholder]="'anms.settings.general.placeholder' | translate" [ngModel]="settings.language"
+            (selectionChange)="onLanguageSelect($event)" name="language">
+            <mat-option *ngFor="let l of languages" [value]="l.value">
+              {{ 'anms.settings.general.language.' + l.label | translate }}
+            </mat-option>
+          </mat-select> -->
+
+          <!-- App navigation menu -->
+          <!-- <span class="d-none d-md-inline">
+            <button mat-button class="nav-button" *ngFor="let item of navigation" [routerLink]="[item.link]"
+              routerLinkActive="active">
+              {{item.label | translate}}
+            </button>
+          </span> -->
+
+          <!-- <button mat-button mat-stroked-button color="accent" *ngIf="!(isAuthenticated$ | async)" (click)="onLoginClick()">
+            {{ 'anms.menu.login' | translate }}
+          </button> -->
+
+          <!-- <button mat-button mat-stroked-button color="accent" routerLink="login">
+            {{ 'anms.menu.login' | translate }}
+          </button> -->
+
+    
+         
+          <!-- Select Company menu -->
+          <button *ngIf="(isAuthenticated$ | async)" mat-button [matMenuTriggerFor]="toolbarCompanyMenu">
+            <span class="selected-company c9"> {{activeSelfCompany?.name}} </span> 
+            <fa-icon icon="chevron-down" transform="shrink-8" class="ml-1"></fa-icon>
+          </button>
+          <mat-menu #toolbarCompanyMenu="matMenu">
+            <span *ngFor="let row of selfCompanies">
+              <button mat-menu-item (click)="switchCompany(row)">
+    
+                <span>{{row.name}}</span>
+              </button>
+            </span>
+          </mat-menu>
+
+          <span class="selected-user"> Sachin Sahoo </span>
+
+
+         
+
+           <!-- User Menu -->
+           <button *ngIf="(isAuthenticated$ | async)" mat-icon-button [matMenuTriggerFor]="toolbarUserMenu">
+            <fa-icon icon="user-circle"></fa-icon>
+          </button>
+          <mat-menu #toolbarUserMenu="matMenu">
+            <button mat-menu-item (click)="onLogoutClick()">
+              <mat-icon>
+                <fa-icon icon="power-off"></fa-icon>
+              </mat-icon>
+              <span>{{ 'anms.menu.logout' | translate }}</span>
+            </button>
+          </mat-menu>
+
+
+          
+          <!-- Settings-->
+          <button mat-icon-button routerLink="settings" class="d-none d-sm-inline">
+            <fa-icon icon="cog"></fa-icon>
+          </button>
+
+
+
+
+        </mat-toolbar>
+      </div>
+
+      <!--Content-->
+      <div [ngClass]="hide?'contentFull':'content'" class=""
+        [@routeAnimations]="o.isActivated && o.activatedRoute.routeConfig.data && o.activatedRoute.routeConfig.data.title">
+        <router-outlet #o="outlet"></router-outlet>
+      </div>
+
+      <!-- <div class="footer">
+          <div class="row">
+            <div class="col-sm-12 links">
+
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 signature">
+              &#169; <span class="year">{{year}}</span> - Urvaru
+              <br class="d-block d-sm-none">
+
+            </div>
+          </div>
+        </div> -->
+
+    </div>
+
+  </mat-sidenav-container>
+
+</div>

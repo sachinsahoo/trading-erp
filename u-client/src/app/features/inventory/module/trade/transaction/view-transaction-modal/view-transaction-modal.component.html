@@ -1,0 +1,111 @@
+<div>
+    <mat-toolbar color="primary">
+        <div class="button-row" style="flex:1">
+            <h1 mat-dialog-title>{{transaction.type}} on {{transaction.date * 1000 | date: 'short'}}</h1>
+
+        </div>
+
+
+        <div class="">
+
+            <button mat-button color="primary" (click)="viewOrder()" >
+                <fa-icon icon="file"></fa-icon> &nbsp; Order
+            </button>
+        
+            <button mat-button class="ml-20" color="primary" (click)="viewInvoice()">
+                <fa-icon icon="file"></fa-icon> &nbsp; Invoice
+            </button>
+           
+        </div>
+
+    </mat-toolbar>
+</div>
+
+<mat-divider></mat-divider>
+
+<mat-dialog-content class="mt-4 mb-1" *ngIf="transaction$ | async as trans">
+    <!-- <mat-progress-spinner diameter="24" mode="indeterminate" *ngIf="isLoading$ | async">
+      </mat-progress-spinner> -->
+
+    <!--------  Transaction  -------------->
+    <div class="heading2">
+
+        <h3> Transaction </h3>
+
+    </div>
+    <div class="transaction-table-div">
+
+        
+        <table>
+            <thead>
+                <th style="width: 80%;"> Description</th>
+                <th style="width: 20%;">Amount</th>
+            </thead>
+            <tr>
+                <td style="width: 80%;">
+
+                    {{transaction.notes}} <br/>
+                    
+
+                   
+                </td>
+
+                <td style="width: 20%;">
+
+                    {{transaction.amount}}
+                   
+                </td>
+
+            </tr>
+        </table>
+        
+    
+    </div>
+    
+    <div class="heading2">
+
+        <h3> Journal Entry</h3>
+
+    </div>
+    <!---Journals-->
+    <table class="journal-table ">
+        <thead>
+            <th style="width: 60%;"> Account</th>
+            <th style="width: 20%;">Debit</th>
+            <th style="width: 20%;">Credit</th>
+        </thead>
+        <tr *ngFor="let journal of transaction.journals" [ngClass]="journal.drcrtype == 1 ? 'debit-row': 'credit-row'">
+            <td style="width: 60%;">
+
+                <span *ngIf="journal.drcrtype == 2">&nbsp;&nbsp;&nbsp;&nbsp; To </span>
+
+                {{journal.acname}} &nbsp;A/C&nbsp; <span *ngIf="journal.drcrtype == 1">Dr</span> <span
+                    *ngIf="journal.drcrtype == 2">Cr</span>
+
+            </td>
+
+            <td style="width: 20%;">
+
+                <span *ngIf="journal.drcrtype == 1">{{journal.amount}}</span>
+            </td>
+            <td style="width: 20%;">
+
+                <span *ngIf="journal.drcrtype == 2">{{journal.amount}}</span>
+            </td>
+
+
+        </tr>
+    </table>
+
+
+
+
+</mat-dialog-content>
+
+<mat-divider></mat-divider>
+
+<mat-dialog-actions align="end" class="mt-1">
+    <button id="cancel-btn" mat-raised-button color="primary" (click)="edit()" >Edit</button>
+    <button id="cancel-btn" mat-raised-button color="accent" (click)="onClose()">Cancel</button>
+
+</mat-dialog-actions>

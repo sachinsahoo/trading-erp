@@ -1,0 +1,44 @@
+@import '../../../../../../app/app.component.scss';
+
+.mat-toolbar {
+  width: 100%;
+
+  .spacer {
+    flex: 1 1 auto;
+  }
+}
+
+.mat-card-avatar {
+  height: 100px;
+  width: 100px;
+}
+
+.mat-card {
+  cursor: pointer;
+  &:hover {
+    background-color: rgb(190, 190, 179);
+  }
+  margin-right: 10px;
+}
+
+.button-row {
+  display: table-cell;
+}
+.button-row button {
+  display: table-cell;
+  margin-right: 8px;
+}
+
+table {
+  width: 100%;
+}
+
+/* Column Widths */
+.mat-column-number,
+.mat-column-state {
+  max-width: 64px;
+}
+
+.mat-column-created {
+  max-width: 124px;
+}

@@ -1,0 +1,54 @@
+@use '~@angular/material' as mat;
+@import 'styles-variables';
+
+@import '~bootstrap/scss/bootstrap-reboot';
+@import '~bootstrap/scss/bootstrap-grid';
+@import '~bootstrap/scss/utilities';
+@import '~bootstrap/scss/tables';
+
+@import 'styles-reset';
+
+@include mat.core();
+
+@import './themes/default-theme';
+@import './themes/light-theme';
+@import './themes/black-theme';
+@import './themes/nature-theme';
+@import './themes/lime-theme';
+
+@import 'styles-reset.scss-theme';
+@import './app/app/app.component.scss-theme';
+
+@mixin custom-components-theme($theme) {
+  @include anms-styles-reset-theme($theme);
+  @include anms-app-component-theme($theme);
+}
+
+.default-theme {
+  @include mat.all-component-themes($anms-theme);
+  @include custom-components-theme($anms-theme);
+}
+
+.light-theme {
+  @include mat.all-component-themes($anms-light-theme);
+  @include custom-components-theme($anms-light-theme);
+}
+
+.black-theme {
+  @include mat.all-component-themes($anms-black-theme);
+  @include custom-components-theme($anms-black-theme);
+}
+
+.nature-theme {
+  @include mat.all-component-themes($anms-nature-theme);
+  @include custom-components-theme($anms-nature-theme);
+}
+
+.lime-theme {
+  @include mat.all-component-themes($lime-theme);
+  @include custom-components-theme($lime-theme);
+}
+
+.title {
+  text-transform: capitalize;
+}

@@ -1,0 +1,15 @@
+<div id="ac90819em1" class="modal-header">
+    <h4 id="ac90819h41" class="modal-title">Session Timeout warning</h4>
+  </div>
+  <mat-dialog-content class="">
+    You will be timed out in {{(data.countMinutes !== 0 ? + data.countMinutes+' Minute'+(data.countMinutes > 1 ? 's ' : ' ') : '') + data.countSeconds+' Seconds'}}
+    <!-- <p>
+      <ngb-progressbar type="danger" [value]="progressCount" [max]="300" animate="false" id="ac90819ou1"
+                       class="progress-striped active">
+      </ngb-progressbar>
+    </p> -->
+  </mat-dialog-content>
+  <mat-dialog-actions align="end" class="mt-1">
+    <button type="button" id="ac90819bu1" class="btn btn-primary" (click)="continue()">Continue</button>
+    <button type="button" id="ac90819bu2" class="btn btn-primary" (click)="logout()">Logout</button>
+  </mat-dialog-actions>

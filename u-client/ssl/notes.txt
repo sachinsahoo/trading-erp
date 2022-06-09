@@ -1,0 +1,9 @@
+
+# Command to create cert and key
+
+openssl req -config urvaru-com.conf -new -x509 -sha256 -newkey rsa:2048 -nodes  -keyout urvaru-com.key.pem -days 36500 -out urvaru-com.cert.pem
+
+# Create key store
+sudo keytool -genkeypair -alias keystore -keyalg RSA -keysize 2048 -storetype PKCS12 -keystore uks -validity 36500
+
+keytool -import -keystore uks -file ~/cert/urvaru-com.cert.pem -alias urvaru

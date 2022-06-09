@@ -1,0 +1,518 @@
+div {
+  letter-spacing: 0.6px;
+}
+
+// Background color
+// ::ng-deep .default-theme .mat-drawer-container {
+//   background-color: #f5f5f5 !important;
+// }
+
+// Logo
+
+.branding {
+  letter-spacing: 1.4px;
+  .main {
+    font-size: 1.25rem;
+  }
+  .sub {
+  //   color: #0d47a1;
+
+    font-size: 0.75rem;
+  }
+}
+.selected-company {
+  font-size: 0.8rem;
+  font-style: italic;
+}
+
+.selected-user {
+  font-size: 0.8rem;
+  color: #004d40;
+  font-style: italic;
+}
+
+// Mat Toolbar  -----------------------
+
+.mat-toolbar.mat-primary {
+  // background: #fafafa;
+  border-bottom: 1px solid #bdbdbd;
+
+
+  &.secondary {
+    padding: 0;
+    margin: 0;
+    // background: #f5f5f5;
+    // color: #263238;
+    height: 90px;
+    h1 {
+      // color: #e2eff5; //#3f51b5;
+      padding-left: 20px;
+    }
+  }
+  &.tags {
+    border-radius: 20px;
+    padding: 6px 30px;
+    text-align: center;
+    font-size: 0.6rem;
+    line-height: 1;
+    width: 90px;
+    border: 1px solid #bdbdbd;
+    // color: #424242;
+  }
+
+  &.third {
+    padding: 0;
+    // background: #fafafa;
+    // color: #263238;
+    .mat-dialog-title {
+      color: #3f51b5;
+      padding-left: 20px;
+    }
+  }
+}
+
+// Mat Side Nav ---------------
+
+::ng-deep .mat-sidenav {
+  .mat-drawer-inner-container {
+   
+
+    // background: #e0e0e0;
+    //border-right: 1px solid #bdbdbd;
+    .mat-list-item {
+      padding: 0px 13px;
+      text-transform: capitalize;
+      height: 30px;
+      font-size: 0.8rem;
+      // color: #424242;
+      .menu-icon {
+        //color: #424242;
+        &.c1 {
+          color: #757575 !important;
+        }
+        &.c2 {
+          color: #795548 !important;
+        }
+        &.c3 {
+          color: #ff8a65 !important;
+        }
+        &.c4 {
+          color: #3f51b5 !important;
+        }
+
+        &.c5 {
+          color: #4caf50 !important;
+        }
+
+        &.c6 {
+          color: #ffa000 !important;
+        }
+        &.c7 {
+          color: #009688 !important;
+        }
+      }
+
+      // font-size: 20;
+      letter-spacing: 1.3px;
+      &.active {
+        background: #4fc3f7;
+        color: #424242;
+      }
+      &:hover {
+        background: #e3f2fd !important;
+        color: #424242;
+      }
+    }
+  }
+}
+
+// ::ng-deep .mat-drawer-container,
+// .mat-sidenav-container {
+//   // background-color: #bdbdbd;
+// }
+
+// -------------
+// Mat Tables
+// -------------
+.mat-table {
+  width: 100%;
+  margin: 0;
+  td {
+    font-size: 0.875rem;
+    // background-color: white;
+    .mat-column-purchase,
+    .mat-column-sale,
+    .mat-column-profit {
+      text-align: right !important;
+    }
+    .mat-column-transDate {
+      // background-color: #e0e0e0 !important;
+    }
+  }
+
+  th {
+    background-color: #eeeeee;
+    font-size: 0.8125rem;
+    color: #424242;
+    height: 2rem;
+    &.sub {
+      background-color: #eeeeee;
+    }
+  }
+  // .mat-footer-row {
+  //   // background-color: #e8eaf6;
+  //   // border-top: 2px solid #7986cb;
+  //   // border-bottom: 2px solid #7986cb;
+  // }
+}
+.mat-cell {
+  padding-left: 6px;
+  // color: #616161;
+
+  &.mat-button {
+    // color: #546e7a !important;
+     font-weight: 500 !important;
+  }
+
+  &.mat-column-costPrice,
+  &.mat-column-salesPrice {
+    text-align: right !important;
+    background-color: #fff8e1 !important;
+    // color: #388e3c !important;
+    padding-right: 8px;
+    font-weight: 500 !important;
+    width: 12%;
+  }
+
+  &.mat-column-quantity {
+    text-align: right !important;
+    // background-color: #f1f8e9 !important;
+    // color: #546e7a !important;
+    padding-right: 8px;
+    font-weight: 500 !important;
+    width: 14%;
+  }
+  &.mat-column-pendingarrival {
+    text-align: right !important;
+    // background-color: #fff3e0 !important;
+    // color: #546e7a !important;
+    padding-right: 8px;
+    font-weight: 500 !important;
+    width: 12%;
+  }
+
+  &.mat-column-pendingdispatch {
+    text-align: right !important;
+    // background-color: #fff3e0 !important;
+    // color: #546e7a !important;
+    padding-right: 8px;
+    font-weight: 500 !important;
+    width: 12%;
+  }
+  &.mat-column-transDate,
+  &.mat-column-date,
+  &.mat-column-orderdate {
+    width: 10%;
+    // background-color: #f5f5f5 !important;
+    // color: #616161 !important;
+    font-weight: 500;
+  }
+
+  &.mat-column-status {
+    width: 10%;
+    text-align: center !important;
+  }
+  &.mat-column-referenceno {
+    // background-color: #f5f5f5 !important;
+    width: 10%;
+  }
+
+  &.mat-column-custCompanyName {
+    // color: #616161 !important;
+    font-weight: 700 !important;
+  }
+
+  &.mat-column-myCompanyName {
+    width: 16%;
+    // color: #004d40 !important;
+  }
+  &.mat-column-amount {
+    // background-color: #fff8e1 !important;
+    // color: #546e7a !important;
+    text-align: right;
+    padding-right: 8px;
+    font-weight: 500 !important;
+    width: 11%;
+    border-left: 1px solid #eeeeee;
+    // border-right: 1px solid#e0e0e0;
+    // border-style: double;
+  }
+}
+.mat-header-cell {
+  padding-left: 10px;
+}
+
+.mat-column-purchase,
+.mat-column-sale,
+.mat-column-profit,
+.mat-column-quantity,
+.mat-column-pendingdispatch,
+.mat-column-pendingarrival,
+.mat-column-costPrice,
+.mat-column-salesPrice {
+  text-align: right !important;
+  padding-right: 8px;
+}
+
+// tr.mat-row:hover {
+//   // background-color: #eeeeee;
+// }
+
+/* Column Widths */
+.mat-column-number,
+.mat-column-state {
+  max-width: 64px;
+}
+
+.mat-column-created {
+  max-width: 124px;
+}
+
+// Mat tab ---------------------
+::ng-deep .mat-tab-list {
+  // background-color: #fafafa;
+
+  .menu-icon {
+    padding-right: 15px;
+  }
+}
+// ::ng-deep .mat-tab-label {
+//   border: 1px solid #e0e0e0;
+//   border-bottom: 2px solid #9e9e9e;
+//   border-right: 1px solid #9e9e9e;
+//   color: #303f9f;
+// }
+
+// ::ng-deep .mat-tab-label-active {
+//   font-size: 1rem;
+//   color: black;
+//   background-color: #e0f2f1;
+// }
+
+// .mat-tab-label-content {
+//   background-color: #fafafa;
+// }
+
+//--------------------------
+// Mat Button
+//--------------------------
+
+.mat-button,
+.mat-raised-button {
+  margin: 0;
+
+  &.secondary {
+    padding: 0;
+    // border: 2px solid #5c6bc0;
+    height: 48px;
+    line-height: 25px;
+    font-size: 0.8rem;
+    // color: #5c6bc0;
+    padding: 2px 5px;
+    line-height: 25px;
+    margin: 0;
+    &.redb {
+      border: 2px solid #ff7043;
+      color: #616161;
+    }
+  }
+  // &.print {
+  //   border: 2px solid #bdbdbd;
+  // }
+  // &.bg {
+  //   background-color: #616161;
+  //   color: white;
+  // }
+  // &.bgteal {
+  //   background-color:  #00897b;
+  //   color: white;
+  // }
+  // &.bgblue {
+  //   background-color: #1976d2;
+  //   color: white;
+  // }
+  // &.bgred {
+  //   background-color: #d84315;
+  //   color: white;
+  // }
+  // &.bd-grey {
+  //   color:#616161;
+  //   border: 1px solid #616161;
+  // }
+
+  // &.bd-red {
+  //   color:#d84315;
+  //   border: 1px solid #d84315;
+  // }
+}
+
+// .mat-raised-button {
+//   &.mat-primary {
+//     background-color: #5c6bc0;
+//   }
+// }
+
+table {
+  width: 100%;
+}
+
+// Mat Tab ---------------
+
+//-----------------------
+
+// Mat Dialog -------------------
+::ng-deep .mat-dialog-container {
+  // background-color: #cfd8dc;
+
+  .header {
+    // border: 1px solid #bdbdbd;
+    padding: 10px;
+    // background-color: #e0f2f1;
+  }
+
+  // .mat-dialog-title {
+  //   &.main {
+  //     color: #0d47a1;
+  //   }
+  //   &.sub {
+  //     color: #bf360c;
+  //   }
+  // }
+}
+
+// Div formatting   ---------------
+
+.commision {
+  background-color: #e0f2f1;
+  height: 65px;
+  padding-top: 20px;
+  align-items: center;
+  vertical-align: middle;
+  align-items: center;
+  font-size: 1rem;
+  border-top: 2px solid #616161;
+  border-bottom: 2px solid #616161;
+  span {
+    vertical-align: middle;
+  }
+}
+
+.root-nav {
+  padding: 7px 14px;
+  background-color: #eceff1;
+  border-radius: 2px;
+  text-align: center;
+  color: #00695c !important;
+  font-size: 1rem !important;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    color: #00695c !important;
+    font-size: 1rem !important;
+  }
+  button,
+  a {
+    color: #1565c0;
+    cursor: pointer;
+  }
+}
+
+// Text Formatting
+
+.nav-link {
+  padding: 0;
+  // color: #757575;
+  cursor: pointer;
+  font-size: 0.87rem;
+  letter-spacing: 1.3px;
+  a {
+    // color: #757575;
+    font-size: 0.87rem;
+    &:hover {
+      // color: #0d47a1;
+      text-decoration: underline;
+    }
+  }
+  .header {
+    // color: #006064;
+    font-size: 20px;
+    letter-spacing: 1px;
+  }
+}
+
+.amount {
+  color: #1a237e;
+  font-weight: 400;
+  text-align: right;
+}
+
+.mini {
+  font-size: 10;
+}
+
+.pay {
+  color: #d84315; //800
+}
+.rec {
+  color: #00695c; //800
+}
+
+// Radio button group -------------------
+
+.status-radio {
+  margin-top: 10px;
+  border: 1px solid #e0e0e0;
+  height: 50px;
+  width: 100%;
+  background-color: #f5f5f5;
+  .mat-radio-button {
+    margin-left: 10px;
+    margin-top: 10px;
+  }
+}
+
+.mat-expansion-panel {
+  &.lgreen {
+    background-color: #f1f8e9;
+  }
+}
+
+// .ng-fa-icon {
+//   &.Payment {
+//     color: #1565c0;
+//   }
+//   &.Purchase {
+//     color: #0d47a1;
+//   }
+//   &.Receipt {
+//     color: #4caf50;
+//   }
+//   &.Sale {
+//     color: #2e7d32;
+//   }
+//   &.Journal {
+//     color: #ff9800;
+//   }
+
+//   &.customer {
+//     color: #4caf50;
+//   }
+//   &.supplier {
+//     color: #1565c0;
+//   }
+//   &.agent {
+//     color: #1565c0;
+//   }
+// }

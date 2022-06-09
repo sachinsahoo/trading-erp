@@ -1,0 +1,84 @@
+<div class="info-table mt-4 mb-4">
+    <table>
+
+        <tr style="background-color: #bbdefb;">
+            <td colspan="3" style="background-color: #bbdefb;">
+                <!-- Customer Info-->
+                <span style="font-size: 22px;"><span> Customer: </span>{{order.customerName}}</span>
+                <br />
+                GSTIN : {{order.customer.gstin1}} <br />
+            </td>
+        </tr>
+
+        <tr>
+
+            <td class="col">
+                <span class="label"> Invoice Address </span> <br />
+                <span class="data"> {{ order.customerName}}</span> <br />
+                <span class="data"> {{ order.customer.invoiceContact.address1}}</span> <br />
+                <span class="data" *ngIf="order.customer.invoiceContact.address2"><span>
+                        {{ order.customer.invoiceContact.address2}}</span> <br /></span>
+                <span class="data"> {{ order.customer.invoiceContact.city}}</span> ,
+                <span class="data"> {{ order.customer.invoiceContact.state}}</span>,
+                <span class="data"> {{ order.customer.invoiceContact.pincode}}</span> <br />
+                <span class="data"> {{ order.customer.invoiceContact.email}}</span>
+            </td>
+
+            <td class="spacer"> </td>
+
+            <td class="col">
+                <span class="label"> Dispatch Address </span> <br />
+
+                <span class="data"> {{ order.customerName}}</span> <br />
+                <span class="data"> {{ order.customer.dispatchContact.address1}}</span> <br />
+                <span *ngIf="order.customer.dispatchContact.address2"> <span class="data">
+                        {{ order.customer.dispatchContact.address2}}</span> <br /></span>
+                <span class="data"> {{ order.customer.dispatchContact.city}}</span> ,
+                <span class="data"> {{ order.customer.dispatchContact.state}}</span>,
+                <span class="data"> {{ order.customer.dispatchContact.pincode}}</span> <br />
+                <span class="data"> {{ order.customer.dispatchContact.email}}</span>
+
+
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="3"> <br /> </td>
+        </tr>
+
+        <tr style="background-color: #bbdefb;">
+            <td colspan="3" style="background-color: #bbdefb;">
+                <!-- Supplier Info-->
+                <span style="font-size: 22px;"><span> Supplier: </span>{{order.supplierName}}</span>
+                <br />
+                GSTIN : {{order.supplier.gstin1}} <br />
+            </td>
+        </tr>
+
+        <tr>
+
+            <td class="col">
+                <span class="label"> Invoice Address </span> <br />
+                <span class="data"> {{ order.supplierName}}</span> <br />
+                <span class="data"> {{ order.supplier.invoiceContact.address1}}</span> <br />
+                <span class="data" *ngIf="order.supplier.invoiceContact.address2"><span>
+                        {{ order.supplier.invoiceContact.address2}}</span> <br /></span>
+                <span class="data"> {{ order.supplier.invoiceContact.city}}</span> ,
+                <span class="data"> {{ order.supplier.invoiceContact.state}}</span>,
+                <span class="data"> {{ order.supplier.invoiceContact.pincode}}</span> <br />
+                <span class="data"> {{ order.supplier.invoiceContact.email}}</span>
+            </td>
+
+            <td class="spacer"> </td>
+
+            <td class="col">
+
+            </td>
+        </tr>
+
+
+
+
+
+    </table>
+</div>

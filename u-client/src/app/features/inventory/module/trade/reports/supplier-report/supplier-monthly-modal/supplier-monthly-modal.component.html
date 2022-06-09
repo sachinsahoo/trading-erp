@@ -1,0 +1,101 @@
+<h1 mat-dialog-title> {{ data.name}} Report</h1>
+
+<mat-divider></mat-divider>
+
+<mat-dialog-content class="">
+    <!-- <mat-progress-spinner diameter="24" mode="indeterminate" *ngIf="isLoading$ | async">
+    </mat-progress-spinner> -->
+
+    <mat-tab-group class="col-12">
+
+      <mat-tab label="Monthly Report">
+        
+        <div class="col-7" >
+          <inv-bar-chart [barChartDetail] = "data.barChart" [color]="1"></inv-bar-chart>
+        </div>
+
+          <div class="col-12 mt-4">
+
+            <table id="monthly" mat-table [dataSource]="dataSource"  class="mat-elevation-z0">
+              <ng-container matColumnDef="date" >
+               <th id="date-h" mat-header-cell *matHeaderCellDef>Date</th>
+               <td id="date" mat-cell *matCellDef="let element"> 
+                  {{ element.date * 1000 | date:  'MMM y'}}
+              </td>
+             </ng-container>
+        
+         
+            <ng-container matColumnDef="purchaseamt">
+              <th id="s-purchaseamt-h" mat-header-cell *matHeaderCellDef>Purchase <br/>Amount</th>
+              <td id="s-purchaseamt" mat-cell *matCellDef="let element">{{element.rupPurchaseAmt }}</td>
+            </ng-container>
+  
+            
+            <tr mat-header-row *matHeaderRowDef="displayedCols"></tr>
+           <tr mat-row *matRowDef="let row; columns: displayedCols;" class="detail-row"></tr>
+        
+        
+           </table>
+          
+         </div>
+        
+      
+
+
+      </mat-tab>
+
+      <mat-tab label="Purchases">
+
+        <div class="col-6" >
+          <inv-bar-chart [barChartDetail] = "data.productBarchart" [color]="1"></inv-bar-chart>
+        </div>
+        <div class="col-12 mt-4">
+
+          <table id="all-customer" mat-table [dataSource]="prodDataSource"  class="mat-elevation-z0">
+      
+      
+           <ng-container matColumnDef="prodname" >
+             <th id="prodname-h" mat-header-cell *matHeaderCellDef>Product</th>
+             <td id="prodname" mat-cell *matCellDef="let element"> 
+                {{ element.prodname}}
+            </td>
+           </ng-container>
+
+
+      
+           <ng-container matColumnDef="purchaseqty">
+             <th id="s-purchaseqty-h" mat-header-cell *matHeaderCellDef> Quantity</th>
+             <td id="s-purchaseqty" mat-cell *matCellDef="let element"> {{element.purchaseqty }} </td>
+           </ng-container>
+      
+           <ng-container matColumnDef="avgCostPrice">
+            <th id="s-avgCostPrice-h" mat-header-cell *matHeaderCellDef>Average <br/> Cost Price</th>
+            <td id="s-avgCostPrice" mat-cell *matCellDef="let element">{{element.rupAvgCostPrice }}</td>
+          </ng-container>
+      
+      
+           <ng-container matColumnDef="purchaseamt">
+             <th id="s-purchaseamt-h" mat-header-cell *matHeaderCellDef>Total <br/>Purchase Amount</th>
+             <td id="s-saleamt" mat-cell *matCellDef="let element">{{element.rupPurchaseAmt }}</td>
+           </ng-container>
+
+           <tr mat-header-row *matHeaderRowDef="prodDisplayedCols"></tr>
+         <tr mat-row *matRowDef="let row; columns: prodDisplayedCols;" class="detail-row"></tr>
+      
+      
+         </table>
+        
+       </div>
+      </mat-tab>
+
+     
+    </mat-tab-group>
+   
+</mat-dialog-content>
+
+<mat-divider></mat-divider>
+
+<mat-dialog-actions align="end" class="mt-1">
+    <button id="cancel-btn" mat-raised-button (click)="onClose()">Close</button>
+    
+</mat-dialog-actions>

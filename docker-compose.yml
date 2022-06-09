@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+
+  api:
+    build: .
+    image: sachinsahoo/uapi
+    ports:
+      - 8080:8080
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://terp.cfkwndr81vzm.us-east-2.rds.amazonaws.com:5432/postgres
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    ##command: java -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=*:5005 -Djava.security.egd=file:/dev/./urandom -jar /urvaru/spring-boot-multitenant/target/smulti.war
+
+  client:
+    build: ./u-client
+    image: sachinsahoo/uclient
+    ports:
+      - 4000:80

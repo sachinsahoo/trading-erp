@@ -1,0 +1,120 @@
+<div class="detail-table mt-4 mb-4">
+    <table>
+
+      <tr>
+        <td class="label">Supplier</td>
+        <td class="data">{{order.supplierName}}</td>
+        <td class="spacer"> </td>
+        <td class="label">Invoice Date
+
+        <td class="data">{{invoice.invdate * 1000 | date: 'd MMM yy'}}</td>
+      </tr>
+
+      <tr>
+        <td class="label">Customer</td>
+        <td class="data">{{order.customerName}}</td>
+        <td class="spacer"> </td>
+        <td class="label">Status</td>
+        <td class="data">
+         <div class="tags" [ngClass] = "invoice.status">{{invoice.status}}</div>  
+        </td>
+      </tr>
+
+      <tr>
+        <td class="label">Total Amt</td>
+        <td class="data amount">{{invoice.rupTotalAmount}}</td>
+        <td class="spacer"> </td>
+        <td class="label">Balance</td>
+        <td class="data amount">{{invoice.rupBalance}}</td>
+      </tr>
+
+
+      <tr class="transport-info">
+        <td class="label">
+          Transporter Name <br/>
+          Truck No 
+        </td>
+        <td class="data amount">
+          {{invoice.transportername}} <br/>
+          {{invoice.truckno}} 
+        </td>
+        <td class="spacer"> </td>
+        <td class="label">
+          Container No <br/>
+          Tracking No <br/>
+        </td>
+        <td class="data">
+          {{invoice.containerno}}
+          {{invoice.trackingno}}
+        </td>
+      </tr>
+
+     
+
+    
+
+
+    </table>
+  </div>
+
+
+  <div class="order-div">
+    <table mat-table [dataSource]="invoice.productlist" class="mat-elevation-z0">
+
+      <ng-container matColumnDef="Slno">
+        <th mat-header-cell *matHeaderCellDef> Sl. No. </th>
+        <td mat-cell *matCellDef="let index = index"> {{index + 1}} </td>
+        <td mat-footer-cell *matFooterCellDef> </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="Description">
+        <th mat-header-cell *matHeaderCellDef> Product </th>
+        <td mat-cell *matCellDef="let element"> 
+            {{element.poproduct.productName }} <br/>
+            <div *ngFor="let row of element.poproduct.taxes" 
+            style=" font-size: 13px; font-style: italic; text-align: right; color:#004d40; width: 100%; padding-right: 20px;">
+                {{row.desc }} <br/>
+            </div>
+        </td>
+
+        <td mat-footer-cell *matFooterCellDef> <div style="text-align: right;">Total</div></td>
+      </ng-container>
+
+      <ng-container matColumnDef="Quantity">
+        <th mat-header-cell *matHeaderCellDef> Quantity </th>
+        <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+        <td mat-footer-cell *matFooterCellDef> </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="Rate">
+        <th mat-header-cell *matHeaderCellDef> Rate </th>
+        <td mat-cell *matCellDef="let element">
+             {{element.poproduct.rupPrice }} 
+
+        </td>
+        <td mat-footer-cell *matFooterCellDef> </td>
+      </ng-container>
+
+
+
+      <ng-container matColumnDef="Amount">
+        <th mat-header-cell *matHeaderCellDef style="text-align: right;"> Amount </th>
+        <td mat-cell *matCellDef="let element" style="text-align: right;">
+             {{element.poproduct.price * element.quantity  | number : '1.0-0'}} <br/>
+             <span *ngFor="let row of element.poproduct.taxes" style="font-size: 15px; text-align: right; color: #004d40;">
+                 {{(row.percent * element.quantity * element.poproduct.price / 100) | number : '1.0-0' }} <br/>
+                 </span>
+
+        </td>
+        <td mat-footer-cell *matFooterCellDef style="font-size: 19px; text-align: right; color:#424242; font-weight: 800;"> 
+            {{invoice.rupTotalAmount}}
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <tr mat-footer-row *matFooterRowDef="displayedColumns;"></tr>
+    </table>
+  </div>

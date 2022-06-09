@@ -1,0 +1,334 @@
+<div *ngIf="reload$ | async">
+
+  <div class="toolbar mb-2" >
+
+    <mat-toolbar color="primary" class="secondary">
+      <div class="button-row" style="flex:1">
+
+        <div class="row">
+          <div class="ml-4">
+            <span class="header"> Transactions</span>
+          </div>
+        </div>
+
+      </div>
+
+
+
+
+      <div class="mr-20">
+
+        <button mat-button class="ml-4 bgblue" (click)="createJournal()">
+          <fa-icon icon="plus" transform="grow-3"></fa-icon>
+        </button>
+        <span class="ml-16"></span>
+
+        <button mat-button class="ml-4 bgblue" routerLink="/trade/productreport">
+          <fa-icon icon="chart-line" transform="grow-3"></fa-icon>
+        </button>
+        <button mat-button class="ml-5 bg" (click)="printPreview()">
+          <fa-icon icon="download" transform="grow-3"></fa-icon>
+        </button>
+
+        <button mat-button class="ml-4 bgteal" (click)="import()">
+          <fa-icon icon="upload" transform="grow-3"></fa-icon>
+        </button>
+        <span class="ml-4"></span>
+
+
+
+      </div>
+
+    </mat-toolbar>
+  </div>
+
+
+
+
+  <div class="row ml-4">
+
+    <!-- Search Start -->
+
+    <div class="col-10 ">
+
+
+      <div class="row">
+        <div class="col-12 px-0">
+          <button mat-button (click)="toggleShow()" class="mt-2 mb-2  bd">
+            <span *ngIf="!isShown"> <fa-icon icon="search-plus" transform="grow-1"></fa-icon> &nbsp; Show Search</span>
+            <span *ngIf="isShown"> <fa-icon icon="search-minus" transform="grow-1"></fa-icon> &nbsp; Hide Search</span>
+
+          </button>
+        </div>
+      </div>
+
+      <form #sForm="ngForm" [formGroup]="searchForm" (ngSubmit)="submitSearch()">
+        <div *ngIf="isShown" class="row bg-bgrey px-2 py-2">
+
+
+          <mat-form-field class="col-3 float-right">
+            <mat-label>Date Preset</mat-label>
+            <mat-select formControlName="datePreset">
+              <mat-option *ngFor="let item of datePresets" [value]="item.value">
+                {{item.display}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="col-3" *ngIf="searchForm.get('datePreset').value == 'custom'">
+            <mat-label>Start date</mat-label>
+            <input matInput [matDatepicker]="picker1" formControlName="startDate">
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field class="col-3" *ngIf="searchForm.get('datePreset').value == 'custom'">
+            <mat-label>End date</mat-label>
+            <input matInput [matDatepicker]="picker2" formControlName="endDate">
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+          </mat-form-field>
+
+          <div class="col-6" *ngIf="searchForm.get('datePreset').value != 'custom'"></div>
+
+          <div class="col-2"></div>
+
+          <mat-form-field class="col-3 float-right">
+            <mat-label>Client Type</mat-label>
+            <mat-select formControlName="clientType">
+              <mat-option *ngFor="let item of clientPresets" [value]="item.value">
+                {{item.display}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <!-- Client Auto Complete---------------------------------------------->
+          <mat-form-field class="col-6">
+            <mat-label>Client</mat-label>
+            <input type="text" matInput formControlName="client" [matAutocomplete]="clientauto">
+            <mat-autocomplete #clientauto="matAutocomplete" [displayWith]="displayFn">
+              <mat-option *ngFor="let option of clientOptions | async" [value]="option" class="px-0">
+
+                <span class="px-2"> {{option.name}} </span>
+                <span class="bg float-right w-25 h-100 px-2"> {{option.type}} </span>
+
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+
+          <div class="col-2"></div>
+
+          <mat-form-field class="col-3">
+            <mat-label>Type</mat-label>
+            <mat-select formControlName="transType">
+              <mat-option *ngFor="let row of transPresets" [value]="row.value">
+                {{row.display}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class=" col-3">
+            <mat-label>Order No</mat-label>
+            <input type="number" matInput placeholder="" formControlName="orderno">
+          </mat-form-field>
+
+          <mat-form-field class=" col-3">
+            <mat-label>Invoice No</mat-label>
+            <input type="number" matInput placeholder="" formControlName="invoiceno">
+          </mat-form-field>
+
+
+
+
+          <div class="col-2">
+            <span class="w-100">
+              <button mat-raised-button color="primary" class="mt-2" (click)="sForm.ngSubmit.emit()">
+                <fa-icon icon="search" transform="grow-3"></fa-icon> &nbsp; Search
+              </button>
+            </span>
+
+          </div>
+
+
+        </div>
+      </form>
+    </div>
+
+
+    <div class="col-10 info mb-4" *ngIf="!(transactionError$ | async) as error">
+      <span class="ml-1 h-100 pt-2 float-left" *ngIf="!(isTransLoading$ | async)"><b>{{searchRequest.count}}</b> &nbsp;
+        Records Found</span>
+      <span class="ml-1 h-100 align-middle pt-2 float-left">
+        <mat-spinner [diameter]="20" color=primary *ngIf="isTransLoading$ | async"></mat-spinner>
+      </span>
+    </div>
+
+    <div class="col-10 warn mb-4" *ngIf="(transactionError$ | async) as error">
+      <span class="ml-1 h-100 pt-2 float-left"><b>{{error}}</b> </span>
+    </div>
+
+
+
+    <div class="col-10 px-0" *ngIf="transactions$ | async">
+
+      <table id="transactions" mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z0"
+        matSortDirection="desc" matSort matSortActive="created" matSortDisableClear>
+
+
+
+        <ng-container matColumnDef="date">
+
+          <th id="date-h" mat-header-cell *matHeaderCellDef>Date</th>
+          <td id="date" mat-cell *matCellDef="let element">
+            <fa-icon icon="clock" class="c2" transform="shrink-3"></fa-icon>
+            {{element.date * 1000 | date: 'd MMM yy'}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="dateFilter">
+          <th id="orderdate-h" mat-header-cell *matHeaderCellDef class="sub">
+
+            <button mat-button (click)="clearFilters()">
+              <span>
+                <fa-icon icon="file" class="c4" transform="shrink-3"></fa-icon>
+                Clear All
+
+              </span>
+            </button>
+          </th>
+
+
+        </ng-container>
+
+        <ng-container matColumnDef="myCompanyName">
+          <th id="c-myCompanyName-h" mat-header-cell *matHeaderCellDef>My Company</th>
+          <td id="c-myCompanyName" mat-cell *matCellDef="let element">
+            <fa-icon icon="building" class="c4"  transform="shrink-3"></fa-icon>
+            {{element.myCompanyName}}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="myCompanyFilter">
+          <th id="c-referenceno-h" mat-header-cell *matHeaderCellDef class="sub">
+            <mat-form-field >
+              <mat-label> My Company  </mat-label>
+              <mat-select (selectionChange)="applyFilter($event.value, 'myCompanyName')" [(ngModel)]="filteredValues.myCompanyName">
+                <mat-option>All</mat-option>
+                <mat-option *ngFor="let row of myCompanyList" value="{{row}}">{{row}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </th>
+
+        </ng-container>
+
+        <ng-container matColumnDef="custCompanyName">
+          <th id="s-custCompanyName-h" mat-header-cell *matHeaderCellDef>Client</th>
+          <td id="s-custCompanyName" mat-cell *matCellDef="let element">
+            <fa-icon icon="user" class="c1" transform="shrink-3"></fa-icon>
+            {{element.custCompanyName}}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="custCompanyFilter">
+          <th id="c-referenceno-h" mat-header-cell *matHeaderCellDef class="sub">
+            <mat-form-field >
+              <mat-label> Customer Company  </mat-label>
+              <mat-select (selectionChange)="applyFilter($event.value, 'custCompanyName')" [(ngModel)]="filteredValues.custCompanyName">
+                <mat-option>All</mat-option>
+                <mat-option *ngFor="let row of custCompanyList" value="{{row}}">{{row}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </th>
+
+        </ng-container>
+
+        <ng-container matColumnDef="notes">
+          <th id="s-notes-h" mat-header-cell *matHeaderCellDef>Description</th>
+          <td id="s-notes" mat-cell *matCellDef="let element">
+
+
+            <button mat-button (click)="viewTransaction(element)">
+              <span>
+              <span [ngClass]="element.type">
+                <fa-icon icon="credit-card" class="c2"  transform="shrink-1"
+
+                ></fa-icon> &nbsp;
+              </span>
+
+              {{element.notes}}
+            </span>
+            </button>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="notesFilter">
+          <th id="c-referenceno-h" mat-header-cell *matHeaderCellDef class="sub">
+            <mat-form-field >
+              <mat-label> Notes </mat-label>
+              <mat-select (selectionChange)="applyFilter($event.value, 'notes')" [(ngModel)]="filteredValues.notes">
+                <mat-option>All</mat-option>
+                <mat-option *ngFor="let row of notesList" value="{{row}}">{{row}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </th>
+
+        </ng-container>
+
+
+        <ng-container matColumnDef="type">
+          <th id="type-h" mat-header-cell *matHeaderCellDef>Type</th>
+          <td id="type" mat-cell *matCellDef="let element">
+            <div class="tags" [ngClass]=" element.type ">
+              {{element.type}}
+            </div>
+
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="typeFilter">
+          <th id="c-referenceno-h" mat-header-cell *matHeaderCellDef class="sub">
+            <mat-form-field >
+              <mat-label> Type </mat-label>
+              <mat-select (selectionChange)="applyFilter($event.value, 'type')" [(ngModel)]="filteredValues.type">
+                <mat-option>All</mat-option>
+                <mat-option *ngFor="let row of typeList" value="{{row}}">{{row}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </th>
+
+        </ng-container>
+
+
+        <ng-container matColumnDef="amount">
+          <th id="s-amount-h" mat-header-cell *matHeaderCellDef style="text-align: right;">Amount</th>
+          <td id="s-amount" mat-cell *matCellDef="let element">
+
+            {{element.rupAmount}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="amountFilter">
+          <th id="c-referenceno-h" mat-header-cell *matHeaderCellDef class="sub">
+            <mat-form-field >
+              <mat-label> Amount </mat-label>
+              <mat-select (selectionChange)="applyFilter($event.value, 'amount')" [(ngModel)]="filteredValues.amount">
+                <mat-option>All</mat-option>
+                <mat-option *ngFor="let row of amountList" value="{{row}}">{{row}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </th>
+
+        </ng-container>
+
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedCols"></tr>
+        <tr mat-header-row *matHeaderRowDef="displayedFilterCols"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedCols; " class="element-row">
+        </tr>
+
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+    </div>
+
+  </div>
+
+</div>

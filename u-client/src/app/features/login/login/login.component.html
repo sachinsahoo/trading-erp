@@ -1,0 +1,72 @@
+
+<div class="">
+
+<img class="img1" src="https://aid-frontend.prod.atl-paas.net/atlassian-id/front-end/5.0.165/static/media/bitbucket_left.eb81704e.svg">
+<img class="img2" src="https://aid-frontend.prod.atl-paas.net/atlassian-id/front-end/5.0.165/static/media/bitbucket_right.108e5ce3.svg">
+
+  <div  style="background: white;
+padding: 100px;
+margin: 0;
+display: -webkit-box;
+display: -moz-box;
+display: -ms-flexbox;
+display: -webkit-flex;
+display: flex;
+align-items: center;
+justify-content: center;
+height: 100vh;">
+
+    <form id="login-form" [formGroup]="loginFormGroup" (ngSubmit)="onSubmit()">
+
+      <div class="row justify-content-center">
+
+          <div style="    padding: 60px 30px;
+          border: 0.5px solid rgba(0, 0, 0, 0.116);">
+              <span>
+                  <h1> Login</h1>
+              </span>
+
+              <!--User Name-->
+              <div class="row">
+                  <mat-form-field class="col" [ngClass]="routeAnimationsElement">
+                      <input id="username" matInput placeholder="Username" formControlName="username">
+                      <mat-error id="username-error" *ngIf="loginFormGroup.get('username').invalid">
+                          Enter valid username
+                      </mat-error>
+                  </mat-form-field>
+              </div>
+
+              <!--Password-->
+              <div class="row">
+                  <mat-form-field class="col" [ngClass]="routeAnimationsElement">
+                      <input id="password" matInput type="password" placeholder="Password" formControlName="password">
+                      <mat-error id="password-error" *ngIf="loginFormGroup.get('password').invalid">
+                          Enter valid password
+                      </mat-error>
+                  </mat-form-field>
+              </div>
+
+              <div class="row d-flex justify-content-center">
+                  <button  id="submit-button" mat-raised-button [disabled]="!loginFormGroup.valid" color="accent" [ngClass]="routeAnimationsElement">
+                      Login
+                  </button>
+              </div>
+              <!-- <div id="login-error" class="row justify-content-center pb-2 pt-2" *ngIf="invalidLogin$ | async">
+                  <mat-error>Username or Password incorrect</mat-error>
+              </div> -->
+
+            </div>
+      </div>
+
+
+  </form>
+
+
+</div>
+
+
+
+
+</div>
+
+

@@ -1,0 +1,53 @@
+<div class="col-12" >
+
+  <!--  All Customer Bar Chart   -->
+    <div class="col-8" *ngIf="pYearly$ | async">
+        <inv-bar-chart [barChartDetail] = "barchartDetail"[color]="1"></inv-bar-chart>
+    </div>
+
+</div>
+
+<!-- Product List - metrics for year -->
+
+<div class="col-9 mt-8" >
+
+    <table id="all-product-ps" mat-table [dataSource]="dataSource" 
+    matSort matSortActive="name" matSortDirection="asc" matSortDisableClear class="mat-elevation-z0">
+
+     <ng-container matColumnDef="name" >
+       <th id="name-h" mat-header-cell *matHeaderCellDef mat-sort-header>Customer</th>
+       <td id="name" mat-cell *matCellDef="let element"> 
+        <button mat-button color="primary" (click)= "showMonthly(element)">
+          {{ element.name}} 
+        </button>
+         
+        
+        </td>
+     </ng-container>
+
+     <ng-container matColumnDef="balance" >
+       <th id="c-balance-h" mat-header-cell *matHeaderCellDef mat-sort-header>Current Balance</th>
+       <td id="c-balance" mat-cell *matCellDef="let element"> {{element.rupBalance }} </td>
+     </ng-container>
+
+     <ng-container matColumnDef="saleamt">
+       <th id="s-saleamt-h" mat-header-cell *matHeaderCellDef mat-sort-header>Sales Amount</th>
+       <td id="s-saleamt" mat-cell *matCellDef="let element"> {{element.rupSaleAmt }} </td>
+     </ng-container>
+
+     <ng-container matColumnDef="netProfit">
+       <th id="s-netProfit-h" mat-header-cell *matHeaderCellDef >Profit</th>
+       <td id="s-netProfit" mat-cell *matCellDef="let element">{{element.rupProfit }}</td>
+     </ng-container>
+
+  
+   
+   
+   
+     <tr mat-header-row *matHeaderRowDef="displayedCols"></tr>
+   <tr mat-row *matRowDef="let row; columns: displayedCols;" class="detail-row"></tr>
+
+
+   </table>
+  
+ </div>

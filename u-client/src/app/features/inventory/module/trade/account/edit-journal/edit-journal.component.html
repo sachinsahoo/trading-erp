@@ -1,0 +1,273 @@
+<div *ngIf = "reload$ | async">
+
+
+    <div class="toolbar mb-2" >
+
+        <mat-toolbar color="primary" class="secondary">
+            <div class="button-row" style="flex:1">
+
+                <div class="row">
+                    <div class="ml-4 nav-link">
+
+                        <a (click)="viewTransactions()">Transactions </a>
+
+                        <span *ngIf="transaction.id != null"> &nbsp; / &nbsp; <a
+                                (click)="viewTrans()">{{transaction.type}}</a></span>
+                        <br />
+                        <span class="header" *ngIf="transaction.id == null"> New Journal Entry</span>
+                        <span class="header" *ngIf="transaction.id != null"> Edit Journal : {{transaction.notes}}</span>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+            <div class="abc">
+
+                <button mat-button color="primary" class="mr-4 bg" [disabled]="false">
+                    <fa-icon icon="pen-square" transform="shrink-1"></fa-icon>&nbsp; New Journal
+                </button>
+                <button mat-button color="primary" (click)="null" class="mr-4 bg">
+                    <fa-icon icon="pen-square" transform="shrink-1"></fa-icon>&nbsp; Create Account
+                </button>
+
+
+            </div>
+
+        </mat-toolbar>
+    </div>
+
+
+    <div *ngIf="accountList$ | async">
+
+        <div class="row justify-content-center mt-10 mb-40">
+
+
+
+
+
+
+            <!-- Input Forms (Left Side)-->
+            <div class="col-9 mb-10">
+
+                <div class="heading2 bg">
+
+                    <h3> Enter Transaction Info: </h3>
+
+                </div>
+
+
+                <form #transForm="ngForm" [formGroup]="transactionForm" >
+
+                    <div class="row mt-2 mb-2">
+                        <mat-form-field class="col-3">
+                            <mat-label>Journal date</mat-label>
+                            <input matInput [matDatepicker]="picker" formControlName="date">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+
+                        <mat-form-field class=" col-5">
+                            <mat-label>Description</mat-label>
+                            <input matInput placeholder="" formControlName="notes">
+                        </mat-form-field>
+
+                        <mat-form-field class=" col-4">
+                            <mat-label>Company</mat-label>
+                            <mat-select formControlName="myCompanyId">
+                                <mat-option *ngFor="let company of selfCompanyList" [value]="company.id">
+                                    {{company.name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                    </div>
+
+
+
+
+
+                    <div class="heading2 bg">
+
+                        <h3> Add Journal Entries </h3>
+                    </div>
+                    <form #jForm="ngForm" [formGroup]="journalForm" #formDirective="ngForm"
+                        (ngSubmit)="submitJournal(formDirective); ">
+                        <div class="row mt-2 mb-2 journal-form">
+
+                            <!-- Account Auto Complete---------------------------------------------->
+                            <mat-form-field class=" col-4">
+                                <mat-label>Account</mat-label>
+                                <input type="text" matInput formControlName="account" [matAutocomplete]="accountauto"
+                                    #trigger="matAutocompleteTrigger">
+                                <mat-autocomplete #accountauto="matAutocomplete" [displayWith]="displayAccountFn"
+                                    (optionSelected)='accountSelected($event.option.value);'>
+                                    <mat-option *ngFor="let option of accountOptions | async" [value]="option">
+                                        {{option.name}} {{option.id}}
+                                    </mat-option>
+                                </mat-autocomplete>
+                                <!--Error Message-->
+                                <mat-error align="start" *ngIf="journalForm.controls.account.errors?.duplicate"
+                                    class="form__error"> Account already added
+                                </mat-error>
+
+                                <mat-error align="start" *ngIf="journalForm.controls.account.errors?.notFound"
+                                    class="form__error">Not Found. Please select from Dropdown
+                                </mat-error>
+                            </mat-form-field>
+
+                            <!-- Debit Amount-->
+                            <mat-form-field class=" col-3">
+                                <mat-label>Debit</mat-label>
+                                <input matInput type="number" placeholder="" formControlName="dramount"
+                                    (change)="onDrCrChange('dr')">
+                            </mat-form-field>
+
+
+                            <mat-form-field class=" col-3">
+                                <mat-label>Credit</mat-label>
+                                <input matInput type="number" placeholder="" formControlName="cramount"
+                                    (change)="onDrCrChange('cr')">
+                            </mat-form-field>
+
+                            <div class="col-2">
+                                <div class="">
+                                    <button mat-raised-button color="primary" class="medium">
+                                        <fa-icon icon="plus" transform="grow-1"></fa-icon> Add
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </form>
+
+
+                    <!-- Edit Journals Table form array-->
+
+                    <mat-error align="start" *ngIf="transactionForm.errors?.totMismatch" class="form__error">Total Debit
+                        should match total Credit
+                    </mat-error>
+
+                    <table class="mt-3 edit-table" style="width: 100%;">
+                        <thead class="text-nowrap">
+                            <th style="width: 40%;"> Account</th>
+                            <th style="width: 15%;">Debit</th>
+                            <th style="width: 15%;">Credit</th>
+                            <th style="width: 30%;">Action</th>
+                        </thead>
+                        <tbody>
+                            <ng-container formArrayName="journals"
+                                *ngFor="let group of getFormControls.controls ; let i=index">
+                                <tr [formGroupName]="i"
+                                    [ngClass]="group.get('drcrtype').value == 1 ? 'debit-row': 'credit-row'">
+
+
+                                    <!--Account Name-->
+                                    <td style="width: 40%;">
+                                        <span *ngIf="group.get('drcrtype').value == 2">&nbsp;&nbsp;&nbsp;&nbsp; To
+                                        </span>
+                                        {{group.get('account').value.name}} &nbsp;A/C&nbsp;
+                                        <span *ngIf="group.get('drcrtype').value == 1">Dr</span>
+                                        <span *ngIf="group.get('drcrtype').value == 2">Cr</span>
+                                    </td>
+
+                                    <!--Debit Amount-->
+                                    <td style="width: 15%;">
+                                        <div *ngIf="group.get('isEditable').value">
+                                            <mat-form-field>
+                                                <input matInput type="number" formControlName="dramount"
+                                                    (change)="onDrCrChangeIndex('dr', i)">
+                                                <mat-error align="start" *ngIf="group.controls.dramount.errors?.invalid"
+                                                    class="form__error">Invalid amount
+                                                </mat-error>
+                                            </mat-form-field>
+                                        </div>
+
+                                        <div *ngIf="!group.get('isEditable').value">
+                                            {{group.get('dramount').value}}
+                                        </div>
+                                    </td>
+
+
+                                    <!--Credit Amount-->
+                                    <td style="width: 15%;">
+                                        <div *ngIf="group.get('isEditable').value">
+                                            <mat-form-field>
+                                                <input matInput type="number" formControlName="cramount"
+                                                    (change)="onDrCrChangeIndex('cr', i)">
+                                                <mat-error align="start" *ngIf="group.controls.cramount.errors?.invalid"
+                                                    class="form__error">Invalid amount
+                                                </mat-error>
+                                            </mat-form-field>
+                                        </div>
+
+                                        <div *ngIf="!group.get('isEditable').value">
+                                            {{group.get('cramount').value}}
+                                        </div>
+                                    </td>
+
+
+                                    <!--Action-->
+                                    <td style="width: 30%;">
+                                        <div *ngIf="group.get('isEditable').value" style="display: flex;">
+                                            <button mat-button class="ml-4 " (click)="doneRow(group)">
+                                                <fa-icon icon="save" transform="grow-8"></fa-icon>
+                                            </button>
+                                            <button mat-button color="warn" class="ml-4" (click)="deleteRow(i)">
+                                                <fa-icon icon="trash" transform="grow-8"></fa-icon>
+                                            </button>
+
+                                        </div>
+                                        <div *ngIf="!group.get('isEditable').value">
+
+                                            <button mat-button class="ml-4" (click)="editRow(group)">
+                                                <fa-icon icon="pen" transform="grow-8"></fa-icon>
+                                            </button>
+                                        </div>
+
+                                    </td>
+                                </tr>
+                            </ng-container>
+                        </tbody>
+
+                    </table>
+
+
+
+
+
+
+
+
+
+
+                </form>
+
+
+                <!--  -->
+                <!-- <button mat-raised-button color="primary" class="ml-4 float-right" (click)="transForm.ngSubmit.emit()"
+                    [disabled]="!transForm.form?.valid">
+
+
+                    <fa-icon icon="save" transform="grow-1"></fa-icon> Save Journal
+                </button> -->
+
+                <button mat-raised-button color="primary" class="ml-4 float-right" (click)="submitForm()"
+                    [disabled]="!transForm.form?.valid">
+
+
+                    <fa-icon icon="save" transform="grow-1"></fa-icon> Save Journal
+                </button> 
+
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

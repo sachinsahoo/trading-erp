@@ -1,0 +1,333 @@
+<div class="erp-mat-dialog" *ngIf="companies$ | async">
+
+<div>
+    <mat-toolbar color="primary">
+        <div class="button-row" style="flex:1">
+            <h1 mat-dialog-title> {{data.name}}</h1>
+
+        </div>
+
+
+
+
+        <div class="abc">
+
+
+            <button mat-icon-button class="" color="primary" (click)="viewReport()">
+                <fa-icon icon="chart-bar" transform="grow-10" ></fa-icon>
+            </button>
+        </div>
+
+    </mat-toolbar>
+</div>
+
+<!-- Mat Toolbar End ------------------------------>
+
+
+<mat-divider></mat-divider>
+
+<mat-dialog-content class="aaa">
+    <!-- <mat-progress-spinner diameter="24" mode="indeterminate" *ngIf="isLoading$ | async">
+    </mat-progress-spinner> -->
+
+    <mat-tab-group class="col-12">
+
+        <mat-tab label="Home">
+
+
+            <div class="stats row">
+                <div  *ngIf="data.type != 'self'">
+                    <span class="label">Balance </span>
+                    <span class="data">{{data.rupBalance}}</span>
+                </div>
+
+                <div  *ngIf="data.type == 'self'">
+                    <span class="label">Bank </span>
+                    <p class="data">{{data.rupBank}}</p>
+                </div>
+
+                <div  *ngIf="data.type == 'self'">
+                    <span class="label">Payable</span>
+                    <p class="data">{{data.rupPayable}}</p>
+                </div>
+
+                <div  *ngIf="data.type == 'self'">
+                    <span class="label">Receivable </span>
+                    <!-- <p class="data">{{data.rupReceivable}}</p> -->
+                </div>
+
+            </div>
+
+            <div class="detail-table">
+                <table>
+
+                    <tr>
+                        <td class="label">Phone</td>
+                        <td class="data ">{{data.phone}}</td>
+                        <td class="label">Email</td>
+                        <td class="data ">{{data.email}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="label">Tan</td>
+                        <td class="data">{{data.tan}}</td>
+                        <td class="label">Pan</td>
+                        <td class="data">{{data.pan}}</td>
+                    </tr>
+
+
+
+                    <tr>
+                        <td class="label">IFSC</td>
+                        <td class="data">{{data.ifsccode}}</td>
+                        <td class="label">GSTIN</td>
+                        <td class="data">{{data.gstin1}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="label"> Bank Name</td>
+                        <td class="data">{{data.bankname}}</td>
+                        <td class="label">Bank A/C</td>
+                        <td class="data">{{data.accountType}} <br />{{data.bankaccno}} </td>
+                    </tr>
+
+                </table>
+            </div>
+
+            <mat-divider></mat-divider>
+
+
+
+
+        </mat-tab>
+
+        <mat-tab label="Purchases" *ngIf="data.type == 'self' || data.type == 'supplier'">
+
+
+            <div class="status-radio">
+                <mat-radio-group aria-label="Select an option">
+                    <mat-radio-button value="all">All</mat-radio-button>
+                    <mat-radio-button value="confirm">In Transit</mat-radio-button>
+                    <mat-radio-button value="received">Received</mat-radio-button>
+                </mat-radio-group>
+
+
+            </div>
+
+            <div class="col-12">
+
+                <table id="purchases" mat-table [dataSource]="poDataSource" class="mat-elevation-z0">
+
+                    <ng-container matColumnDef="orderdate">
+                        <th id="orderdate-h" mat-header-cell *matHeaderCellDef>Order Date</th>
+                        <td id="orderdate" mat-cell *matCellDef="let element">
+                            {{ element.orderdate * 1000 | date:  'd MMM yy'}}
+                        </td>
+                    </ng-container>
+
+
+                    <ng-container matColumnDef="referenceno">
+                        <th id="s-referenceno-h" mat-header-cell *matHeaderCellDef>Reference</th>
+                        <td id="s-referenceno" mat-cell *matCellDef="let element">
+
+                            <button mat-button color="primary" (click)="viewOrder(element)">
+                                {{element.referenceno }}
+                            </button>
+                        </td>
+                    </ng-container>
+
+
+
+                    <ng-container matColumnDef="supplierName">
+                        <th id="s-supplierName-h" mat-header-cell *matHeaderCellDef>Supplier</th>
+                        <td id="s-supplierName" mat-cell *matCellDef="let element">{{element.supplierName }}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="customerName">
+                        <th id="s-customerName-h" mat-header-cell *matHeaderCellDef>Company</th>
+                        <td id="s-customerName" mat-cell *matCellDef="let element">{{element.customerName }}</td>
+                    </ng-container>
+
+
+
+                    <ng-container matColumnDef="totalAmount">
+                        <th id="s-totalAmount-h" mat-header-cell *matHeaderCellDef>Total Amt</th>
+                        <td id="s-totalAmount" mat-cell *matCellDef="let element">{{element.rupTotalAmount }}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="status">
+                        <th id="s-status-h" mat-header-cell *matHeaderCellDef>Status</th>
+                        <td id="s-status" mat-cell *matCellDef="let element">
+                            {{element.status }}
+                            <span *ngIf="element.status == 'confirm'">
+                                {{ element.confirmdate * 1000 | date:  'd MMM yy'}}</span>
+                            <span *ngIf="element.status == 'received'">
+                                {{ element.receivedate * 1000 | date:  'd MMM yy'}}</span>
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="getDisplayedCols('purchase')"></tr>
+                    <tr mat-row *matRowDef="let row; columns: getDisplayedCols('purchase');" class="detail-row"></tr>
+
+
+                </table>
+
+            </div>
+
+
+        </mat-tab>
+
+        <mat-tab label="Sales" *ngIf="data.type == 'self' || data.type == 'customer'">
+            <div class="status-radio">
+                <mat-radio-group aria-label="Select an option">
+                    <mat-radio-button value="all">All</mat-radio-button>
+                    <mat-radio-button value="confirm">Processing</mat-radio-button>
+                    <mat-radio-button value="received">Shipped</mat-radio-button>
+                </mat-radio-group>
+
+
+            </div>
+
+            <div class="col-12">
+
+                <table id="sales" mat-table [dataSource]="soDataSource" class="mat-elevation-z0">
+
+                    <ng-container matColumnDef="orderdate">
+                        <th id="orderdate-h" mat-header-cell *matHeaderCellDef>Order Date</th>
+                        <td id="orderdate" mat-cell *matCellDef="let element">
+                            {{ element.orderdate * 1000 | date:  'd MMM yy'}}
+                        </td>
+                    </ng-container>
+
+
+                    <ng-container matColumnDef="referenceno">
+                        <th id="s-referenceno-h" mat-header-cell *matHeaderCellDef>Reference</th>
+                        <td id="s-referenceno" mat-cell *matCellDef="let element">
+
+                            <button mat-button color="primary" (click)="viewOrder(element)">
+                                {{element.referenceno }}
+                            </button>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="supplierName">
+                        <th id="s-supplierName-h" mat-header-cell *matHeaderCellDef>Supplier</th>
+                        <td id="s-supplierName" mat-cell *matCellDef="let element">{{element.supplierName }}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="customerName">
+                        <th id="s-customerName-h" mat-header-cell *matHeaderCellDef>Customer</th>
+                        <td id="s-customerName" mat-cell *matCellDef="let element">{{element.customerName }}</td>
+                    </ng-container>
+
+
+
+                    <ng-container matColumnDef="totalAmount">
+                        <th id="s-totalAmount-h" mat-header-cell *matHeaderCellDef>Total Amt</th>
+                        <td id="s-totalAmount" mat-cell *matCellDef="let element">{{element.rupTotalAmount }}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="status">
+                        <th id="s-status-h" mat-header-cell *matHeaderCellDef>Status</th>
+                        <td id="s-status" mat-cell *matCellDef="let element">
+                            {{element.status }}
+                            <span *ngIf="element.status == 'confirm'">
+                                {{ element.confirmdate * 1000 | date:   'd MMM yy'}}</span>
+                            <span *ngIf="element.shipdate == 'shipped'">
+                                {{ element.receivedate * 1000 | date:  'd MMM yy'}}</span>
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="getDisplayedCols('sale')"></tr>
+                    <tr mat-row *matRowDef="let row; columns: getDisplayedCols('sale');" class="detail-row"></tr>
+
+
+                </table>
+
+            </div>
+
+        </mat-tab>
+
+
+        <mat-tab label="Contacts">
+
+
+
+
+
+
+            <div class="col-12">
+
+                <table id="contact" mat-table [dataSource]="contactDataSouce" class="mat-elevation-z0">
+
+                    <ng-container matColumnDef="name">
+                        <th id="name-h" mat-header-cell *matHeaderCellDef>Name</th>
+                        <td id="name" mat-cell *matCellDef="let element">
+                            {{ element.name}}
+                        </td>
+                    </ng-container>
+
+
+                    <ng-container matColumnDef="phone">
+                        <th id="s-phone-h" mat-header-cell *matHeaderCellDef>Phone</th>
+                        <td id="s-phone" mat-cell *matCellDef="let element">
+                            {{element.phone1}} <br />
+                            {{element.phone2}}
+
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="address">
+                        <th id="s-address-h" mat-header-cell *matHeaderCellDef>Address</th>
+                        <td id="s-address" mat-cell *matCellDef="let element">
+                            {{element.email }} <br />
+                            {{element.address1 }}<br />
+                            <span *ngIf="element.address2">{{element.address2 }}<br /></span>
+                            {{element.city }} ,{{element.state }} <br />
+                            {{element.pincode }}
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="edit">
+                        <th id="s-edit-h" mat-header-cell *matHeaderCellDef>Edit</th>
+                        <td id="s-edit" mat-cell *matCellDef="let element">
+                            <button mat-button color="primary" (click)="editContact(element)">
+                                Edit
+                            </button>
+
+                        </td>
+                    </ng-container>
+
+
+
+                    <tr mat-header-row *matHeaderRowDef="contactDispCols"></tr>
+                    <tr mat-row *matRowDef="let row; columns: contactDispCols" class="detail-row"></tr>
+
+
+                </table>
+
+                <div class="mt-4 mb-4">
+                    <button mat-raised-button color="primary" (click)="addContact()">
+                        Add Contact
+                    </button>
+                </div>
+
+            </div>
+
+        </mat-tab>
+
+
+    </mat-tab-group>
+
+
+
+</mat-dialog-content>
+
+<mat-divider></mat-divider>
+
+<mat-dialog-actions align="end" class="mt-1">
+    <button id="cancel-btn" mat-raised-button (click)="editCompany()" >Edit</button>
+    <button id="cancel-btn" mat-raised-button (click)="onClose()">Close</button>
+
+</mat-dialog-actions>
+</div>

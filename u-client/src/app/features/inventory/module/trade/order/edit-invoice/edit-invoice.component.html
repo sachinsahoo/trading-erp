@@ -1,0 +1,178 @@
+<div *ngIf="companies$ | async">
+
+
+    <div class="toolbar mb-2" >
+
+        <mat-toolbar color="primary" class="secondary">
+            <div class="button-row" style="flex:1">
+
+                <div class="row">
+                    <div class="ml-4 nav-link">
+
+                        <span> <a (click)="viewOrderList()">{{getOrderLabel()}} </a> &nbsp; / &nbsp;</span>
+                        <a (click)="viewOrder()">{{selectedOrder.referenceno}}</a>
+                        <span *ngIf="invoice.id != null"> &nbsp; / &nbsp; <a
+                                (click)="viewInvoice()">{{invoice.referenceno}}</a></span>
+                        <br />
+                        <span class="header" *ngIf="invoice.id == null"> New Invoice</span>
+                        <span class="header" *ngIf="invoice.id != null"> Edit Invoice : {{invoice.referenceno}}</span>
+                        <span class="tags ml-3" [ngClass]="invoice.status"> {{invoice.status}}</span>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+            <div class="abc">
+
+                <button mat-raised-button color="primary" class="mr-4" (click)="invoiceForm.ngSubmit.emit()"
+                    [disabled]="!invoiceForm.form?.valid">
+                    SAVE
+                </button>
+                <button mat-raised-button (click)="viewInvoice()" class="mr-4">
+                    DISCARD
+                </button>
+
+
+            </div>
+
+        </mat-toolbar>
+    </div>
+</div>
+
+<div *ngIf="(orderError$ | async) as syserror" class="systemError">
+    System Error : {{ syserror }}
+</div>
+
+
+<div class="row justify-content-center mt-1">
+
+    <div class="col-10 border">
+        <!------   Tabs        ------->
+
+        <div class="mb-5">
+
+            <form #invoiceForm="ngForm" [formGroup]="productTableForm" (ngSubmit)="submitForm()">
+
+                <div class="row mt-5 mb-5">
+                    <mat-form-field class="col-3">
+                        <mat-label>Invoice date</mat-label>
+                        <input matInput [matDatepicker]="picker" formControlName="invdate">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+
+                    <mat-form-field class=" col-3">
+                        <mat-label>Status</mat-label>
+                        <input matInput placeholder="" formControlName="status">
+                    </mat-form-field>
+
+                    <div class="col-6"></div>
+
+                    <mat-form-field class=" col-5">
+                        <mat-label>Transporter</mat-label>
+                        <input matInput placeholder="" formControlName="transportername">
+                    </mat-form-field>
+                    <mat-form-field class=" col-4">
+                        <mat-label>Truck No.</mat-label>
+                        <input matInput placeholder="" formControlName="truckno">
+                    </mat-form-field>
+                    <mat-form-field class=" col-3">
+                        <mat-label>Container No.</mat-label>
+                        <input matInput placeholder="" formControlName="containerno">
+                    </mat-form-field>
+                </div>
+                <table class="mt-3 inv-table" style="width: 80%;">
+                    <thead class="text-nowrap">
+                        <th>Sl No</th>
+                        <th>Product</th>
+                        <th>price</th>
+                        <th>Order <br /> Quantity</th>
+                        <th *ngIf="selectedOrder.invoices != null">Total of other <br />Invoiced Quantity</th>
+
+                        <th>Quantity</th>
+                        <th>Action</th>
+                    </thead>
+                    <tbody>
+                        <ng-container formArrayName="tableRows"
+                            *ngFor="let group of getFormControls.controls ; let i=index">
+                            <tr [formGroupName]="i">
+
+                                <!--Total-->
+                                <td style="width: 5%;">
+                                    {{i + 1}}
+                                </td>
+                                <!--Prod Name-->
+                                <td style="width: 25%;">
+                                    {{group.get('prodName').value}}
+                                </td>
+                                <!--Total-->
+                                <td style="width: 15%;">
+                                    {{group.get('price').value}}
+                                </td>
+
+                                <td style="width: 8%;  color: #546e7a;">
+                                    {{group.get('orderQty').value}}
+                                </td>
+
+                                <td *ngIf="selectedOrder.invoices != null" style="width: 8%;  color: #546e7a;">
+                                    {{group.get('invCreatedQty').value}}
+                                </td>
+
+                                <!--Quantity-->
+                                <td style="width: 20%;">
+                                    <div *ngIf="group.get('isEditable').value">
+                                        <mat-form-field>
+                                            <input matInput type="text" formControlName="quantity">
+                                            <mat-error align="start" *ngIf="group.controls.quantity.errors?.exceeds"
+                                                class="form__error">Total Invoice Quantity Exceeds Order
+                                                quantity
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </div>
+
+                                    <div *ngIf="!group.get('isEditable').value">
+                                        {{group.get('quantity').value}}
+                                    </div>
+                                </td>
+
+
+                                <!--Action-->
+                                <td style="width: 30%;">
+                                    <div *ngIf="group.get('isEditable').value" style="display: flex;">
+                                        <button mat-button class="ml-4 secondary" (click)="doneRow(group)">
+                                            done
+                                        </button>
+                                        <button mat-button class="ml-4 secondary redb" (click)="deleteRow(i)">
+                                            delete
+                                        </button>
+
+                                    </div>
+                                    <div *ngIf="!group.get('isEditable').value">
+
+                                        <button mat-button class="ml-4 secondary" (click)="editRow(group)">
+                                            edit
+                                        </button>
+                                    </div>
+
+                                </td>
+                            </tr>
+                        </ng-container>
+                    </tbody>
+
+                </table>
+            </form>
+            <!-- <div class="action-container">
+               
+                <button mat-raised-button [disabled]="productTableForm.invalid" type="submit"
+                    (click)="submitForm()">Submit</button>
+            </div> -->
+
+
+
+        </div>
+
+
+    </div>
+</div>

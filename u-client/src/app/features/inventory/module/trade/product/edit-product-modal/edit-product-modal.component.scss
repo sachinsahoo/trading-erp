@@ -1,0 +1,22 @@
+@import '../../../../../../app/app.component.scss';
+
+
+.flex-container {
+    display: flex;
+  }
+  
+  .mat-card-title {
+    padding: 0;
+  }
+  .button-row {
+    display: table-cell;
+  }
+  .button-row button {
+    display: table-cell;
+    margin-right: 8px;
+  }
+  
+  .mt-3{
+    margin-top: 30px;
+  }
+  

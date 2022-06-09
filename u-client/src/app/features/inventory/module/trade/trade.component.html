@@ -1,0 +1,69 @@
+<mat-sidenav-container color="accent">
+  <!--Mobile side nav -->
+  <mat-sidenav class="side-nav" #sidenav opened mode="side">
+    <!-- <mat-nav-list>
+      <div class="menu-header" *ngFor="let item of navigation">
+        <mat-divider></mat-divider>
+        <div class="main-menu" [routerLink]="item.link">
+            <fa-icon class="menu-icon" transform="grow-10" icon="{{item.icons}}">
+          </fa-icon>  <br>
+          <div style="margin-top: 10px;"><label > {{ item.label }} </label></div>
+      </div>
+
+      <mat-divider></mat-divider>
+
+        <mat-list-item class="menu-item"  [routerLink]="menu.link" routerLinkActive="active" *ngFor="let menu of item.child">
+          <fa-icon class="menu-icon" [ngClass]="menu.cls" transform="grow-1" icon="{{menu.icons}}"></fa-icon> &nbsp;&nbsp;
+         <label> {{menu.label}}</label>
+        </mat-list-item>
+
+      </div>
+    </mat-nav-list> -->
+
+    <mat-nav-list color="primary" >
+
+
+      <div class="menu-header" *ngFor="let item of navigation ; let i = index">
+        <mat-divider></mat-divider>
+        <div class="main-menu" color="accent" [routerLink]="item.link" (click)="item.submenu = !item.submenu">
+          <fa-icon  class="menu-icon" transform="grow-10" icon="{{item.icons}}"></fa-icon> &nbsp; &nbsp;
+          <label class="display-4"> {{ item.label }} </label>
+          <div style="margin-top: 10px;"></div>
+        </div>
+
+        <div class="sub-menu" *ngIf="item.submenu" >
+
+          <div *ngIf="item.submenu" [@fadeInOutAnimations]>
+            <mat-list-item class="menu-item" *ngFor="let menu of item.child" [routerLink]="menu.link"
+              routerLinkActive="active">
+              <div>
+                <fa-icon class="menu-icon" [ngClass]="menu.cls" transform="grow-1" icon="{{menu.icons}}"></fa-icon>
+                &nbsp;&nbsp;
+                <label> {{menu.label}}</label>
+              </div>
+
+            </mat-list-item>
+          </div>
+
+
+        </div>
+
+
+      </div>
+
+
+
+    </mat-nav-list>
+
+  </mat-sidenav>
+
+
+
+  <div class="content main-content" [@routeAnimations]="
+      o.isActivated &&
+      o.activatedRoute.routeConfig.data &&
+      o.activatedRoute.routeConfig.data.title
+    ">
+    <router-outlet #o="outlet"></router-outlet>
+  </div>
+</mat-sidenav-container>

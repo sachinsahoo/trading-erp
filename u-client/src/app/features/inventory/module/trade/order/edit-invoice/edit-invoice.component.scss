@@ -1,0 +1,33 @@
+@import '../../../../../../app/app.component.scss';
+
+
+.inv-table {
+    border: 1px solid #0277bd;
+
+    tr {
+        &:hover{
+            background-color: #e3f2fd;
+        }
+    }
+
+    th {
+        background-color: #eceff1;
+        border-top: 2px solid #0277bd;
+        border-bottom: 2px solid #0277bd;
+        border-radius: 4px;
+        padding: 8px;
+        color: #616161;
+    }
+
+    td {
+
+        padding: 8px;
+
+        //background-color: #e1f5fe;
+        border-top: 1px solid #78909c;
+        border-bottom: 1px solid #78909c;
+        border-radius: 3px;
+    }
+
+
+}

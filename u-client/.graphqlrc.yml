@@ -1,0 +1,11 @@
+schema: './schema/*.graphql'
+documents: ''
+extensions:
+  codegen:
+    generates:
+      ./generated-frontend.ts:
+        plugins:
+          - typescript
+          - typescript-apollo-angular
+  endpoints:
+    default: 'https://trading.urvaru.com'

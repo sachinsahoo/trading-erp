@@ -1,0 +1,11 @@
+{
+  "/unused/*": {
+    "target": "https://localhost:8443/smulti",
+    "secure": false,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/server/": ""
+    },
+    "logLevel": "debug"
+  }
+}

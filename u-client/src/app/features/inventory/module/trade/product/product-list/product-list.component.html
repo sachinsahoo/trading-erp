@@ -1,0 +1,126 @@
+
+
+  <div class="toolbar mb-2" >
+
+    <mat-toolbar color="primary" class="secondary">
+      <div class="button-row" style="flex:1">
+
+        <div class="row">
+          <div class="ml-4">
+            <span class="header"> Product List</span>
+          </div>
+        </div>
+
+      </div>
+      <div class="mr-20">
+
+
+
+         
+
+        <button mat-button class="ml-4 bgblue" (click)="createProduct()">
+          <fa-icon icon="plus" transform="grow-3"></fa-icon>
+        </button>
+         <span class="ml-16"></span>
+
+         <button mat-button class="ml-4 bgblue" routerLink="/trade/productreport">
+          <fa-icon icon="chart-line" transform="grow-3"></fa-icon>
+        </button>
+        <button mat-button class="ml-5 bg" (click)="printPreview()">
+          <fa-icon icon="download" transform="grow-3"></fa-icon>
+        </button>
+
+        <button mat-button class="ml-4 bgteal" (click)="import()">
+          <fa-icon icon="upload" transform="grow-3"></fa-icon>
+        </button>
+        <span class="ml-4"></span>
+
+
+        
+      </div>
+
+    </mat-toolbar>
+  </div>
+
+
+
+<div class="row">
+
+  <!--div *ngIf="products$ | async as products"-->
+
+  <!--Products-->
+  <div class="col-9">
+    <mat-form-field class="float-right">
+      <mat-label>Filter</mat-label>
+      <input matInput placeholder="Ex. ium">
+    </mat-form-field>
+  </div>
+
+  <div *ngIf="products$ | async">
+
+  </div>
+
+  <div class="col-9">
+    <table id="products" mat-table [dataSource]="dataSource" class="mat-elevation-z0" matSortDirection="desc" matSort
+      matSortActive="created" matSortDisableClear>
+
+
+      <ng-container matColumnDef="name">
+        <th id="name-h" mat-header-cell *matHeaderCellDef>Name</th>
+        <td id="name" mat-cell *matCellDef="let element">
+          <button mat-button color="primary" (click)="viewProduct(element)">
+            <fa-icon icon="tag" class="c2" transform="shrink-3"></fa-icon> &nbsp;
+            {{element.name}}
+          </button>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="costPrice">
+        <th id="c-price-h" mat-header-cell *matHeaderCellDef>Cost Price</th>
+        <td id="c-price" mat-cell *matCellDef="let element"> {{element.rupCostPrice}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="salesPrice">
+        <th id="s-price-h" mat-header-cell *matHeaderCellDef>Sales Price</th>
+        <td id="s-price" mat-cell *matCellDef="let element"> {{element.rupSalesPrice}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="pendingarrival">
+        <th id="s-pendingarrival-h" mat-header-cell *matHeaderCellDef>Pending <br/> Arrival</th>
+        <td id="s-pendingarrival" mat-cell *matCellDef="let element"> {{element.pendingarrival}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="pendingdispatch">
+        <th id="s-pendingdispatch-h" mat-header-cell *matHeaderCellDef>Pending <br/>   Dispatch</th>
+        <td id="s-pendingdispatch" mat-cell *matCellDef="let element"> {{element.pendingdispatch}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="quantity">
+        <th id="s-price-h" mat-header-cell *matHeaderCellDef>Stock</th>
+        <td id="s-price" mat-cell *matCellDef="let element"> {{element.quantity}}  {{element.unit}}</td>
+      </ng-container>
+
+     
+
+      
+
+      <tr mat-header-row *matHeaderRowDef="displayedCols"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedCols;"></tr>
+
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
+
+  <!-- -->
+
+  <!--/div-->
+
+  <div>
+
+
+  </div>
+
+
+
+
+
+</div>
