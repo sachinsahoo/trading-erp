@@ -61,6 +61,10 @@ import { EditJournalComponent } from './account/edit-journal/edit-journal.compon
 import { EditPaymentModalComponent } from './transaction/edit-payment-modal/edit-payment-modal.component';
 import { AccountGroupComponent } from './account/balance-sheet/account-group/account-group.component';
 import { PayablesComponent } from './account/payables/payables.component';
+import { InputCustomerComponent } from './order/edit-order/input-customer/input-customer.component';
+import { InputShippingComponent } from './order/edit-order/input-shipping/input-shipping.component';
+import { InputProductsComponent } from './order/edit-order/input-products/input-products.component';
+import { InputPaymentsComponent } from './order/edit-order/input-payments/input-payments.component';
 
 @NgModule({
   declarations: [
@@ -121,7 +125,11 @@ import { PayablesComponent } from './account/payables/payables.component';
     EditJournalComponent,
     EditPaymentModalComponent,
     AccountGroupComponent,
-    PayablesComponent
+    PayablesComponent,
+    InputCustomerComponent,
+    InputShippingComponent,
+    InputProductsComponent,
+    InputPaymentsComponent
   ],
   imports: [
     CommonModule,

@@ -62,10 +62,14 @@ export class EditOrderComponent implements OnInit, OnDestroy {
   // Steppers
   customerFormGroup = this.fb.group({
     firstCtrl: ['', Validators.required],
+    supplierInput: ['', [Validators.required]],
+    customerInput: ['', Validators.required],
+    orderDate: ['', Validators.required]
   });
 
   productFormGroup = this.fb.group({
     secondCtrl: ['', Validators.required],
+    poproducts: this.fb.array([]),
   });
   shippingFormGroup = this.fb.group({
     secondCtrl: ['', Validators.required],
@@ -81,10 +85,8 @@ export class EditOrderComponent implements OnInit, OnDestroy {
 
   // Form Related
   orderFormGroup: FormGroup = this.fb.group({
-    poproducts: this.fb.array([]),
-    supplierInput: ['', [Validators.required]],
-    customerInput: ['', Validators.required],
-    orderDate: ['', Validators.required]
+   
+    
   });
 
   popFormGroup = this.fb.group(EditOrderComponent.createProductForm());
