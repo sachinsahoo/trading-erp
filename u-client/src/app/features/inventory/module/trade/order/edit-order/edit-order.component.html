@@ -23,7 +23,7 @@
       <div class="abc">
 
         <button mat-raised-button color="primary" (click)="orderForm.ngSubmit.emit()"
-          [disabled]="!orderForm.form?.valid">
+                [disabled]="!orderForm.form?.valid">
           SAVE
         </button>
         <button mat-button (click)="viewOrder()">
@@ -50,127 +50,111 @@
   <div class="col-10">
 
 
-      <div *ngIf="(orderError$ | async) as syserror" class="systemError">
-        System Error : {{ syserror }}
+    <div *ngIf="(orderError$ | async) as syserror" class="systemError">
+      System Error : {{ syserror }}
+    </div>
+
+
+
+    <!-----  Form ---------->
+    <form class="inv-form" #orderForm="ngForm" [formGroup]="orderFormGroup" (ngSubmit)="submitMain()">
+
+      <div class="heading2 bg col-12">
+        <h3> Enter Client Info: </h3>
       </div>
 
 
-      <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
-        {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
-      </button>
-     
-      <!-- Steppers -->
-      <mat-stepper [linear]="isLinear" #stepper>
-        
-        
-        <mat-step [stepControl]="customerFormGroup">
-          <form [formGroup]="customerFormGroup">
-
-            <div class="heading2 bg col-12">
-              <h3> Enter Client Info: </h3>
-            </div>
-    
-              <!-- Supplier Auto Complete---------------------------------------------->
-              <mat-form-field class="col-6">
-                <mat-label>Supplier</mat-label>
-                <input type="text" matInput formControlName="supplierInput" [matAutocomplete]="supauto">
-                <mat-autocomplete #supauto="matAutocomplete" [displayWith]="displayFn">
-                  <mat-option *ngFor="let option of supplierOptions | async" [value]="option">
-                    {{option.name}} {{option.id}}
-                  </mat-option>
-                </mat-autocomplete>
-                <!--Error Message-->
-                <mat-error align="start" *ngIf="customerFormGroup.controls.supplierInput.errors?.notFound" class="form__error">
-                  Supplier Not Found. Please select from Dropdown</mat-error>
-              </mat-form-field>
-    
-    
-              <!-- Customer  Auto Complete ----------------------------------------------->
-              <mat-form-field class="col-6">
-                <mat-label>Customer</mat-label>
-                <input type="text" matInput formControlName="customerInput" name="customer" [matAutocomplete]="custauto">
-    
-                <mat-autocomplete #custauto="matAutocomplete" [displayWith]="displayFn">
-                  <mat-option *ngFor="let option of customerOptions | async" [value]="option">
-                    {{option.name}} {{option.id}}
-                  </mat-option>
-                </mat-autocomplete>
-                <!--Error Message-->
-                <mat-error align="start" *ngIf="customerFormGroup.controls.customerInput.errors?.notFound" class="form__error">
-                  Customer Not Found. Please select from Dropdown</mat-error>
-              </mat-form-field>
-    
-              <!-- Agent  Auto Complete ----------------------------------------------->
-              <mat-form-field class="col-6">
-                <mat-label>Agent</mat-label>
-                <input type="text" matInput formControlName="customerInput" name="agent" [matAutocomplete]="custauto">
-    
-                <mat-autocomplete #custauto="matAutocomplete" [displayWith]="displayFn">
-                  <mat-option *ngFor="let option of customerOptions | async" [value]="option">
-                    {{option.name}} {{option.id}}
-                  </mat-option>
-                </mat-autocomplete>
-                <!--Error Message-->
-                <mat-error align="start" *ngIf="customerFormGroup.controls.customerInput.errors?.notFound" class="form__error">
-                  Customer Not Found. Please select from Dropdown</mat-error>
-              </mat-form-field>
-    
-    
-              <!----Order Date ---------------------------------------------------------->
-              <mat-form-field class="col-6">
-                <mat-label>Order date</mat-label>
-                <input matInput [matDatepicker]="picker" formControlName="orderDate">
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-              </mat-form-field>
-            <ng-template matStepLabel>Fill out your name</ng-template>
-            <mat-form-field appearance="fill">
-              <mat-label>Name</mat-label>
-              <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
-            </mat-form-field>
-            <div>
-              <button mat-button matStepperNext>Next</button>
-            </div>
-          </form>
-        </mat-step>
-        
-        
-        <mat-step [stepControl]="productFormGroup" label="Fill out your address">
-          <form [formGroup]="productFormGroup">
 
 
-          <!-- Cart section -->
-        <div class="col-12 d-flex"> 
-                 
-          
-          <!-- Add New Product Form -->
-          <div class="col-5">
-        
+      <!-- Supplier Auto Complete---------------------------------------------->
+      <mat-form-field class="col-6">
+        <mat-label>Supplier</mat-label>
+        <input type="text" matInput formControlName="supplierInput" [matAutocomplete]="supauto">
+        <mat-autocomplete #supauto="matAutocomplete" [displayWith]="displayFn">
+          <mat-option *ngFor="let option of supplierOptions | async" [value]="option">
+            {{option.name}} {{option.id}}
+          </mat-option>
+        </mat-autocomplete>
+        <!--Error Message-->
+        <mat-error align="start" *ngIf="orderFormGroup.controls.supplierInput.errors?.notFound" class="form__error">
+          Supplier Not Found. Please select from Dropdown</mat-error>
+      </mat-form-field>
+
+
+      <!-- Customer  Auto Complete ----------------------------------------------->
+      <mat-form-field class="col-6">
+        <mat-label>Customer</mat-label>
+        <input type="text" matInput formControlName="customerInput" name="customer" [matAutocomplete]="custauto">
+
+        <mat-autocomplete #custauto="matAutocomplete" [displayWith]="displayFn">
+          <mat-option *ngFor="let option of customerOptions | async" [value]="option">
+            {{option.name}} {{option.id}}
+          </mat-option>
+        </mat-autocomplete>
+        <!--Error Message-->
+        <mat-error align="start" *ngIf="orderFormGroup.controls.customerInput.errors?.notFound" class="form__error">
+          Customer Not Found. Please select from Dropdown</mat-error>
+      </mat-form-field>
+
+      <!-- Agent  Auto Complete ----------------------------------------------->
+      <mat-form-field class="col-6">
+        <mat-label>Agent</mat-label>
+        <input type="text" matInput formControlName="customerInput" name="agent" [matAutocomplete]="custauto">
+
+        <mat-autocomplete #custauto="matAutocomplete" [displayWith]="displayFn">
+          <mat-option *ngFor="let option of customerOptions | async" [value]="option">
+            {{option.name}} {{option.id}}
+          </mat-option>
+        </mat-autocomplete>
+        <!--Error Message-->
+        <mat-error align="start" *ngIf="orderFormGroup.controls.customerInput.errors?.notFound" class="form__error">
+          Customer Not Found. Please select from Dropdown</mat-error>
+      </mat-form-field>
+
+
+      <!----Order Date ---------------------------------------------------------->
+      <mat-form-field class="col-6">
+        <mat-label>Order date</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="orderDate">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+
+
+
+      <!-- Cart section -->
+      <div class="col-12 d-flex">
+
+
+        <!-- Add New Product Form -->
+        <div class="col-5">
+
 
           <div class="heading2 bg ">
             <h3> Add Product: </h3>
           </div>
-  
+
           <div class="col-12 mt-8 mb-10">
-  
+
             <form class="prod-form" #productForm="ngForm" [formGroup]="popFormGroup" #formDirective="ngForm"
-              (ngSubmit)="submitProduct(formDirective); ">
-  
+                  (ngSubmit)="submitProduct(formDirective); ">
+
               <div class="row mt-3">
-  
-  
+
+
                 <!-- Product Auto Complete---------------------------------------------->
                 <mat-form-field class=" col-12">
                   <mat-label>Product</mat-label>
                   <input type="text" matInput formControlName="product" [matAutocomplete]="prodauto"
-                    #trigger="matAutocompleteTrigger">
+                         #trigger="matAutocompleteTrigger">
                   <mat-autocomplete #prodauto="matAutocomplete" [displayWith]="displayProdFn"
-                    (optionSelected)='productSelected($event.option.value);'>
+                                    (optionSelected)='productSelected($event.option.value);'>
                     <mat-option *ngFor="let option of productOptions | async" [value]="option" class="px-0">
-                      
-                        <span class="w-50 px-2">{{option.name}}</span>
-                        <span class="bg w-50 h-100 px-2 float-right c2">Stock:&nbsp;  <span class="c5">{{option.quantity}} {{option.unit}} </span> </span>
-               
+
+                      <span class="w-50 px-2">{{option.name}}</span>
+                      <span class="bg w-50 h-100 px-2 float-right c2">Stock:&nbsp;  <span class="c5">{{option.quantity}} {{option.unit}} </span> </span>
+
                     </mat-option>
                   </mat-autocomplete>
                   <!--Error Message-->
@@ -181,12 +165,12 @@
                     Product already added
                   </mat-error>
                 </mat-form-field>
-                
+
                 <mat-form-field class=" col-6">
                   <mat-label>Price</mat-label>
                   <input matInput placeholder="" formControlName="price">
                 </mat-form-field>
-  
+
                 <mat-form-field class=" col-6">
                   <mat-label>Quantity</mat-label>
                   <input matInput placeholder="" formControlName="quantity">
@@ -194,22 +178,22 @@
                     Quantity exceeds available stock
                   </mat-error>
                 </mat-form-field>
-  
-               
-  
+
+
+
                 <mat-form-field class=" col-6">
                   <mat-label>Commision</mat-label>
                   <input matInput placeholder="" formControlName="commpay">
                 </mat-form-field>
-  
+
                 <div class="col-5">
                   <button mat-raised-button color="primary" type="submit" class="medium "
-                    [disabled]="!popFormGroup.valid">Add</button>
+                          [disabled]="!popFormGroup.valid">Add</button>
                 </div>
               </div>
-  
-             
-  
+
+
+
               <div class="row">
                 <div class="mb-5 col-3 status-radio">
                   <mat-radio-group [(ngModel)]="selectedTax" aria-label="Type" [ngModelOptions]="{standalone: true}">
@@ -218,215 +202,157 @@
                   </mat-radio-group>
                 </div>
               </div>
-  
+
             </form>
           </div>
-  
+
+        </div>
+
+        <!-- Edit PO Products section -->
+        <div class="col-7">
+          <div class="heading2 bg mb-20">
+            <h3> Edit Order Items </h3>
           </div>
-  
-           <!-- Edit PO Products section -->
-          <div class="col-7">
-            <div class="heading2 bg mb-20">
-              <h3> Edit Order Items </h3>
-            </div>
-    
-           
-            <table class="poproducts" style="width: 100%; background-color: #f5f5f5;">
-              <thead class="hover-highlight" style="background:#fafafa;">
-                <th> Product</th>
-                <th> Quantity</th>
-                <th> Price</th>
-                <th> Amount</th>
-                <th> Delete</th>
-              </thead>
-              <tbody>
-    
-                <ng-container formArrayName="poproducts" *ngFor="let group of getFormControls.controls ; let i=index">
-                  <tr [formGroupName]="i" >
-                    <!-- Product Name -->
-                    <td style="width: 25%;"> 
-                      {{group.get('product')?.value.name}} 
-                     
-    
-    
-                      <!-- TODO Display taxes -->
-                      <span *ngFor="let tax of group.get('taxes').value" style="text-align: right; color: blue;">
+
+
+          <table class="poproducts" style="width: 100%; background-color: #f5f5f5;">
+            <thead class="hover-highlight" style="background:#fafafa;">
+            <th> Product</th>
+            <th> Quantity</th>
+            <th> Price</th>
+            <th> Amount</th>
+            <th> Delete</th>
+            </thead>
+            <tbody>
+
+            <ng-container formArrayName="poproducts" *ngFor="let group of getFormControls.controls ; let i=index">
+              <tr [formGroupName]="i" >
+                <!-- Product Name -->
+                <td style="width: 25%;">
+                  {{group.get('product')?.value.name}}
+
+
+
+                  <!-- TODO Display taxes -->
+                  <span *ngFor="let tax of group.get('taxes').value" style="text-align: right; color: blue;">
                             <br /><span style="width: 100%; text-align: right;">{{tax.desc}}</span>
                           </span>
-    
-                    </td>
-    
-                    <!-- Quantity -->
-                    <td style="width: 15%; " (click)="editRow(group)">
-    
-                      <div *ngIf="group.get('isEditable').value">
-                        <mat-form-field>
-                          <input matInput type="number" formControlName="quantity">
-                          <mat-error align="start" *ngIf="group.controls.quantity.errors?.invalid" class="form__error">
-                            Invalid amount
-                          </mat-error>
-                          <mat-error align="start" *ngIf="group.controls.quantity.errors?.exceed" class="form__error">
-                            Exceeds Stock quantity
-                          </mat-error>
-                        </mat-form-field>
-                      </div>
-                      <div *ngIf="!group.get('isEditable').value"> {{group.get('quantity').value}} </div>
-                    </td>
-    
-                    <!-- Price -->
-                    <td style="width: 13%; " (click)="editRow(group)">
-                      <div *ngIf="group.get('isEditable').value">
-                        <mat-form-field>
-                          <input matInput type="number" formControlName="price">
-                          <mat-error align="start" *ngIf="group.controls.price.errors?.invalid" class="form__error">
-                            Invalid amount
-                          </mat-error>
-    
-                        </mat-form-field>
-                      </div>
-                      <div *ngIf="!group.get('isEditable').value">{{group.get('price').value}} </div>
-                    </td>
-  
-    
-                    <!-- Total -->
-                    <td style="width: 12%; "> 
-                      {{group.get('price').value * group.get('quantity').value}}
-    
-                      <!-- TODO -->
-                      <span *ngFor="let tax of group.get('taxes').value" style="text-align: right; color: blue; padding: 0; ">
+
+                </td>
+
+                <!-- Quantity -->
+                <td style="width: 15%; " (click)="editRow(group)">
+
+                  <div *ngIf="group.get('isEditable').value">
+                    <mat-form-field>
+                      <input matInput type="number" formControlName="quantity">
+                      <mat-error align="start" *ngIf="group.controls.quantity.errors?.invalid" class="form__error">
+                        Invalid amount
+                      </mat-error>
+                      <mat-error align="start" *ngIf="group.controls.quantity.errors?.exceed" class="form__error">
+                        Exceeds Stock quantity
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                  <div *ngIf="!group.get('isEditable').value"> {{group.get('quantity').value}} </div>
+                </td>
+
+                <!-- Price -->
+                <td style="width: 13%; " (click)="editRow(group)">
+                  <div *ngIf="group.get('isEditable').value">
+                    <mat-form-field>
+                      <input matInput type="number" formControlName="price">
+                      <mat-error align="start" *ngIf="group.controls.price.errors?.invalid" class="form__error">
+                        Invalid amount
+                      </mat-error>
+
+                    </mat-form-field>
+                  </div>
+                  <div *ngIf="!group.get('isEditable').value">{{group.get('price').value}} </div>
+                </td>
+
+
+                <!-- Total -->
+                <td style="width: 12%; ">
+                  {{group.get('price').value * group.get('quantity').value}}
+
+                  <!-- TODO -->
+                  <span *ngFor="let tax of group.get('taxes').value" style="text-align: right; color: blue; padding: 0; ">
                           <br />{{(tax.percent * group.get('price').value * group.get('quantity').value) / 100}}
                         </span>
-    
-                    </td>
-    
-                    <!-- Action -->
-                    <td style="width: 10%;">
-                      <div *ngIf="group.get('isEditable').value" style="display: flex;">
-                        <button mat-button class="ml-1 " (click)="doneRow(group)">
-                          <fa-icon icon="save" class="c4" transform="grow-8"></fa-icon>
-                        </button>
-                        <button mat-button color="warn" class="ml-1" (click)="deleteRow(i)">
-                          <fa-icon icon="trash" transform="grow-8"></fa-icon>
-                        </button>
-    
-                      </div>
-                      <div *ngIf="!group.get('isEditable').value">
-    
-                        <button mat-button class="ml-1" (click)="editRow(group)">
-                          <fa-icon icon="pen" class="c4" transform="grow-8"></fa-icon>
-                        </button>
-                      </div>
-    
-                    </td>
-    
-    
-    
-    
-                  </tr>
-                </ng-container>
-    
-              </tbody>
-    
-            </table>
-    
-    
-            <!-- Total -->
-            <table class="total mb-5" style="width: 100%;">
-              <tr style="background-color: #eeeeee; height: 40px; font-size: 24px;">
-                <td style="width: 20%;  border-top: solid 1px; border-bottom: solid 1px;">&nbsp;</td>
-                <td style="width: 15%;  border-top: solid 1px; border-bottom: solid 1px;">Total</td>
-                <td style="width: 10%;  border-top: solid 1px; border-bottom: solid 1px;"></td>
-                <td style="width: 10%;  border-top: solid 1px; border-bottom: solid 1px;"></td>
-                <td style="width: 15%;  border-top: solid 1px; border-bottom: solid 1px;">{{getTotalAmt()}}</td>
-                <td style="width: 20%;  border-top: solid 1px; border-bottom: solid 1px;">
-                  {{selectedOrder.rupTotalAmount}} </td> 
-                <td style="width: 10%; border-top: solid 1px; border-bottom: solid 1px;"></td>
+
+                </td>
+
+                <!-- Action -->
+                <td style="width: 10%;">
+                  <div *ngIf="group.get('isEditable').value" style="display: flex;">
+                    <button mat-button class="ml-1 " (click)="doneRow(group)">
+                      <fa-icon icon="save" class="c4" transform="grow-8"></fa-icon>
+                    </button>
+                    <button mat-button color="warn" class="ml-1" (click)="deleteRow(i)">
+                      <fa-icon icon="trash" transform="grow-8"></fa-icon>
+                    </button>
+
+                  </div>
+                  <div *ngIf="!group.get('isEditable').value">
+
+                    <button mat-button class="ml-1" (click)="editRow(group)">
+                      <fa-icon icon="pen" class="c4" transform="grow-8"></fa-icon>
+                    </button>
+                  </div>
+
+                </td>
+
+
+
+
               </tr>
-    
-            </table>
-    
-  
-          </div>
-          <!-- PO Product Form Array Start -->
-  
-          
+            </ng-container>
 
-          </div>
-        
+            </tbody>
+
+          </table>
 
 
+          <!-- Total -->
+          <table class="total mb-5" style="width: 100%;">
+            <tr style="background-color: #eeeeee; height: 40px; font-size: 24px;">
+              <td style="width: 20%;  border-top: solid 1px; border-bottom: solid 1px;">&nbsp;</td>
+              <td style="width: 15%;  border-top: solid 1px; border-bottom: solid 1px;">Total</td>
+              <td style="width: 10%;  border-top: solid 1px; border-bottom: solid 1px;"></td>
+              <td style="width: 10%;  border-top: solid 1px; border-bottom: solid 1px;"></td>
+              <td style="width: 15%;  border-top: solid 1px; border-bottom: solid 1px;">{{getTotalAmt()}}</td>
+              <td style="width: 20%;  border-top: solid 1px; border-bottom: solid 1px;">
+                {{selectedOrder.rupTotalAmount}} </td>
+              <td style="width: 10%; border-top: solid 1px; border-bottom: solid 1px;"></td>
+            </tr>
 
-        <!--Total Commision -->
-        <div class="row mb-5 ml-1" *ngIf="selectedOrder.totalcommpay != null && selectedOrder.totalcommpay > 0">
-          <div class="col-10 commision">
-            <span> Commision payable : <span class="pay"> {{ selectedOrder.rupTotalCommPay}}</span></span>
-          </div>
+          </table>
+
+
         </div>
-        <!-- PO Product Form Array End -->
-
-            <mat-form-field appearance="fill">
-              <mat-label>Address</mat-label>
-              <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
-                     required>
-            </mat-form-field>
-            <div>
-              <button mat-button matStepperPrevious>Back</button>
-              <button mat-button matStepperNext>Next</button>
-            </div>
-          </form>
-        </mat-step>
-
-        <mat-step [stepControl]="shippingFormGroup" label="Fill out your address">
-          <form [formGroup]="shippingFormGroup">
-            <mat-form-field appearance="fill">
-              <mat-label>Address</mat-label>
-              <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
-                     required>
-            </mat-form-field>
-            <div>
-              <button mat-button matStepperPrevious>Back</button>
-              <button mat-button matStepperNext>Next</button>
-            </div>
-          </form>
-        </mat-step>
-
-        <mat-step [stepControl]="paymentFormGroup" label="Fill out your address">
-          <form [formGroup]="paymentFormGroup">
-            <mat-form-field appearance="fill">
-              <mat-label>Address</mat-label>
-              <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
-                     required>
-            </mat-form-field>
-            <div>
-              <button mat-button matStepperPrevious>Back</button>
-              <button mat-button matStepperNext>Next</button>
-            </div>
-          </form>
-        </mat-step>
-        <mat-step>
-          <ng-template matStepLabel>Done</ng-template>
-          <p>You are now done.</p>
-          <div>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button (click)="stepper.reset()">Reset</button>
-          </div>
-        </mat-step>
-      </mat-stepper>
+        <!-- PO Product Form Array Start -->
 
 
-      <!-----  Form ---------->
-      <form class="inv-form" #orderForm="ngForm" [formGroup]="orderFormGroup" (ngSubmit)="submitMain()">
 
-        
+      </div>
+
+
+
+
+      <!--Total Commision -->
+      <div class="row mb-5 ml-1" *ngIf="selectedOrder.totalcommpay != null && selectedOrder.totalcommpay > 0">
+        <div class="col-10 commision">
+          <span> Commision payable : <span class="pay"> {{ selectedOrder.rupTotalCommPay}}</span></span>
+        </div>
+      </div>
+      <!-- PO Product Form Array End -->
 
 
 
 
 
-
-
-
-      </form>
+    </form>
 
 
 

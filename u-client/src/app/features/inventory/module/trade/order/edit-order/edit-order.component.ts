@@ -17,8 +17,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { flatMap, startWith, map } from 'rxjs/operators';
 import { updateSelectedOrderInStore, saveOrder } from 'app/features/inventory/action/order.action';
 import { POPTax } from 'app/features/inventory/model/poptax';
-import {MatStepperModule} from '@angular/material/stepper';
-
 
 @Component({
   selector: 'edit-order',
@@ -26,8 +24,6 @@ import {MatStepperModule} from '@angular/material/stepper';
   styleUrls: ['./edit-order.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-  
-
 export class EditOrderComponent implements OnInit, OnDestroy {
   routeAnimationsElement = ROUTE_ANIMATIONS_ELEMENTS;
 
@@ -59,34 +55,13 @@ export class EditOrderComponent implements OnInit, OnDestroy {
   // Radio
   selectedTax: string;
 
-  // Steppers
-  customerFormGroup = this.fb.group({
-    firstCtrl: ['', Validators.required],
-    supplierInput: ['', [Validators.required]],
-    customerInput: ['', Validators.required],
-    orderDate: ['', Validators.required]
-  });
-
-  productFormGroup = this.fb.group({
-    secondCtrl: ['', Validators.required],
-    poproducts: this.fb.array([]),
-  });
-  shippingFormGroup = this.fb.group({
-    secondCtrl: ['', Validators.required],
-  });
-
-  paymentFormGroup = this.fb.group({
-    secondCtrl: ['', Validators.required],
-  });
-
-
-  isLinear = false;
-
 
   // Form Related
   orderFormGroup: FormGroup = this.fb.group({
-   
-    
+    poproducts: this.fb.array([]),
+    supplierInput: ['', [Validators.required]],
+    customerInput: ['', Validators.required],
+    orderDate: ['', Validators.required]
   });
 
   popFormGroup = this.fb.group(EditOrderComponent.createProductForm());
@@ -128,7 +103,7 @@ export class EditOrderComponent implements OnInit, OnDestroy {
   }
 
   // --------
-  // Init 
+  // Init
   // --------
   ngOnInit() {
 
@@ -439,8 +414,8 @@ export class EditOrderComponent implements OnInit, OnDestroy {
   }
 
   // ---------------------------
-  // Populate Company Dropdowns 
-  // --------------------------- 
+  // Populate Company Dropdowns
+  // ---------------------------
   populateCompanyDropDowns() {
     this.suppliers = this.allCompanies.filter(function (comp) {
       return comp.type == 'supplier';
@@ -488,7 +463,7 @@ export class EditOrderComponent implements OnInit, OnDestroy {
   }
 
   // ------------------
-  // Product Drop Down 
+  // Product Drop Down
   // ------------------
   populateProductDropDown(products: Product[]) {
     this.productOptions = this.popFormGroup.controls.product.valueChanges.pipe(

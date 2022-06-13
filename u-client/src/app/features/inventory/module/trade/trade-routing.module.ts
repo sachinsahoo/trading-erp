@@ -65,6 +65,12 @@ const routes: Routes = [
       },
 
       {
+              path: 'order/create',
+              component: EditOrderComponent,
+              data: { type: 'sale' }
+       },
+
+      {
         path: 'order/edit/:type/:id',
         component: EditOrderComponent,
         data: { type: 'purchase' }

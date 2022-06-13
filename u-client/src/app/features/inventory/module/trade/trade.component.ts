@@ -74,10 +74,17 @@ export class TradeComponent implements OnInit {
     //   ]
     // },
     {
+      label: 'Create order',
+      icons: 'briefcase',
+      link: 'order/create',
+
+      submenu: false,
+    },
+    {
       label: 'Trading',
       icons: 'briefcase',
       link: 'product',
- 
+
       submenu: false,
 
       child: [
@@ -137,13 +144,13 @@ export class TradeComponent implements OnInit {
           icons: 'credit-card',
           link: 'transactions',
           label: 'Transactions',
-          
+
         },
         {
           icons: 'balance-scale',
           link: 'profit',
           label: 'Profit & Loss',
-       
+
         },
         {
           icons: 'balance-scale',

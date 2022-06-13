@@ -65,6 +65,7 @@ import { InputCustomerComponent } from './order/edit-order/input-customer/input-
 import { InputShippingComponent } from './order/edit-order/input-shipping/input-shipping.component';
 import { InputProductsComponent } from './order/edit-order/input-products/input-products.component';
 import { InputPaymentsComponent } from './order/edit-order/input-payments/input-payments.component';
+import { CreateOrderComponent } from './order/create-order/create-order.component';
 
 @NgModule({
   declarations: [
@@ -129,7 +130,8 @@ import { InputPaymentsComponent } from './order/edit-order/input-payments/input-
     InputCustomerComponent,
     InputShippingComponent,
     InputProductsComponent,
-    InputPaymentsComponent
+    InputPaymentsComponent,
+    CreateOrderComponent
   ],
   imports: [
     CommonModule,
